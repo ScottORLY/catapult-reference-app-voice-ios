@@ -19,9 +19,9 @@ private let kDefaultTimeout: NSTimeInterval = 15.0
 enum CatapultV1API {
     
     /**
-        Creates a new user if it does not exist and returns its SIP credentials
+        Creates a new user if it does not exist and returns its info
     */
-    case CreateUser([String: AnyObject])
+    case CreateOrFetchUser([String: AnyObject])
     
     /**
         Base URL for API access
@@ -37,7 +37,7 @@ extension CatapultV1API : APIEndpoint {
         
         switch self {
             
-        case .CreateUser(let parameters):
+        case .CreateOrFetchUser(let parameters):
             return (.POST, "/users", parameters)
             
         }
