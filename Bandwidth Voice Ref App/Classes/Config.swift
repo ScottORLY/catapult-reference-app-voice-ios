@@ -16,5 +16,5 @@ struct Config {
     /**
         The base server URL. Must be replaced with your own URL, otherwise the project won't build.
     */
-    let serverUrl = "<replace me>"
+    static let serverUrl = "<replace me>"
 }

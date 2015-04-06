@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1593E1B91AD297170098C566 /* BWSip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593E1B81AD297170098C566 /* BWSip.framework */; };
 		1593E1BB1AD298D70098C566 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1BA1AD298D70098C566 /* Config.swift */; };
+		1593E1C01AD29CA10098C566 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1BF1AD29CA10098C566 /* HTTPMethod.swift */; };
+		1593E1C21AD29CDA0098C566 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1C11AD29CDA0098C566 /* APIEndpoint.swift */; };
+		1593E1C41AD29D350098C566 /* CatapultV1API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1C31AD29D350098C566 /* CatapultV1API.swift */; };
+		1593E1C61AD29EAD0098C566 /* RemoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1C51AD29EAD0098C566 /* RemoteService.swift */; };
 		15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6751ACD573B003BDD65 /* AppDelegate.swift */; };
 		15B2E6781ACD573B003BDD65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6771ACD573B003BDD65 /* ViewController.swift */; };
 		15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E6791ACD573B003BDD65 /* Main.storyboard */; };
@@ -24,6 +28,10 @@
 /* Begin PBXFileReference section */
 		1593E1B81AD297170098C566 /* BWSip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWSip.framework; sourceTree = "<group>"; };
 		1593E1BA1AD298D70098C566 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		1593E1BF1AD29CA10098C566 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		1593E1C11AD29CDA0098C566 /* APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		1593E1C31AD29D350098C566 /* CatapultV1API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatapultV1API.swift; sourceTree = "<group>"; };
+		1593E1C51AD29EAD0098C566 /* RemoteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteService.swift; sourceTree = "<group>"; };
 		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +74,17 @@
 			name = "View Controllers";
 			sourceTree = "<group>";
 		};
+		1593E1BE1AD29BFA0098C566 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1593E1BF1AD29CA10098C566 /* HTTPMethod.swift */,
+				1593E1C11AD29CDA0098C566 /* APIEndpoint.swift */,
+				1593E1C31AD29D350098C566 /* CatapultV1API.swift */,
+				1593E1C51AD29EAD0098C566 /* RemoteService.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
 		15B2E6671ACD573B003BDD65 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +125,7 @@
 		15B2E6951ACD578E003BDD65 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1593E1BE1AD29BFA0098C566 /* API */,
 				1593E1BD1AD29B150098C566 /* View Controllers */,
 				15B2E6751ACD573B003BDD65 /* AppDelegate.swift */,
 				1593E1BA1AD298D70098C566 /* Config.swift */,
@@ -224,9 +244,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1593E1C01AD29CA10098C566 /* HTTPMethod.swift in Sources */,
+				1593E1C41AD29D350098C566 /* CatapultV1API.swift in Sources */,
 				15B2E6781ACD573B003BDD65 /* ViewController.swift in Sources */,
 				15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */,
+				1593E1C61AD29EAD0098C566 /* RemoteService.swift in Sources */,
 				1593E1BB1AD298D70098C566 /* Config.swift in Sources */,
+				1593E1C21AD29CDA0098C566 /* APIEndpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
