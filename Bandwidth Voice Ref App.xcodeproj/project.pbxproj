@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1593E1B91AD297170098C566 /* BWSip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593E1B81AD297170098C566 /* BWSip.framework */; };
+		1593E1BB1AD298D70098C566 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1BA1AD298D70098C566 /* Config.swift */; };
 		15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6751ACD573B003BDD65 /* AppDelegate.swift */; };
 		15B2E6781ACD573B003BDD65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6771ACD573B003BDD65 /* ViewController.swift */; };
 		15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E6791ACD573B003BDD65 /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		1593E1B81AD297170098C566 /* BWSip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWSip.framework; sourceTree = "<group>"; };
+		1593E1BA1AD298D70098C566 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1593E1BD1AD29B150098C566 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				15B2E6771ACD573B003BDD65 /* ViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		15B2E6671ACD573B003BDD65 = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +106,9 @@
 		15B2E6951ACD578E003BDD65 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				1593E1BD1AD29B150098C566 /* View Controllers */,
 				15B2E6751ACD573B003BDD65 /* AppDelegate.swift */,
-				15B2E6771ACD573B003BDD65 /* ViewController.swift */,
+				1593E1BA1AD298D70098C566 /* Config.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -132,6 +143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15B2E68F1ACD573B003BDD65 /* Build configuration list for PBXNativeTarget "Bandwidth Voice Ref App" */;
 			buildPhases = (
+				1593E1BC1AD299DC0098C566 /* Check Config File */,
 				15B2E66C1ACD573B003BDD65 /* Sources */,
 				15B2E66D1ACD573B003BDD65 /* Frameworks */,
 				15B2E66E1ACD573B003BDD65 /* Resources */,
@@ -189,6 +201,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1593E1BC1AD299DC0098C566 /* Check Config File */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Bandwidth Voice Ref App/Classes/Config.swift",
+			);
+			name = "Check Config File";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if grep -q \"<replace me>\" \"${SCRIPT_INPUT_FILE_0}\"; then\necho -e \"${SCRIPT_INPUT_FILE_0}:14: error: You must change the default configuration values\"\nexit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		15B2E66C1ACD573B003BDD65 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -196,6 +226,7 @@
 			files = (
 				15B2E6781ACD573B003BDD65 /* ViewController.swift in Sources */,
 				15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */,
+				1593E1BB1AD298D70098C566 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
