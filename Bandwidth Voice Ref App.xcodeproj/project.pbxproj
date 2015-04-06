@@ -1,0 +1,357 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1593E1B91AD297170098C566 /* BWSip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593E1B81AD297170098C566 /* BWSip.framework */; };
+		15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6751ACD573B003BDD65 /* AppDelegate.swift */; };
+		15B2E6781ACD573B003BDD65 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6771ACD573B003BDD65 /* ViewController.swift */; };
+		15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E6791ACD573B003BDD65 /* Main.storyboard */; };
+		15B2E67D1ACD573B003BDD65 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E67C1ACD573B003BDD65 /* Images.xcassets */; };
+		15B2E6A51ACD5AF5003BDD65 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */; };
+		15B2E6A71ACD5B03003BDD65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */; };
+		15B2E6A91ACD5B1C003BDD65 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */; };
+		15B2E6AB1ACD5B24003BDD65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */; };
+		15B2E6AD1ACD5B40003BDD65 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */; };
+		15B2E6AF1ACD5B8C003BDD65 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1593E1B81AD297170098C566 /* BWSip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWSip.framework; sourceTree = "<group>"; };
+		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		15B2E6771ACD573B003BDD65 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		15B2E67A1ACD573B003BDD65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		15B2E67C1ACD573B003BDD65 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
+		15B2E6B01ACD5D04003BDD65 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		15B2E6B21ACD6550003BDD65 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		15B2E66D1ACD573B003BDD65 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B2E6AF1ACD5B8C003BDD65 /* libstdc++.dylib in Frameworks */,
+				15B2E6AD1ACD5B40003BDD65 /* libresolv.dylib in Frameworks */,
+				15B2E6AB1ACD5B24003BDD65 /* CoreLocation.framework in Frameworks */,
+				15B2E6A91ACD5B1C003BDD65 /* SystemConfiguration.framework in Frameworks */,
+				15B2E6A71ACD5B03003BDD65 /* AVFoundation.framework in Frameworks */,
+				1593E1B91AD297170098C566 /* BWSip.framework in Frameworks */,
+				15B2E6A51ACD5AF5003BDD65 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		15B2E6671ACD573B003BDD65 = {
+			isa = PBXGroup;
+			children = (
+				15B2E6721ACD573B003BDD65 /* Bandwidth Voice Ref App */,
+				15B2E6711ACD573B003BDD65 /* Products */,
+				15B2E6B01ACD5D04003BDD65 /* README.md */,
+			);
+			sourceTree = "<group>";
+		};
+		15B2E6711ACD573B003BDD65 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		15B2E6721ACD573B003BDD65 /* Bandwidth Voice Ref App */ = {
+			isa = PBXGroup;
+			children = (
+				15B2E6951ACD578E003BDD65 /* Classes */,
+				15B2E6961ACD579A003BDD65 /* Resources */,
+				15B2E6731ACD573B003BDD65 /* Supporting Files */,
+				15B2E6971ACD5974003BDD65 /* Frameworks */,
+			);
+			path = "Bandwidth Voice Ref App";
+			sourceTree = "<group>";
+		};
+		15B2E6731ACD573B003BDD65 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				15B2E6741ACD573B003BDD65 /* Info.plist */,
+				15B2E6B21ACD6550003BDD65 /* BridgingHeader.h */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		15B2E6951ACD578E003BDD65 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				15B2E6751ACD573B003BDD65 /* AppDelegate.swift */,
+				15B2E6771ACD573B003BDD65 /* ViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		15B2E6961ACD579A003BDD65 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				15B2E6791ACD573B003BDD65 /* Main.storyboard */,
+				15B2E67C1ACD573B003BDD65 /* Images.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		15B2E6971ACD5974003BDD65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */,
+				15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */,
+				15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */,
+				15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */,
+				15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */,
+				15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */,
+				1593E1B81AD297170098C566 /* BWSip.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		15B2E66F1ACD573B003BDD65 /* Bandwidth Voice Ref App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 15B2E68F1ACD573B003BDD65 /* Build configuration list for PBXNativeTarget "Bandwidth Voice Ref App" */;
+			buildPhases = (
+				15B2E66C1ACD573B003BDD65 /* Sources */,
+				15B2E66D1ACD573B003BDD65 /* Frameworks */,
+				15B2E66E1ACD573B003BDD65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Bandwidth Voice Ref App";
+			productName = "Catapult Sample App";
+			productReference = 15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		15B2E6681ACD573B003BDD65 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = Bandwidth;
+				TargetAttributes = {
+					15B2E66F1ACD573B003BDD65 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = 15B2E66B1ACD573B003BDD65 /* Build configuration list for PBXProject "Bandwidth Voice Ref App" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 15B2E6671ACD573B003BDD65;
+			productRefGroup = 15B2E6711ACD573B003BDD65 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				15B2E66F1ACD573B003BDD65 /* Bandwidth Voice Ref App */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		15B2E66E1ACD573B003BDD65 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */,
+				15B2E67D1ACD573B003BDD65 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		15B2E66C1ACD573B003BDD65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				15B2E6781ACD573B003BDD65 /* ViewController.swift in Sources */,
+				15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		15B2E6791ACD573B003BDD65 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				15B2E67A1ACD573B003BDD65 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		15B2E68D1ACD573B003BDD65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		15B2E68E1ACD573B003BDD65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		15B2E6901ACD573B003BDD65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bandwidth",
+					Voice,
+					Ref,
+					App/Frameworks,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "Bandwidth Voice Ref App";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";
+			};
+			name = Debug;
+		};
+		15B2E6911ACD573B003BDD65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Bandwidth",
+					Voice,
+					Ref,
+					App/Frameworks,
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "Bandwidth Voice Ref App";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		15B2E66B1ACD573B003BDD65 /* Build configuration list for PBXProject "Bandwidth Voice Ref App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15B2E68D1ACD573B003BDD65 /* Debug */,
+				15B2E68E1ACD573B003BDD65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		15B2E68F1ACD573B003BDD65 /* Build configuration list for PBXNativeTarget "Bandwidth Voice Ref App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15B2E6901ACD573B003BDD65 /* Debug */,
+				15B2E6911ACD573B003BDD65 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 15B2E6681ACD573B003BDD65 /* Project object */;
+}
