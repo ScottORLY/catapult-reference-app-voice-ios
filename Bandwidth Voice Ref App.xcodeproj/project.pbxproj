@@ -400,10 +400,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Bandwidth",
-					Voice,
-					Ref,
-					App/Frameworks,
+					"\"$(PROJECT_DIR)/Bandwidth Voice Ref App/Frameworks\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -420,10 +417,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/Bandwidth",
-					Voice,
-					Ref,
-					App/Frameworks,
+					"\"$(PROJECT_DIR)/Bandwidth Voice Ref App/Frameworks\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
