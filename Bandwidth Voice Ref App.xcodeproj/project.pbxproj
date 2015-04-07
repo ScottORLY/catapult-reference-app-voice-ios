@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1593E1B91AD297170098C566 /* BWSip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1593E1B81AD297170098C566 /* BWSip.framework */; };
 		1593E1BB1AD298D70098C566 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1BA1AD298D70098C566 /* Config.swift */; };
 		1593E1C01AD29CA10098C566 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1BF1AD29CA10098C566 /* HTTPMethod.swift */; };
 		1593E1C21AD29CDA0098C566 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1C11AD29CDA0098C566 /* APIEndpoint.swift */; };
@@ -21,6 +20,7 @@
 		1593E1D51AD2D7D30098C566 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D41AD2D7D30098C566 /* MainTabBarController.swift */; };
 		1593E1D71AD2D8400098C566 /* DialerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D61AD2D8400098C566 /* DialerViewController.swift */; };
 		1593E1D91AD2D84C0098C566 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */; };
+		1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1DE1AD2F3130098C566 /* SIPManager.swift */; };
 		15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6751ACD573B003BDD65 /* AppDelegate.swift */; };
 		15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6771ACD573B003BDD65 /* SessionCheckViewController.swift */; };
 		15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E6791ACD573B003BDD65 /* Main.storyboard */; };
@@ -31,10 +31,11 @@
 		15B2E6AB1ACD5B24003BDD65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */; };
 		15B2E6AD1ACD5B40003BDD65 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */; };
 		15B2E6AF1ACD5B8C003BDD65 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */; };
+		15D43E631AD3EFAF0086CD53 /* DialpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */; };
+		15D43E651AD3F16A0086CD53 /* BWSip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D43E641AD3F16A0086CD53 /* BWSip.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1593E1B81AD297170098C566 /* BWSip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWSip.framework; sourceTree = "<group>"; };
 		1593E1BA1AD298D70098C566 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		1593E1BF1AD29CA10098C566 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		1593E1C11AD29CDA0098C566 /* APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -48,6 +49,7 @@
 		1593E1D41AD2D7D30098C566 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1593E1D61AD2D8400098C566 /* DialerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialerViewController.swift; sourceTree = "<group>"; };
 		1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		1593E1DE1AD2F3130098C566 /* SIPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIPManager.swift; sourceTree = "<group>"; };
 		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,8 @@
 		15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		15B2E6B01ACD5D04003BDD65 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		15B2E6B21ACD6550003BDD65 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialpadViewController.swift; sourceTree = "<group>"; };
+		15D43E641AD3F16A0086CD53 /* BWSip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWSip.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +78,7 @@
 				15B2E6AB1ACD5B24003BDD65 /* CoreLocation.framework in Frameworks */,
 				15B2E6A91ACD5B1C003BDD65 /* SystemConfiguration.framework in Frameworks */,
 				15B2E6A71ACD5B03003BDD65 /* AVFoundation.framework in Frameworks */,
-				1593E1B91AD297170098C566 /* BWSip.framework in Frameworks */,
+				15D43E651AD3F16A0086CD53 /* BWSip.framework in Frameworks */,
 				15B2E6A51ACD5AF5003BDD65 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,6 +92,7 @@
 				15B2E6771ACD573B003BDD65 /* SessionCheckViewController.swift */,
 				1593E1D21AD2BF150098C566 /* RegistrationViewController.swift */,
 				1593E1D41AD2D7D30098C566 /* MainTabBarController.swift */,
+				15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */,
 				1593E1D61AD2D8400098C566 /* DialerViewController.swift */,
 				1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */,
 			);
@@ -121,6 +126,14 @@
 				1593E1D01AD2B8640098C566 /* Session.swift */,
 			);
 			name = Session;
+			sourceTree = "<group>";
+		};
+		1593E1DD1AD2F3010098C566 /* SIP */ = {
+			isa = PBXGroup;
+			children = (
+				1593E1DE1AD2F3130098C566 /* SIPManager.swift */,
+			);
+			name = SIP;
 			sourceTree = "<group>";
 		};
 		15B2E6671ACD573B003BDD65 = {
@@ -166,6 +179,7 @@
 				1593E1C81AD2A7F00098C566 /* Model */,
 				1593E1CF1AD2B7F20098C566 /* Session */,
 				1593E1BE1AD29BFA0098C566 /* API */,
+				1593E1DD1AD2F3010098C566 /* SIP */,
 				1593E1BD1AD29B150098C566 /* View Controllers */,
 				15B2E6751ACD573B003BDD65 /* AppDelegate.swift */,
 				1593E1BA1AD298D70098C566 /* Config.swift */,
@@ -191,7 +205,7 @@
 				15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */,
 				15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */,
 				15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */,
-				1593E1B81AD297170098C566 /* BWSip.framework */,
+				15D43E641AD3F16A0086CD53 /* BWSip.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +242,11 @@
 				TargetAttributes = {
 					15B2E66F1ACD573B003BDD65 = {
 						CreatedOnToolsVersion = 6.2;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -275,7 +294,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if grep -q \"<replace me>\" \"${SCRIPT_INPUT_FILE_0}\"; then\necho -e \"${SCRIPT_INPUT_FILE_0}:14: error: You must change the default configuration values\"\nexit 1\nfi\n";
+			shellScript = "if grep -q \"<replace me>\" \"${SCRIPT_INPUT_FILE_0}\"; then\necho -e \"${SCRIPT_INPUT_FILE_0}:14: error: you must set the server URL in the Config.swift file\"\nexit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -285,7 +304,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1593E1C01AD29CA10098C566 /* HTTPMethod.swift in Sources */,
+				15D43E631AD3EFAF0086CD53 /* DialpadViewController.swift in Sources */,
 				1593E1CC1AD2A85B0098C566 /* Endpoint.swift in Sources */,
+				1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */,
 				1593E1CE1AD2A8E60098C566 /* Credentials.swift in Sources */,
 				1593E1C41AD29D350098C566 /* CatapultV1API.swift in Sources */,
 				15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */,
