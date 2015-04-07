@@ -33,12 +33,12 @@ class SettingsViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        updateDataFromSession()
+        updateEntries()
     }
     
     // MARK: - Class methods
     
-    func updateDataFromSession() {
+    func updateEntries() {
         
         // Loads the values from the current session
         
@@ -48,7 +48,9 @@ class SettingsViewController: UIViewController {
                 ("User name", session.user.username),
                 ("Phone number", session.user.number),
                 ("Endpoint name", session.user.endpoint.name),
-                ("SIP URI", session.user.endpoint.sipUri)
+                ("Registrar", session.user.endpoint.credentials.realm),
+                ("SIP URI", session.user.endpoint.sipUri),
+                ("Server", Config.serverUrl)
             ]
             
         } else {
@@ -89,7 +91,7 @@ extension SettingsViewController {
                     
                     Session.currentSession = Session(user: boxedValue.unbox)
                     
-                    self.updateDataFromSession()
+                    self.updateEntries()
                     
                 case .Failure(let error):
                     
