@@ -12,6 +12,9 @@ private let kInfoCellIdentifier = "InfoCell"
 
 private let kRegistrationViewControllerIdentifier = "RegistrationViewController"
 
+/**
+    View controller class for the settings/user info screen
+*/
 class SettingsViewController: UIViewController {
 
     // MARK: - Outlets
@@ -22,9 +25,6 @@ class SettingsViewController: UIViewController {
     
     // MARK: - Properties
     
-    /**
-        List of entries to be displayed
-    */
     private var infoEntries: [(String, String)] = []
     
     // MARK: - Superclass methods
@@ -95,7 +95,7 @@ extension SettingsViewController {
                     
                     println("ERROR - could not refresh user: \(error)")
                     
-                    self.showAlert("Error", message: "An unexpected error occured, please try again later.")
+                    self.showAlert("Error", message: "An unexpected error occurred, please try again later.")
                 }
             }
         }

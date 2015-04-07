@@ -88,7 +88,7 @@ class RegistrationViewController: UIViewController {
                     
                     println("ERROR - could not create user: \(error)")
                     
-                    self.showAlert("Error", message: "An unexpected error occured, please try again later.")
+                    self.showAlert("Error", message: "An unexpected error occurred, please try again later.")
                 }
             }
             
