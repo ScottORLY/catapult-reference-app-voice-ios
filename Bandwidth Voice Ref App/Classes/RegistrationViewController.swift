@@ -82,6 +82,8 @@ class RegistrationViewController: UIViewController {
                     
                     Session.currentSession = Session(user: boxedValue.unbox)
                     
+                    SIPManager.sharedInstance.registerWithUser(Session.currentSession!.user)
+                    
                     self.performSegueWithIdentifier(kShowMainScreenSegue, sender: nil)
                     
                 case .Failure(let error):
