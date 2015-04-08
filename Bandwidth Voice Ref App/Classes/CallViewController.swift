@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import AudioToolbox
+import AVFoundation
+
+private let kRingtoneInterval: NSTimeInterval = 2.5
 
 /**
     View controller class for an active call
@@ -34,7 +38,7 @@ class CallViewController: UIViewController {
     var call: BWCall? {
         
         didSet {
-            
+
             oldValue?.delegate = nil
             call?.delegate = self
         }
@@ -47,6 +51,10 @@ class CallViewController: UIViewController {
     private var callStartDate: NSDate?
     
     private var callDurationTimer: NSTimer?
+    
+    private var ringtoneSoundId: SystemSoundID!
+    
+    private var ringtoneTimer: NSTimer?
     
     // MARK: - Superclass methods
     
@@ -61,6 +69,8 @@ class CallViewController: UIViewController {
             callerLabel.text = call!.remoteUri
             
             SIPManager.sharedInstance.respondToCall(call!, busy: false)
+            
+            startPlayingRingtone()
             
         } else {
             
@@ -84,6 +94,11 @@ class CallViewController: UIViewController {
         let secs: Int = seconds % 60
         
         callDurationLabel.text = NSString(format: "%02d:%02d", mins, secs)
+    }
+    
+    func playRingtone() {
+        
+        AudioServicesPlayAlertSound(ringtoneSoundId);
     }
 }
 
@@ -137,6 +152,47 @@ private extension CallViewController {
         callDurationTimer?.invalidate()
         callDurationTimer = nil
     }
+    
+    private func startPlayingRingtone() {
+        
+        let ringtoneUrl = NSBundle.mainBundle().URLForResource("ringtone", withExtension: "wav")
+        
+        var soundId: SystemSoundID = 0
+        
+        AudioServicesCreateSystemSoundID(ringtoneUrl, &soundId)
+        
+        ringtoneSoundId = soundId
+        
+        var error: NSError?
+        
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: &error)
+        
+        AVAudioSession.sharedInstance().setActive(true, withOptions: .OptionNotifyOthersOnDeactivation, error: &error)
+        
+        if error == nil {
+            
+            playRingtone()
+            
+            ringtoneTimer = NSTimer.scheduledTimerWithTimeInterval(kRingtoneInterval, target: self, selector: "playRingtone", userInfo: nil, repeats: true)
+        }
+    }
+    
+    private func stopPlayingRingtone() {
+        
+        if ringtoneSoundId != nil {
+        
+            AudioServicesRemoveSystemSoundCompletion(ringtoneSoundId)
+            
+            AudioServicesDisposeSystemSoundID(ringtoneSoundId)
+            
+            ringtoneSoundId = nil
+            
+            ringtoneTimer!.invalidate()
+            ringtoneTimer = nil
+            
+            AVAudioSession.sharedInstance().setActive(false, withOptions: .OptionNotifyOthersOnDeactivation, error: nil)
+        }
+    }
 }
 
 // MARK: - Action handlers
@@ -145,6 +201,8 @@ extension CallViewController {
     
     @IBAction func onHangUp(sender: AnyObject) {
         
+        stopPlayingRingtone()
+        
         if call != nil {
             
             SIPManager.sharedInstance.hangUpCall(call!)
@@ -152,6 +210,8 @@ extension CallViewController {
     }
 
     @IBAction func onAnswer(sender: AnyObject) {
+        
+        stopPlayingRingtone()
         
         if call != nil {
             
@@ -176,14 +236,18 @@ extension CallViewController: BWCallDelegate {
             dispatch_async(dispatch_get_main_queue()) {
             
                 switch call.lastState {
-                    
+                
                 case .Confirmed:
+                    
+                    UIDevice.currentDevice().proximityMonitoringEnabled = true
                     
                     self.startCallDurationTimer()
                     
                     break
                     
                 case .Disconnected:
+                    
+                    UIDevice.currentDevice().proximityMonitoringEnabled = false
                     
                     self.stopCallDurationTimer()
                     

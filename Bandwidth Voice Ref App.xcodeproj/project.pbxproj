@@ -23,6 +23,7 @@
 		1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1DE1AD2F3130098C566 /* SIPManager.swift */; };
 		1595ACCD1AD5484B005A323B /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCC1AD5484B005A323B /* CallViewController.swift */; };
 		1595ACCF1AD56510005A323B /* CallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCE1AD56510005A323B /* CallRouter.swift */; };
+		1595ACD11AD59988005A323B /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1595ACD01AD59988005A323B /* ringtone.wav */; };
 		15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6751ACD573B003BDD65 /* AppDelegate.swift */; };
 		15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6771ACD573B003BDD65 /* SessionCheckViewController.swift */; };
 		15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E6791ACD573B003BDD65 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 		1593E1DE1AD2F3130098C566 /* SIPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIPManager.swift; sourceTree = "<group>"; };
 		1595ACCC1AD5484B005A323B /* CallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		1595ACCE1AD56510005A323B /* CallRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallRouter.swift; sourceTree = "<group>"; };
+		1595ACD01AD59988005A323B /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
 		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				15B2E6791ACD573B003BDD65 /* Main.storyboard */,
 				15B2E67C1ACD573B003BDD65 /* Images.xcassets */,
+				1595ACD01AD59988005A323B /* ringtone.wav */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			files = (
 				15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */,
 				15B2E67D1ACD573B003BDD65 /* Images.xcassets in Resources */,
+				1595ACD11AD59988005A323B /* ringtone.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
