@@ -6,33 +6,57 @@ using the Catapult platform and the BWSip framework. The following features are 
 * Provisioning a new user
 * Making and receiving phone calls
 
-## System Requirements
-* OS X Yosemite (10.10.2) or newer
-* Xcode 6.2 or newer
-* The app itself requires iOS 7.0 or newer
+## Before you start
+Before you get started, there are a few things that you will need to have set up first.
 
-## Getting Started
-The first step is to install Xcode from the App Store, open the ```.xcodeproj``` file and make sure
-you can Build and Run using the iOS simulator. The code should compile without errors or warnings,
-but a build error should still be generated:
+- A Mac running OS X Yosemite (10.10.2) or newer
+- [Xcode 6.2 or newer](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+- A device running iOS 7.0 or newer (this is optional, you can test using the iOS Simulator only)
+- An account set up on the Bandwidth Application Dashboard
+
+### Setting up your Bandwidth account
+- [Need to get detailed instructions for this part]
+
+### Setting up your application server
+- [Need to get detailed instructions for this part]
+
+## Get the code
+Just grab this repository by running:
+
+    $ git clone https://github.com/bandwidthcom/catapult-reference-app-voice-ios.git
+
+## Open the project
+- Launch Xcode
+- Click File -> Open...
+- Navigate to the folder where the project was cloned and open the ```.xcodeproj``` file
+
+## Replace server URL
+If you try to Build and Run the app at this point you will get the following build error:
 
 ```
 Error: you must set the server URL in the Config.swift file
 ```
 
-As the error message indicates, you must set up a server according to these instructions:
-[TO BE DEFINED]
+To fix that, you need to open the ```Config.swift``` file (or click the error to be taken there
+directly) and replace the ```<replace me>``` placeholder with the URL of the server you set up 
+in the steps above.
 
-Once the server is running, fill in the correct URL in the ```Config.swift``` file. After this is 
-done, you can Build and Run again and this time you should see the app start up on the simulator.
+> Make sure you do not have a trailing backslash in the URL
 
-## Runing on a Physical Device
-All the features provided by the sample app should work correctly in the iOS simulator, but you can 
-also run it on an iPhone running iOS 7.0 or later. To do that, you must have an active Apple Developer 
-Program membership and have already created the necessary certificates and provisioned your device(s) 
-as per [Apple's instructions](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839).
+## Running on the iOS Simulator
+- Select a simulated device from the target list and click the "Play" button
+- After a while, the app should launch in the iOS Simulator
+- When the app launches, type in any username into the field and tap Create User
+- After registration completes, you can go into the Settings tab and see your assigned phone number
+- You can now receive phone calls at this phone number
+- You can also dial a phone number and tap Call to place a call from the Dialer tab
 
-## Adding Voice Support to Your App
+## Running on a physical device
+You must have an active Apple Developer Program membership and have already created the necessary 
+certificates and provisioned your device(s) as per [Apple's instructions](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppStoreDistributionTutorial/Introduction/Introduction.html#//apple_ref/doc/uid/TP40013839). Apart from that, the instructions are the same
+as the simulator.
+
+## Adding voice support to your own app
 The only file you will need to add to your app is the ```BWSip.framework``` and also link with 
 its dependencies:
 
