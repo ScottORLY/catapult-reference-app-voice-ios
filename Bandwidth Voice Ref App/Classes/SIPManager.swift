@@ -16,6 +16,14 @@ private let kToneVolume: Float = 0.006
 */
 class SIPManager: NSObject {
     
+    // MARK: - Inner objects
+    
+    struct CallReceivedNotification {
+        
+        static let name = "SIPManager.CallReceivedNotification"
+        static let callKey = "call"
+    }
+    
     // MARK: - Public properties
     
     /**
@@ -36,11 +44,6 @@ class SIPManager: NSObject {
     */
     dynamic private(set) var registered = false
     
-    /**
-        The current duration for the active call in seconds. Observable through KVO
-    */
-    dynamic private(set) var activeCallDuration: NSTimeInterval = 0.0
-    
     // MARK: - Private properties
     
     private var phone: BWPhone!
@@ -48,10 +51,6 @@ class SIPManager: NSObject {
     private var account: BWAccount!
     
     private var activeCall: BWCall?
-
-    private var activeCallStartDate: NSDate?
-    
-    private var activeCallDurationTimer: NSTimer?
     
     // MARK: - Class methods
     
@@ -99,11 +98,89 @@ class SIPManager: NSObject {
         }
     }
     
-    func dialDTMFdigit(digit: String) {
-    
-        if activeCall != nil {
+    /**
+        Unregisters the user from the SIP registrar, if a registration is active
+    */
+    func unregister() {
+        
+        if account != nil {
             
-            activeCall!.dialDTMF(digit)
+            account.close()
+            account = nil
+        }
+        
+        if phone != nil {
+            
+            phone.close()
+            phone = nil
+        }
+        
+        registered = false
+    }
+    
+    /**
+        Makes a call to a phone number
+        
+        :param: number the phone number to call
+        :returns: the created call object, or nil if the call couldn't be created
+    */
+    func makeCallTo(number: String) -> BWCall? {
+        
+        if registered {
+        
+            let call = BWCall(account: account!)
+            call.setRemoteUri("\(number)@\(Session.currentSession!.user.endpoint.credentials.realm)")
+            
+            call.makeCall()
+            
+            return call
+        }
+        
+        return nil
+    }
+    
+    /**
+        Acknowledges an incoming call
+            
+        :param: call the incoming call object
+        :param: busy if true a busy signal will be sent, otherwise the other side will know this extension is ringing
+    */
+    func respondToCall(call: BWCall, busy: Bool) {
+        
+        call.answerCall(busy ? .BusyHere : .Ringing)
+    }
+    
+    /**
+        Answers an incoming call
+    
+        :param: call the incoming call object
+    */
+    func answerCall(call: BWCall) {
+        
+        call.answerCall(.OK)
+    }
+    
+    /**
+        Hangs up an active call
+        
+        :param: call the call object
+    */
+    func hangUpCall(call: BWCall) {
+        
+        call.hangupCall()
+    }
+    
+    /**
+        Produces an audible DTMF tone, and optionally sends the DTMF signal through a call
+        
+        :param: call call to send the DTMF through, or nil
+        :param: digit the digit to produce the DTMF tone
+    */
+    func dialDTMFDigit(call: BWCall?, digit: String) {
+    
+        if call != nil {
+            
+            call!.dialDTMF(digit)
             
         } else {
             
@@ -113,33 +190,6 @@ class SIPManager: NSObject {
         }
 
         BWTone.playDigit(digit, withVolume: kToneVolume)
-    }
-}
-
-// MARK: - Private methods
-
-private extension SIPManager {
-    
-    private func startCallDurationTimer() {
-        
-        activeCallStartDate = NSDate()
-        
-        activeCallDurationTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "updateCallDuration", userInfo: nil, repeats: true)
-        
-        activeCallDuration = 0.0
-    }
-    
-    private func updateCallDuration() {
-        
-        activeCallDuration = -activeCallStartDate!.timeIntervalSinceNow;
-    }
-    
-    private func stopCallDurationTimer() {
-        
-        activeCallStartDate = nil
-        
-        activeCallDurationTimer!.invalidate()
-        activeCallDurationTimer = nil
     }
 }
 
@@ -163,58 +213,13 @@ extension SIPManager: BWAccountDelegate {
         println("Receiving call from: \(call.remoteUri)")
         println("Parent account.....: \(call.parentAccount)")
         
-        if activeCall == nil {
+        dispatch_async(dispatch_get_main_queue()) {
+        
+            // Make sure we are sending the notification in the main thread
             
-            activeCall = call
-            activeCall!.delegate = self
-            
-            activeCall!.answerCall(.Ringing)
-            
-        } else {
-            
-            activeCall!.answerCall(.BusyHere)
+            NSNotificationCenter.defaultCenter().postNotificationName(CallReceivedNotification.name, object: nil, userInfo: [CallReceivedNotification.callKey: call])
         }
     }
 }
 
-// MARK: - BWCallDelegate methods
 
-extension SIPManager: BWCallDelegate {
-    
-    func onCallStateChanged(call: BWCall!) {
-        
-        println("***** Call State Changed *****")
-        println("State code: \(call.lastState.rawValue)")
-        println("Local URI.: \(call.localUri)")
-        println("Remote URI: \(call.remoteUri)")
-        
-        if activeCall == call {
-            
-            switch call.lastState {
-                
-            case .Confirmed:
-                
-                startCallDurationTimer()
-                
-                break
-                
-            case .Disconnected:
-                
-                stopCallDurationTimer()
-                
-                activeCall = nil
-                
-            default:
-                
-                // Nothing to do for now
-                break
-            }
-        }
-    }
-    
-    func onIncomingDTMF(call: BWCall!, andDigits digits: String!) {
-        
-        println("***** Incoming DTMF *****")
-        println("DTMF Received: \(digits)")
-    }
-}

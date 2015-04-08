@@ -12,7 +12,7 @@ import UIKit
     Tab bar controller for the main screen
 */
 class MainTabBarController: UITabBarController {
-
+    
     // MARK: - Superclass methods
     
     override func viewWillAppear(animated: Bool) {

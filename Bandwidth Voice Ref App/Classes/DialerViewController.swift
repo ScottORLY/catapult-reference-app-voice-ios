@@ -82,6 +82,10 @@ extension DialerViewController {
     
     @IBAction func onCall(sender: AnyObject) {
         
+        if let mainTabBarController = tabBarController as? MainTabBarController {
+            
+            CallRouter.sharedInstance.makeCallTo(dialedNumberLabel.text!)
+        }
     }
 }
 
@@ -96,6 +100,6 @@ extension DialerViewController: DialpadViewControllerDelegate {
         deleteButton.hidden = countElements(dialedNumberLabel.text!) == 0
         callButton.enabled = !deleteButton.hidden
         
-        SIPManager.sharedInstance.dialDTMFdigit(digit)
+        SIPManager.sharedInstance.dialDTMFDigit(nil, digit: digit)
     }
 }

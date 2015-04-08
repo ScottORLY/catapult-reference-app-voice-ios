@@ -23,10 +23,14 @@ class SessionCheckViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
-        
+                
         if Session.currentSession != nil {
             
             SIPManager.sharedInstance.registerWithUser(Session.currentSession!.user)
+            
+            // Force initialization of the call router
+            
+            CallRouter.sharedInstance
             
             self.performSegueWithIdentifier(kShowMainScreenSegue, sender: nil)
             

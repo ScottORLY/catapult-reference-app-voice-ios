@@ -21,6 +21,8 @@
 		1593E1D71AD2D8400098C566 /* DialerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D61AD2D8400098C566 /* DialerViewController.swift */; };
 		1593E1D91AD2D84C0098C566 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */; };
 		1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1DE1AD2F3130098C566 /* SIPManager.swift */; };
+		1595ACCD1AD5484B005A323B /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCC1AD5484B005A323B /* CallViewController.swift */; };
+		1595ACCF1AD56510005A323B /* CallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCE1AD56510005A323B /* CallRouter.swift */; };
 		15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6751ACD573B003BDD65 /* AppDelegate.swift */; };
 		15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6771ACD573B003BDD65 /* SessionCheckViewController.swift */; };
 		15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E6791ACD573B003BDD65 /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		1593E1D61AD2D8400098C566 /* DialerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialerViewController.swift; sourceTree = "<group>"; };
 		1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		1593E1DE1AD2F3130098C566 /* SIPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIPManager.swift; sourceTree = "<group>"; };
+		1595ACCC1AD5484B005A323B /* CallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
+		1595ACCE1AD56510005A323B /* CallRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallRouter.swift; sourceTree = "<group>"; };
 		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +98,7 @@
 				1593E1D41AD2D7D30098C566 /* MainTabBarController.swift */,
 				15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */,
 				1593E1D61AD2D8400098C566 /* DialerViewController.swift */,
+				1595ACCC1AD5484B005A323B /* CallViewController.swift */,
 				1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				1593E1DE1AD2F3130098C566 /* SIPManager.swift */,
+				1595ACCE1AD56510005A323B /* CallRouter.swift */,
 			);
 			name = SIP;
 			sourceTree = "<group>";
@@ -309,12 +315,14 @@
 				1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */,
 				1593E1CE1AD2A8E60098C566 /* Credentials.swift in Sources */,
 				1593E1C41AD29D350098C566 /* CatapultV1API.swift in Sources */,
+				1595ACCF1AD56510005A323B /* CallRouter.swift in Sources */,
 				15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */,
 				15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */,
 				1593E1D31AD2BF150098C566 /* RegistrationViewController.swift in Sources */,
 				1593E1D51AD2D7D30098C566 /* MainTabBarController.swift in Sources */,
 				1593E1D91AD2D84C0098C566 /* SettingsViewController.swift in Sources */,
 				1593E1CA1AD2A8050098C566 /* User.swift in Sources */,
+				1595ACCD1AD5484B005A323B /* CallViewController.swift in Sources */,
 				1593E1D11AD2B8640098C566 /* Session.swift in Sources */,
 				1593E1C61AD29EAD0098C566 /* CatapultService.swift in Sources */,
 				1593E1BB1AD298D70098C566 /* Config.swift in Sources */,

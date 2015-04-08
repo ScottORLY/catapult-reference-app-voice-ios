@@ -10,8 +10,6 @@ import UIKit
 
 private let kInfoCellIdentifier = "InfoCell"
 
-private let kRegistrationViewControllerIdentifier = "RegistrationViewController"
-
 /**
     View controller class for the settings/user info screen
 */
@@ -106,6 +104,8 @@ extension SettingsViewController {
     @IBAction func onClearSession(sender: AnyObject) {
         
         Session.currentSession = nil
+        
+        SIPManager.sharedInstance.unregister()
                 
         self.navigationController!.popToRootViewControllerAnimated(true)
     }
