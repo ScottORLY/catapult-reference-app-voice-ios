@@ -61,12 +61,20 @@ class CallViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
+
+        var number: NSString?
+        
+        let scanner = NSScanner(string: call!.remoteUri)
+        
+        scanner.scanString("<", intoString: nil)
+        scanner.scanString("sip:", intoString: nil)
+        scanner.scanUpToString("@", intoString: &number)
+        
+        callerLabel.text = number != nil ? NumberFormatter.formatE164Number(number!) : "BLOCKED"
         
         if call!.isIncoming {
             
             callTypeLabel.text = "Incoming call from"
-            
-            callerLabel.text = call!.remoteUri
             
             SIPManager.sharedInstance.respondToCall(call!, busy: false)
             
@@ -75,8 +83,6 @@ class CallViewController: UIViewController {
         } else {
             
             callTypeLabel.text = "Calling"
-            
-            callerLabel.text = call!.remoteUri
         }
         
         updateScreenState()

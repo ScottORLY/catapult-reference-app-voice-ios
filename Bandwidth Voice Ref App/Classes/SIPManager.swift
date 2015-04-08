@@ -121,15 +121,15 @@ class SIPManager: NSObject {
     /**
         Makes a call to a phone number
         
-        :param: number the phone number to call
+        :param: number the US phone number to call, without country code or formatting (i.e. "5552221111")
         :returns: the created call object, or nil if the call couldn't be created
     */
     func makeCallTo(number: String) -> BWCall? {
         
         if registered {
-        
+            
             let call = BWCall(account: account!)
-            call.setRemoteUri("\(number)@\(Session.currentSession!.user.endpoint.credentials.realm)")
+            call.setRemoteUri("+1\(number)@\(Session.currentSession!.user.endpoint.credentials.realm)")
             
             call.makeCall()
             

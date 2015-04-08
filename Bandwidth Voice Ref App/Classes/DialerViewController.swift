@@ -71,20 +71,20 @@ extension DialerViewController {
         deleteTimer!.invalidate()
         deleteTimer = nil
         
-        if countElements(dialedNumberLabel.text!) > 0 {
+        if let newNumber = NumberFormatter.inputDigit("", inFormattedNumber: dialedNumberLabel.text!) {
             
-            dialedNumberLabel.text!.removeAtIndex(dialedNumberLabel.text!.endIndex.predecessor())
-            
-            deleteButton.hidden = countElements(dialedNumberLabel.text!) == 0
-            callButton.enabled = !deleteButton.hidden
+            dialedNumberLabel.text = newNumber
         }
+        
+        deleteButton.hidden = countElements(dialedNumberLabel.text!) == 0
+        callButton.enabled = countElements(dialedNumberLabel.text!) == 14
     }
     
     @IBAction func onCall(sender: AnyObject) {
         
         if let mainTabBarController = tabBarController as? MainTabBarController {
             
-            CallRouter.sharedInstance.makeCallTo(dialedNumberLabel.text!)
+            CallRouter.sharedInstance.makeCallTo(NumberFormatter.removeFormatting(dialedNumberLabel.text!))
         }
     }
 }
@@ -95,10 +95,13 @@ extension DialerViewController: DialpadViewControllerDelegate {
     
     func dialpad(dialpad: DialpadViewController, didDialDigit digit: String) {
         
-        dialedNumberLabel.text! += digit
+        if let newNumber = NumberFormatter.inputDigit(digit, inFormattedNumber: dialedNumberLabel.text!) {
+            
+            dialedNumberLabel.text = newNumber
+        }
         
         deleteButton.hidden = countElements(dialedNumberLabel.text!) == 0
-        callButton.enabled = !deleteButton.hidden
+        callButton.enabled = countElements(dialedNumberLabel.text!) == 14
         
         SIPManager.sharedInstance.dialDTMFDigit(nil, digit: digit)
     }

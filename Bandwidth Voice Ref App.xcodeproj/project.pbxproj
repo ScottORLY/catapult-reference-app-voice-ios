@@ -24,6 +24,7 @@
 		1595ACCD1AD5484B005A323B /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCC1AD5484B005A323B /* CallViewController.swift */; };
 		1595ACCF1AD56510005A323B /* CallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCE1AD56510005A323B /* CallRouter.swift */; };
 		1595ACD11AD59988005A323B /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1595ACD01AD59988005A323B /* ringtone.wav */; };
+		1595ACD31AD5A1D7005A323B /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACD21AD5A1D7005A323B /* NumberFormatter.swift */; };
 		15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6751ACD573B003BDD65 /* AppDelegate.swift */; };
 		15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15B2E6771ACD573B003BDD65 /* SessionCheckViewController.swift */; };
 		15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15B2E6791ACD573B003BDD65 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		1595ACCC1AD5484B005A323B /* CallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		1595ACCE1AD56510005A323B /* CallRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallRouter.swift; sourceTree = "<group>"; };
 		1595ACD01AD59988005A323B /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
+		1595ACD21AD5A1D7005A323B /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
 		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 			children = (
 				1593E1DE1AD2F3130098C566 /* SIPManager.swift */,
 				1595ACCE1AD56510005A323B /* CallRouter.swift */,
+				1595ACD21AD5A1D7005A323B /* NumberFormatter.swift */,
 			);
 			name = SIP;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1593E1C01AD29CA10098C566 /* HTTPMethod.swift in Sources */,
+				1595ACD31AD5A1D7005A323B /* NumberFormatter.swift in Sources */,
 				15D43E631AD3EFAF0086CD53 /* DialpadViewController.swift in Sources */,
 				1593E1CC1AD2A85B0098C566 /* Endpoint.swift in Sources */,
 				1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */,
