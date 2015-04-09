@@ -150,6 +150,8 @@ private extension CallViewController {
                 self.callerLabel.textAlignment = .Center
                 self.callDurationLabelWidth.constant = 0.0
                 self.callControlsView.alpha = 0.0
+                
+                SIPManager.sharedInstance.setSpeakerEnabled(false)
             }
             
             if !self.call!.isIncoming || self.callDuration != nil {
@@ -242,6 +244,23 @@ private extension CallViewController {
 // MARK: - Action handlers
 
 extension CallViewController {
+    
+    @IBAction func onToggleMute(sender: UIButton) {
+        
+        sender.selected = !sender.selected
+        
+        if call != nil {
+            
+            SIPManager.sharedInstance.muteCall(call!, mute: sender.selected)
+        }
+    }
+    
+    @IBAction func onToggleSpeaker(sender: UIButton) {
+        
+        sender.selected = !sender.selected
+        
+        SIPManager.sharedInstance.setSpeakerEnabled(sender.selected)
+    }
     
     @IBAction func onHangUp(sender: AnyObject) {
         

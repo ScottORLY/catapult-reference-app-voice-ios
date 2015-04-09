@@ -637,6 +637,34 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bCY-1z-Lpf" userLabel="Call Controls View">
                                 <rect key="frame" x="16" y="164" width="568" height="368"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EFS-U1-Qga">
+                                        <rect key="frame" x="220" y="16" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="aty-F0-WMT"/>
+                                            <constraint firstAttribute="width" constant="48" id="zUy-t6-YRC"/>
+                                        </constraints>
+                                        <state key="normal" image="mute">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="muteSelected"/>
+                                        <connections>
+                                            <action selector="onToggleMute:" destination="Jlm-y1-JcL" eventType="touchUpInside" id="f5N-6I-uXt"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6DQ-cB-XUd">
+                                        <rect key="frame" x="300" y="16" width="48" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="48" id="pig-y2-kQ3"/>
+                                            <constraint firstAttribute="height" constant="48" id="tk7-UI-JbR"/>
+                                        </constraints>
+                                        <state key="normal" image="speaker">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" image="speakerSelected"/>
+                                        <connections>
+                                            <action selector="onToggleSpeaker:" destination="Jlm-y1-JcL" eventType="touchUpInside" id="epO-VS-YKe"/>
+                                        </connections>
+                                    </button>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yhf-mN-tFA">
                                         <rect key="frame" x="0.0" y="80" width="568" height="288"/>
                                         <connections>
@@ -646,9 +674,13 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Yhf-mN-tFA" firstAttribute="leading" secondItem="bCY-1z-Lpf" secondAttribute="leading" id="2JV-TL-fvd"/>
+                                    <constraint firstItem="EFS-U1-Qga" firstAttribute="top" secondItem="bCY-1z-Lpf" secondAttribute="top" constant="16" id="717-gr-c5c"/>
+                                    <constraint firstItem="6DQ-cB-XUd" firstAttribute="top" secondItem="bCY-1z-Lpf" secondAttribute="top" constant="16" id="FDb-ZC-TbF"/>
                                     <constraint firstItem="Yhf-mN-tFA" firstAttribute="top" secondItem="bCY-1z-Lpf" secondAttribute="top" constant="80" id="Flx-LU-t6k"/>
                                     <constraint firstAttribute="trailing" secondItem="Yhf-mN-tFA" secondAttribute="trailing" id="NAM-it-65v"/>
+                                    <constraint firstAttribute="centerX" secondItem="EFS-U1-Qga" secondAttribute="centerX" constant="40" id="XUw-g2-6X5"/>
                                     <constraint firstAttribute="bottom" secondItem="Yhf-mN-tFA" secondAttribute="bottom" id="Zek-bf-12K"/>
+                                    <constraint firstAttribute="centerX" secondItem="6DQ-cB-XUd" secondAttribute="centerX" constant="-40" id="z9u-b9-FgG"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -715,7 +747,11 @@
         <image name="delete" width="48" height="48"/>
         <image name="dialpad" width="22" height="22"/>
         <image name="hangUp" width="48" height="48"/>
+        <image name="mute" width="48" height="48"/>
+        <image name="muteSelected" width="48" height="48"/>
         <image name="settings" width="22" height="22"/>
+        <image name="speaker" width="48" height="48"/>
+        <image name="speakerSelected" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MZt-iX-83f"/>

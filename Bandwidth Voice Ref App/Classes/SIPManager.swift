@@ -170,6 +170,11 @@ class SIPManager: NSObject {
         call.hangupCall()
     }
     
+    func muteCall(call: BWCall, mute: Bool) {
+        
+        call.setMute(mute)
+    }
+    
     /**
         Produces an audible DTMF tone, and optionally sends the DTMF signal through a call
         
@@ -190,6 +195,11 @@ class SIPManager: NSObject {
         }
 
         BWTone.playDigit(digit, withVolume: kToneVolume)
+    }
+    
+    func setSpeakerEnabled(enabled: Bool) {
+        
+        phone.setAudioOutputRoute(enabled ? .Loudspeaker : .Earpiece)
     }
 }
 
