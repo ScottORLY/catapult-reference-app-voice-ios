@@ -9,8 +9,8 @@ using the Catapult platform and the BWSip framework. The following features are 
 ## Before you start
 Before you get started, there are a few things that you will need to have set up first.
 
-- A Mac running OS X Yosemite (10.10.2) or newer
-- [Xcode 6.2 or newer](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+- A Mac running OS X Yosemite (10.10.3) or newer
+- [Xcode 6.3 or newer](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 - A device running iOS 7.0 or newer (this is optional, you can test using the iOS Simulator only)
 - An account set up on the Bandwidth Application Dashboard
 

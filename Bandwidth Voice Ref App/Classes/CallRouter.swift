@@ -80,7 +80,7 @@ private extension CallRouter {
                 
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
-                let callVc = storyboard.instantiateViewControllerWithIdentifier(kCallViewControllerIdentifier) as CallViewController
+                let callVc = storyboard.instantiateViewControllerWithIdentifier(kCallViewControllerIdentifier) as! CallViewController
                 callVc.call = call
                 
                 mainNav.presentViewController(callVc, animated: true, completion: nil)

@@ -62,7 +62,7 @@ extension CatapultV1API : APIEndpoint {
             }
         }
         
-        return mutableURLRequest.copy() as NSURLRequest
+        return mutableURLRequest.copy() as! NSURLRequest
     }
 }
 

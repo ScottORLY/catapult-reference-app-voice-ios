@@ -40,7 +40,7 @@ class RegistrationViewController: UIViewController {
     
     func generatePassword() -> String {
         
-        let possibleCount = UInt32(countElements(kPasswordPossibleCharacters))
+        let possibleCount = UInt32(count(kPasswordPossibleCharacters))
         
         var password = ""
         
@@ -60,7 +60,7 @@ class RegistrationViewController: UIViewController {
         
         let username = usernameTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        if countElements(username) > 0 {
+        if count(username) > 0 {
             
             usernameTextField.enabled = false
             createUserButton.hidden = true

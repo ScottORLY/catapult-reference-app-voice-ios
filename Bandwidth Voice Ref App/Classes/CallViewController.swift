@@ -80,7 +80,7 @@ class CallViewController: UIViewController {
         scanner.scanString("sip:", intoString: nil)
         scanner.scanUpToString("@", intoString: &number)
         
-        callerLabel.text = number != nil ? NumberFormatter.formatE164Number(number!) : "BLOCKED"
+        callerLabel.text = number != nil ? NumberFormatter.formatE164Number(number! as String) : "BLOCKED"
         
         if call!.isIncoming {
             
@@ -102,7 +102,7 @@ class CallViewController: UIViewController {
         
         if segue.identifier == kEmbedDialpadSegue {
             
-            let dialpad = segue.destinationViewController as DialpadViewController
+            let dialpad = segue.destinationViewController as! DialpadViewController
             dialpad.delegate = self
         }
     }
@@ -118,7 +118,7 @@ class CallViewController: UIViewController {
         let mins: Int = (seconds % 3600) / 60
         let secs: Int = seconds % 60
         
-        callDurationLabel.text = NSString(format: "%02d:%02d", mins, secs)
+        callDurationLabel.text = NSString(format: "%02d:%02d", mins, secs) as String
     }
     
     func playRingtone() {

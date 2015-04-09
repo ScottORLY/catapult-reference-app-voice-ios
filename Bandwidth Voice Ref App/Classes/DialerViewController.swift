@@ -42,7 +42,7 @@ class DialerViewController: UIViewController {
         
         if segue.identifier == kEmbedDialpadSegue {
             
-            let dialpad = segue.destinationViewController as DialpadViewController
+            let dialpad = segue.destinationViewController as! DialpadViewController
             dialpad.delegate = self
         }
     }
@@ -76,8 +76,8 @@ extension DialerViewController {
             dialedNumberLabel.text = newNumber
         }
         
-        deleteButton.hidden = countElements(dialedNumberLabel.text!) == 0
-        callButton.enabled = countElements(dialedNumberLabel.text!) == 14
+        deleteButton.hidden = count(dialedNumberLabel.text!) == 0
+        callButton.enabled = count(dialedNumberLabel.text!) == 14
     }
     
     @IBAction func onCall(sender: AnyObject) {
@@ -100,8 +100,8 @@ extension DialerViewController: DialpadViewControllerDelegate {
             dialedNumberLabel.text = newNumber
         }
         
-        deleteButton.hidden = countElements(dialedNumberLabel.text!) == 0
-        callButton.enabled = countElements(dialedNumberLabel.text!) == 14
+        deleteButton.hidden = count(dialedNumberLabel.text!) == 0
+        callButton.enabled = count(dialedNumberLabel.text!) == 14
         
         SIPManager.sharedInstance.dialDTMFDigit(nil, digit: digit)
     }

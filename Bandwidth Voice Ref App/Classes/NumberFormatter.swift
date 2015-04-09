@@ -31,7 +31,7 @@ class NumberFormatter {
             numberToFormat.replaceRange(countryCodeRange, with: "")
         }
         
-        if countElements(numberToFormat) == 10 {
+        if count(numberToFormat) == 10 {
             
             if let masked = applyPhoneMaskToNumber(numberToFormat) {
                 
@@ -55,7 +55,7 @@ class NumberFormatter {
             
         case "":
             
-            if countElements(number) > 0 {
+            if count(number) > 0 {
                 
                 let clean = removeFormatting(number)
                 
@@ -103,7 +103,7 @@ private extension NumberFormatter {
         
         var output = ""
         
-        var digitCount = countElements(number)
+        var digitCount = count(number)
         
         var maskIndex = kFormattedPhoneMask.startIndex
         
