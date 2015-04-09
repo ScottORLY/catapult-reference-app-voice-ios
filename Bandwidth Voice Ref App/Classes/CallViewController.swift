@@ -12,6 +12,12 @@ import AVFoundation
 
 private let kRingtoneInterval: NSTimeInterval = 2.5
 
+private let kCallDurationLabelVisibleWidth: CGFloat = 80
+
+private let kCallTypeLabelDefaultTop: CGFloat = 76
+
+private let kEmbedDialpadSegue = "embedDialpad"
+
 /**
     View controller class for an active call
 */
@@ -21,11 +27,15 @@ class CallViewController: UIViewController {
     
     @IBOutlet private weak var callTypeLabel: UILabel!
     
+    @IBOutlet private weak var callTypeLabelTop: NSLayoutConstraint!
+    
     @IBOutlet private weak var callerLabel: UILabel!
     
     @IBOutlet private weak var callDurationLabel: UILabel!
     
-    @IBOutlet private weak var callConnectingIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var callDurationLabelWidth: NSLayoutConstraint!
+    
+    @IBOutlet private weak var callControlsView: UIView!
     
     @IBOutlet private weak var hangUpButton: UIButton!
     
@@ -85,7 +95,16 @@ class CallViewController: UIViewController {
             callTypeLabel.text = "Calling"
         }
         
-        updateScreenState()
+        updateScreenState(false)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if segue.identifier == kEmbedDialpadSegue {
+            
+            let dialpad = segue.destinationViewController as DialpadViewController
+            dialpad.delegate = self
+        }
     }
     
     // MARK: - Class methods
@@ -112,32 +131,51 @@ class CallViewController: UIViewController {
 
 private extension CallViewController {
     
-    private func updateScreenState() {
+    private func updateScreenState(animated: Bool) {
         
-        if callDuration != nil {
+        let applyChanges = { () -> Void in
             
-            callDurationLabel.hidden = false
+            if self.callDuration != nil {
+                
+                self.callTypeLabel.hidden = true
+                self.callTypeLabelTop.constant = 0.0
+                self.callerLabel.textAlignment = .Left
+                self.callDurationLabelWidth.constant = kCallDurationLabelVisibleWidth
+                self.callControlsView.alpha = 1.0
+                
+            } else {
+                
+                self.callTypeLabel.hidden = false
+                self.callTypeLabelTop.constant = kCallTypeLabelDefaultTop
+                self.callerLabel.textAlignment = .Center
+                self.callDurationLabelWidth.constant = 0.0
+                self.callControlsView.alpha = 0.0
+            }
             
-            callConnectingIndicator.stopAnimating()
-            
-        } else {
-            
-            callDurationLabel.hidden = true
-            
-            callConnectingIndicator.startAnimating()
+            if !self.call!.isIncoming || self.callDuration != nil {
+                
+                self.answerButton.enabled = false
+                self.hangUpButtonWidth.constant = self.view.frame.size.width / 2
+                
+            } else {
+                
+                self.answerButton.enabled = true
+                self.hangUpButtonWidth.constant = 0
+            }
         }
         
-        if !call!.isIncoming || callDuration != nil {
-            
-            answerButton.enabled = false
-            
-            hangUpButtonWidth.constant = view.frame.size.width / 2
+        if animated {
+        
+            UIView.animateWithDuration(0.3) {
+                
+                applyChanges();
+                
+                self.view.layoutIfNeeded()
+            }
             
         } else {
             
-            answerButton.enabled = true
-            
-            hangUpButtonWidth.constant = 0
+            applyChanges()
         }
     }
     
@@ -265,7 +303,7 @@ extension CallViewController: BWCallDelegate {
                     break
                 }
                 
-                self.updateScreenState()
+                self.updateScreenState(true)
             }
         }
     }
@@ -274,5 +312,15 @@ extension CallViewController: BWCallDelegate {
         
         println("***** Incoming DTMF *****")
         println("DTMF Received: \(digits)")
+    }
+}
+
+// MARK: - DialpadViewControllerDelegate methods
+
+extension CallViewController: DialpadViewControllerDelegate {
+    
+    func dialpad(dialpad: DialpadViewController, didDialDigit digit: String) {
+        
+        SIPManager.sharedInstance.dialDTMFDigit(call!, digit: digit)
     }
 }
