@@ -14,7 +14,8 @@ import Foundation
 struct Config {
     
     /**
-        The base server URL. Must be replaced with your own URL, otherwise the project won't build.
+        The base server URL, without a trailing slash. Must be replaced with your own URL, otherwise the project won't build.
+        i.e. "https://yourserver.host.com"
     */
     static let serverUrl = "<replace me>"
 }

@@ -35,6 +35,8 @@
 		15B2E6AB1ACD5B24003BDD65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */; };
 		15B2E6AD1ACD5B40003BDD65 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */; };
 		15B2E6AF1ACD5B8C003BDD65 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */; };
+		15C824281AD8003F00D3E596 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C824261AD7F59700D3E596 /* Reachability.m */; };
+		15D414701ADBE76D00077679 /* ringtoneRepeat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */; };
 		15D43E631AD3EFAF0086CD53 /* DialpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */; };
 		15D43E651AD3F16A0086CD53 /* BWSip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15D43E641AD3F16A0086CD53 /* BWSip.framework */; };
 /* End PBXBuildFile section */
@@ -53,7 +55,7 @@
 		1593E1D41AD2D7D30098C566 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1593E1D61AD2D8400098C566 /* DialerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialerViewController.swift; sourceTree = "<group>"; };
 		1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		1593E1DE1AD2F3130098C566 /* SIPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SIPManager.swift; sourceTree = "<group>"; };
+		1593E1DE1AD2F3130098C566 /* SIPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SIPManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1595ACCC1AD5484B005A323B /* CallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		1595ACCE1AD56510005A323B /* CallRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallRouter.swift; sourceTree = "<group>"; };
 		1595ACD01AD59988005A323B /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
@@ -72,6 +74,9 @@
 		15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		15B2E6B01ACD5D04003BDD65 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		15B2E6B21ACD6550003BDD65 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		15C824251AD7F59700D3E596 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Reachability.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		15C824261AD7F59700D3E596 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Reachability.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtoneRepeat.wav; sourceTree = "<group>"; };
 		15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialpadViewController.swift; sourceTree = "<group>"; };
 		15D43E641AD3F16A0086CD53 /* BWSip.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BWSip.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -142,7 +147,6 @@
 			children = (
 				1593E1DE1AD2F3130098C566 /* SIPManager.swift */,
 				1595ACCE1AD56510005A323B /* CallRouter.swift */,
-				1595ACD21AD5A1D7005A323B /* NumberFormatter.swift */,
 			);
 			name = SIP;
 			sourceTree = "<group>";
@@ -191,6 +195,7 @@
 				1593E1CF1AD2B7F20098C566 /* Session */,
 				1593E1BE1AD29BFA0098C566 /* API */,
 				1593E1DD1AD2F3010098C566 /* SIP */,
+				15F4AF5A1AD7E62E00B07B2A /* Utils */,
 				1593E1BD1AD29B150098C566 /* View Controllers */,
 				15B2E6751ACD573B003BDD65 /* AppDelegate.swift */,
 				1593E1BA1AD298D70098C566 /* Config.swift */,
@@ -204,6 +209,7 @@
 				15B2E6791ACD573B003BDD65 /* Main.storyboard */,
 				15B2E67C1ACD573B003BDD65 /* Images.xcassets */,
 				1595ACD01AD59988005A323B /* ringtone.wav */,
+				15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -220,6 +226,16 @@
 				15D43E641AD3F16A0086CD53 /* BWSip.framework */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		15F4AF5A1AD7E62E00B07B2A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1595ACD21AD5A1D7005A323B /* NumberFormatter.swift */,
+				15C824251AD7F59700D3E596 /* Reachability.h */,
+				15C824261AD7F59700D3E596 /* Reachability.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -286,6 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */,
+				15D414701ADBE76D00077679 /* ringtoneRepeat.wav in Resources */,
 				15B2E67D1ACD573B003BDD65 /* Images.xcassets in Resources */,
 				1595ACD11AD59988005A323B /* ringtone.wav in Resources */,
 			);
@@ -326,6 +343,7 @@
 				1595ACCF1AD56510005A323B /* CallRouter.swift in Sources */,
 				15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */,
 				15B2E6761ACD573B003BDD65 /* AppDelegate.swift in Sources */,
+				15C824281AD8003F00D3E596 /* Reachability.m in Sources */,
 				1593E1D31AD2BF150098C566 /* RegistrationViewController.swift in Sources */,
 				1593E1D51AD2D7D30098C566 /* MainTabBarController.swift in Sources */,
 				1593E1D91AD2D84C0098C566 /* SettingsViewController.swift in Sources */,
@@ -387,7 +405,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -423,7 +441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -440,7 +458,6 @@
 					"\"$(PROJECT_DIR)/Bandwidth Voice Ref App/Frameworks\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Bandwidth Voice Ref App";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";
@@ -457,7 +474,6 @@
 					"\"$(PROJECT_DIR)/Bandwidth Voice Ref App/Frameworks\"",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "Bandwidth Voice Ref App";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";

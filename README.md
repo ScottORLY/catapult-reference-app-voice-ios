@@ -41,7 +41,7 @@ To fix that, you need to open the ```Config.swift``` file (or click the error to
 directly) and replace the ```<replace me>``` placeholder with the URL of the server you set up 
 in the steps above.
 
-> Make sure you do not have a trailing backslash in the URL
+> Make sure you do not have a trailing slash in the URL
 
 ## Running on the iOS Simulator
 - Select a simulated device from the target list and click the "Play" button

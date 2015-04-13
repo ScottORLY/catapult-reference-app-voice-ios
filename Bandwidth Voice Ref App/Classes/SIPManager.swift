@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Bandwidth. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import AVFoundation
 
 private let kToneVolume: Float = 0.006
@@ -18,9 +18,31 @@ class SIPManager: NSObject {
     
     // MARK: - Inner objects
     
+    /**
+        The possible states for the registration with the SIP registrar
+    */
+    @objc enum RegistrationState: Int {
+        
+        case NotRegistered
+        
+        case Registering
+        
+        case Registered
+    }
+    
+    /**
+        Notification sent when a call is received
+    */
     struct CallReceivedNotification {
         
+        /**
+            Notification name
+        */
         static let name = "SIPManager.CallReceivedNotification"
+        
+        /**
+            The key for the call object inside the notification's userInfo dictionary
+        */
         static let callKey = "call"
     }
     
@@ -40,9 +62,9 @@ class SIPManager: NSObject {
     }
     
     /**
-        Flag indicating if there's an active SIP registration. Observable through KVO
+        Current SIP registration state
     */
-    dynamic private(set) var registered = false
+    dynamic private(set) var registrationState = RegistrationState.NotRegistered
     
     // MARK: - Private properties
     
@@ -50,7 +72,13 @@ class SIPManager: NSObject {
     
     private var account: BWAccount!
     
-    private var activeCall: BWCall?
+    private var lastRegisteredUser: User?
+    
+    private let reachability: Reachability
+    
+    private var currentNetworkStatus: NetworkStatus
+    
+    private var backgroundTaskId: UIBackgroundTaskIdentifier?
     
     // MARK: - Class methods
     
@@ -59,6 +87,43 @@ class SIPManager: NSObject {
     */
     private override init() {
         
+        reachability = Reachability.reachabilityForInternetConnection()
+        
+        currentNetworkStatus = reachability.currentReachabilityStatus()
+        
+        super.init()
+        
+        reachability.reachableBlock = { reach in
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                self.updateConnectionStatus(reach.currentReachabilityStatus())
+            }
+        }
+        
+        reachability.unreachableBlock = { reach in
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                self.updateConnectionStatus(reach.currentReachabilityStatus())
+            }
+        }
+        
+        reachability.startNotifier()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "whenApplicationDidEnterBackground:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "whenApplicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
+    }
+    
+    /**
+        Default deinitializer
+    */
+    deinit {
+        
+        reachability.stopNotifier()
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIApplicationWillEnterForegroundNotification, object: nil)
     }
     
     /**
@@ -77,25 +142,49 @@ class SIPManager: NSObject {
             
             // Both TCP and UDP are suppoted, but TCP is recommended for background usage due
             // to special exemptions provided by the iOS SDK to TCP sockets
-            phone.transportType = .UDP
+            phone.transportType = .TCP
             
             phone.initialize()
         }
         
-        if account == nil {
+        // Do not attempt to register again if a registration is already being processed
+        
+        if registrationState != .Registering {
             
-            account = BWAccount(phone: phone!)
-            account.delegate = self
+            if account == nil {
             
-            account.setRegistrationInterval(1200)
-            account.setRegistrationFirstRetryInterval(8)
-            account.setRegistrationRetryInterval(60)
-            
-            account.setRegistrar(user.endpoint.credentials.realm)
-            account.setUsername(user.endpoint.credentials.username, andPassword: user.password)
-            
-            account.connect()
+                // If we don't have a BWAccount object, create a new registration
+                
+                registrationState = .Registering
+                
+                account = BWAccount(phone: phone!)
+                account.delegate = self
+                
+                account.setRegistrationInterval(1200)
+                account.setRegistrationFirstRetryInterval(8)
+                account.setRegistrationRetryInterval(60)
+                
+                account.setRegistrar(user.endpoint.credentials.realm)
+                account.setUsername(user.endpoint.credentials.username, andPassword: user.password)
+                
+                account.connect()
+                
+                // Initiates the iOS-managed keep-alive handler (minimum allowed interval is 600 seconds)
+                
+                UIApplication.sharedApplication().setKeepAliveTimeout(600) {
+                 
+                    self.keepAlive()
+                }
+                
+            } else {
+                
+                // Otherwise, just force-update the registration
+                
+                account.updateRegistration(true)
+            }
         }
+        
+        lastRegisteredUser = user
     }
     
     /**
@@ -103,19 +192,17 @@ class SIPManager: NSObject {
     */
     func unregister() {
         
-        if account != nil {
-            
-            account.close()
-            account = nil
-        }
+        UIApplication.sharedApplication().clearKeepAliveTimeout()
         
-        if phone != nil {
-            
-            phone.close()
-            phone = nil
-        }
+        account?.close()
+        account = nil
         
-        registered = false
+        phone?.close()
+        phone = nil
+        
+        lastRegisteredUser = nil
+        
+        registrationState = .NotRegistered
     }
     
     /**
@@ -126,7 +213,7 @@ class SIPManager: NSObject {
     */
     func makeCallTo(number: String) -> BWCall? {
         
-        if registered {
+        if registrationState == .Registered {
             
             let call = BWCall(account: account!)
             call.setRemoteUri("+1\(number)@\(Session.currentSession!.user.endpoint.credentials.realm)")
@@ -170,6 +257,12 @@ class SIPManager: NSObject {
         call.hangupCall()
     }
     
+    /**
+        Mutes the microphone while in an active call
+
+        :param: call the call object
+        :param: mute true to mute the call, false otherwise
+    */
     func muteCall(call: BWCall, mute: Bool) {
         
         call.setMute(mute)
@@ -197,9 +290,115 @@ class SIPManager: NSObject {
         BWTone.playDigit(digit, withVolume: kToneVolume)
     }
     
+    /**
+        Enables or disables the loudspeaker (can also be used while in a call)
+        
+        :param: enabled true to enable the loudspeaker, false otherwise
+    */
     func setSpeakerEnabled(enabled: Bool) {
         
         phone.setAudioOutputRoute(enabled ? .Loudspeaker : .Earpiece)
+    }
+}
+
+// MARK: - Private methods
+
+private extension SIPManager {
+    
+    /**
+        This method is called by the Reachability watcher whenever the network status changes, and will reconnect to
+        the SIP registrar as appropriate.
+        
+        :param: status the new network status
+    */
+    private func updateConnectionStatus(status: NetworkStatus) {
+        
+        if currentNetworkStatus != status {
+            
+            registrationState = .NotRegistered
+            
+            account?.close()
+            account = nil
+            
+            phone?.close()
+            phone = nil
+            
+            if lastRegisteredUser != nil && status != .NotReachable {
+                
+                registerWithUser(lastRegisteredUser!)
+            }
+            
+            currentNetworkStatus = status
+        }
+    }
+    
+    /**
+        Initiates a new background task if one is not already in progress
+    */
+    private func beginBackgroundTaskIfNeeded() {
+        
+        if backgroundTaskId == nil {
+            
+            backgroundTaskId = UIApplication.sharedApplication().beginBackgroundTaskWithExpirationHandler() {
+                
+                self.endBackgroundTaskIfNeeded()
+            }
+        }
+    }
+    
+    /**
+        Ends a background task currently in progress, if available
+    */
+    private func endBackgroundTaskIfNeeded() {
+        
+        if backgroundTaskId != nil {
+            
+            UIApplication.sharedApplication().endBackgroundTask(backgroundTaskId!)
+            
+            backgroundTaskId = nil
+        }
+    }
+    
+    /**
+        Called by the keep-alive handler to maintain the connection to the SIP registrar while the app
+        is in the background
+    */
+    private func keepAlive() {
+        
+        if lastRegisteredUser != nil {
+            
+            // Starts a new background task to allow time for the registrar to respond
+            
+            beginBackgroundTaskIfNeeded()
+            
+            // Updates the registration
+            
+            registerWithUser(lastRegisteredUser!)
+        }
+    }
+}
+
+// MARK: - Notification handlers
+
+extension SIPManager {
+    
+    func whenApplicationDidEnterBackground(notification: NSNotification) {
+        
+        if lastRegisteredUser != nil {
+            
+            // Starts a new background task to allow time for the registrar to respond
+            
+            beginBackgroundTaskIfNeeded()
+            
+            // Updates the registration
+            
+            registerWithUser(lastRegisteredUser!)
+        }
+    }
+    
+    func whenApplicationWillEnterForeground(notification: NSNotification) {
+        
+        endBackgroundTaskIfNeeded()
     }
 }
 
@@ -213,7 +412,7 @@ extension SIPManager: BWAccountDelegate {
         println("State code: \(account.lastState.rawValue)")
         println("Expiration: \(account.registrationRegistrarInterval)")
         
-        registered = account.isRegistrationActive()
+        registrationState = account.isRegistrationActive() ? .Registered : .NotRegistered
     }
     
     func onIncomingCall(call: BWCall!) {
