@@ -23,9 +23,9 @@ struct User {
     
     static func fromJSON(json: [String: AnyObject]) -> User? {
         
-        let username        = json["username"] as? String
+        let username        = json["userName"] as? String
         let password        = json["password"] as? String
-        let number          = json["number"] as? String
+        let number          = json["phoneNumber"] as? String
         let endpointJson    = json["endpoint"] as? [String: AnyObject]
         
         if (username != nil &&
@@ -43,9 +43,9 @@ struct User {
     
     func toJSON() -> [String: AnyObject] {
         
-        return ["username"  : username,
-                "password"  : password ?? NSNull(),
-                "number"    : number,
-                "endpoint"  : endpoint.toJSON()]
+        return ["userName"      : username,
+                "password"      : password ?? NSNull(),
+                "phoneNumber"   : number,
+                "endpoint"      : endpoint.toJSON()]
     }
 }

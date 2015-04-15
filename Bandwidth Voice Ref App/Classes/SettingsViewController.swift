@@ -10,6 +10,8 @@ import UIKit
 
 private let kInfoCellIdentifier = "InfoCell"
 
+private let kRegistrationStateKey = "registrationState"
+
 /**
     View controller class for the settings/user info screen
 */
@@ -31,7 +33,27 @@ class SettingsViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
+        SIPManager.sharedInstance.addObserver(self, forKeyPath: kRegistrationStateKey, options: .New, context: nil)
+        
         updateEntries()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        
+        super.viewWillDisappear(animated)
+        
+        SIPManager.sharedInstance.removeObserver(self, forKeyPath: kRegistrationStateKey)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+        
+        if keyPath == kRegistrationStateKey {
+            
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                self.updateEntries()
+            }
+        }
     }
     
     // MARK: - Class methods
@@ -42,12 +64,30 @@ class SettingsViewController: UIViewController {
         
         if let session = Session.currentSession {
             
+            let regState = SIPManager.sharedInstance.registrationState
+            let regStateCode = SIPManager.sharedInstance.registrationStateCode
+            
+            let regStateStr: String
+            
+            switch regState {
+                
+            case .NotRegistered:
+                regStateStr = "Not registered (\(regStateCode))"
+                
+            case .Registering:
+                regStateStr = "Registering"
+                
+            case .Registered:
+                regStateStr = "Registered"
+            }
+            
             infoEntries = [
                 ("User name", session.user.username),
                 ("Phone number", session.user.number),
                 ("Endpoint name", session.user.endpoint.name),
                 ("Registrar", session.user.endpoint.credentials.realm),
                 ("SIP URI", session.user.endpoint.sipUri),
+                ("SIP registration state", regStateStr),
                 ("Server", Config.serverUrl)
             ]
             

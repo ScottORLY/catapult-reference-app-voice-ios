@@ -86,7 +86,7 @@ class CatapultService {
     */
     func createOrFetchUser(name: String, password: String, completion: (CatapultServiceResponse<User>) -> Void) {
         
-        let endpoint = CatapultV1API.CreateOrFetchUser(["name": name, "password": password])
+        let endpoint = CatapultV1API.CreateOrFetchUser(["userName": name, "password": password])
         
         performRequest(endpoint) { responseData, error, httpResponse in
             

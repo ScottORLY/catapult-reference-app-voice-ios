@@ -113,14 +113,17 @@ class CallViewController: UIViewController {
     
     func updateCallDuration() {
         
-        callDuration = NSNumber(double: -callStartDate!.timeIntervalSinceNow);
+        if callStartDate != nil {
         
-        let seconds = lround(callDuration!.doubleValue);
-        
-        let mins: Int = (seconds % 3600) / 60
-        let secs: Int = seconds % 60
-        
-        callDurationLabel.text = NSString(format: "%02d:%02d", mins, secs) as String
+            callDuration = NSNumber(double: -callStartDate!.timeIntervalSinceNow);
+            
+            let seconds = lround(callDuration!.doubleValue);
+            
+            let mins: Int = (seconds % 3600) / 60
+            let secs: Int = seconds % 60
+            
+            callDurationLabel.text = NSString(format: "%02d:%02d", mins, secs) as String
+        }
     }
     
     func playRingtone() {

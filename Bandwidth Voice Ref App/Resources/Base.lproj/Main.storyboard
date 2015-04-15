@@ -40,7 +40,7 @@
             </objects>
             <point key="canvasLocation" x="1370" y="1140"/>
         </scene>
-        <!--Create an User-->
+        <!--Create a User-->
         <scene sceneID="DNj-fd-aHZ">
             <objects>
                 <viewController storyboardIdentifier="RegistrationViewController" id="sVH-vF-iuY" customClass="RegistrationViewController" customModule="Bandwidth_Voice_Ref_App" customModuleProvider="target" sceneMemberID="viewController">
@@ -52,7 +52,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To get started, you need to create an user" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="sSF-mX-hEt">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To get started, you need to create a user" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="240" translatesAutoresizingMaskIntoConstraints="NO" id="sSF-mX-hEt">
                                 <rect key="frame" x="30" y="124" width="540" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,7 +94,7 @@
                             <constraint firstItem="xGN-tb-q3m" firstAttribute="top" secondItem="yHd-Pd-Xe5" secondAttribute="bottom" constant="30" id="vB8-c1-dpx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Create an User" id="gVt-14-Yun"/>
+                    <navigationItem key="navigationItem" title="Create a User" id="gVt-14-Yun"/>
                     <connections>
                         <outlet property="activityIndicator" destination="4pf-yA-lwr" id="qdj-qL-vwx"/>
                         <outlet property="createUserButton" destination="xGN-tb-q3m" id="AaX-7P-bSx"/>

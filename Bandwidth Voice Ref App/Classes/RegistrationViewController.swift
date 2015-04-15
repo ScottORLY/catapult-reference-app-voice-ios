@@ -10,7 +10,7 @@ import UIKit
 
 private let kShowMainScreenSegue = "showMainScreen"
 
-private let kPasswordLength = 16
+private let kPasswordLength = 6
 
 private let kPasswordPossibleCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 

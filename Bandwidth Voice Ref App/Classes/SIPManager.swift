@@ -66,6 +66,8 @@ class SIPManager: NSObject {
     */
     dynamic private(set) var registrationState = RegistrationState.NotRegistered
     
+    dynamic private(set) var registrationStateCode = 0
+    
     // MARK: - Private properties
     
     private var phone: BWPhone!
@@ -140,10 +142,10 @@ class SIPManager: NSObject {
             // This is the most verbose log level, useful during development
             phone.logLevel = 9
             
-            // Both TCP and UDP are suppoted, but TCP is recommended for background usage due
+            // Both TCP and UDP are supported, but TCP is recommended for background usage due
             // to special exemptions provided by the iOS SDK to TCP sockets
             phone.transportType = .TCP
-            
+
             phone.initialize()
         }
         
@@ -315,6 +317,8 @@ private extension SIPManager {
         
         if currentNetworkStatus != status {
             
+            beginBackgroundTaskIfNeeded()
+            
             registrationState = .NotRegistered
             
             account?.close()
@@ -413,6 +417,7 @@ extension SIPManager: BWAccountDelegate {
         println("Expiration: \(account.registrationRegistrarInterval)")
         
         registrationState = account.isRegistrationActive() ? .Registered : .NotRegistered
+        registrationStateCode = account.lastState.rawValue
     }
     
     func onIncomingCall(call: BWCall!) {
@@ -430,5 +435,3 @@ extension SIPManager: BWAccountDelegate {
         }
     }
 }
-
-
