@@ -8,6 +8,8 @@
 
 import Foundation
 
+private let kServerKey = "com.bandwidth.AppServer"
+
 private let kUserKey = "com.bandwidth.CurrentUser"
 
 /**
@@ -15,33 +17,41 @@ private let kUserKey = "com.bandwidth.CurrentUser"
 */
 struct Session {
     
-    let user: User
+    // MARK: - Public Properties
     
-    private static var _currentSession: Session?
+    /**
+        The user associated to this session
+    */
+    let user: User
     
     static var currentSession: Session? {
         
         get {
         
             if _currentSession == nil {
-        
+            
                 // If a session is not yet available, attempt to load it from NSUserDefaults
-        
+                
                 let defaults = NSUserDefaults.standardUserDefaults()
                 
-                if let userData = defaults.objectForKey(kUserKey) as? NSData {
+                // First we check if the server was the same as the one we are using now
+                
+                if let savedServer = defaults.objectForKey(kServerKey) as? String where savedServer == Config.serverUrl {
+                
+                    // We then attempt to create the user structure from the stored JSON
                     
-                    if let userDic = NSJSONSerialization.JSONObjectWithData(userData, options: nil, error: nil) as? [String: AnyObject] {
-                        
-                        if let user = User.fromJSON(userDic) {
+                    if let
+                        userData = defaults.objectForKey(kUserKey) as? NSData,
+                        userDic = NSJSONSerialization.JSONObjectWithData(userData, options: nil, error: nil) as? [String: AnyObject],
+                        user = User.fromJSON(userDic) {
+                    
+                        // Finally, we create a new session with that user
                             
-                            _currentSession = Session(user: user)
-                        }
+                        _currentSession = Session(user: user)
                     }
                 }
-                
             }
-                
+            
             return _currentSession
         }
         
@@ -59,9 +69,11 @@ struct Session {
                 
                 if let userData = NSJSONSerialization.dataWithJSONObject(userDic, options: nil, error: nil) {
                     
+                    defaults.setObject(Config.serverUrl, forKey: kServerKey)
+                    
                     defaults.setObject(userData, forKey: kUserKey)
                 }
-
+                
             } else {
                 
                 defaults.removeObjectForKey(kUserKey)
@@ -70,4 +82,8 @@ struct Session {
             defaults.synchronize()
         }
     }
+    
+    // MARK: - Private properties
+    
+    private static var _currentSession: Session?
 }
