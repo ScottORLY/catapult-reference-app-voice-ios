@@ -6,6 +6,8 @@ using the Catapult platform and the BWSip framework. The following features are 
 * Provisioning a new user
 * Making and receiving phone calls
 
+![App screenshot](https://github.com/bandwidthcom/catapult-reference-app-voice-ios/blob/master/screenshot.png)
+
 ## Before you start
 Before you get started, there are a few things that you will need to have set up first.
 
