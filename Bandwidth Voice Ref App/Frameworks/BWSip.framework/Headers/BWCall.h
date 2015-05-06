@@ -20,9 +20,6 @@ using namespace pj;
 /// C++ Class
 class MyCall : public Call
 {
-private:
-	BWAccount *bwAccount;
-	
 public:
 	BWCall *bwCall;
 	MyCall(Account &account);
@@ -152,7 +149,16 @@ public:
 
 /**
  * Get the call stats.
+ *
+ * @return NSDictionary - the call stats.
  */
 - (NSDictionary *)stats;
+
+/**
+ * Get the call duration.
+ *
+ * @return long - the call duration, in seconds.
+ */
+- (long)duration;
 
 @end
