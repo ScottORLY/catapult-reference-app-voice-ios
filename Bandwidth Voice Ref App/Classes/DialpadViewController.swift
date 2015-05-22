@@ -19,7 +19,16 @@ protocol DialpadViewControllerDelegate: class {
         :param: dialpad the source dialpad view controller
         :param: digit the dialed digit
     */
-    func dialpad(dialpad: DialpadViewController, didDialDigit digit: String)
+    func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String)
+    
+    /**
+        Called when a button on the dialpad is let go
+    
+        :param: dialpad the source dialpad view controller
+        :param: digit the dialed digit
+        :param: cancel indicates it the user meant to cancel the press, by lifting the finger while outside the button area
+    */
+    func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool)
 }
 
 /**
@@ -111,14 +120,14 @@ class DialpadViewController: UIViewController {
 
 private extension DialpadViewController {
     
-    @IBAction func onDigit(sender: UIButton) {
+    private func digitFromButton(button: UIButton) -> String? {
         
         var digit: String?
         
-        switch sender.tag {
+        switch button.tag {
             
         case 1 ... 9:
-            digit = sender.tag.description
+            digit = button.tag.description
             
         case 10:
             digit = "*"
@@ -133,9 +142,30 @@ private extension DialpadViewController {
             digit = nil
         }
         
-        if digit != nil {
+        return digit
+    }
+    
+    @IBAction func onDigitDown(sender: UIButton) {
+        
+        if let digit = digitFromButton(sender) {
             
-            delegate?.dialpad(self, didDialDigit: digit!)
+            delegate?.dialpad(self, didStartDialingDigit: digit)
+        }
+    }
+    
+    @IBAction func onDigitUpInside(sender: UIButton) {
+        
+        if let digit = digitFromButton(sender) {
+            
+            delegate?.dialpad(self, didEndDialingDigit: digit, cancelled: false)
+        }
+    }
+    
+    @IBAction func onDigitUpOutside(sender: UIButton) {
+        
+        if let digit = digitFromButton(sender) {
+            
+            delegate?.dialpad(self, didEndDialingDigit: digit, cancelled: true)
         }
     }
 }

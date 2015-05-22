@@ -20,15 +20,7 @@ class CallRouter: NSObject {
     /**
         Shared instance through which this class must be accessed
     */
-    class var sharedInstance: CallRouter {
-        
-        struct Singleton {
-            
-            static let instance = CallRouter()
-        }
-        
-        return Singleton.instance
-    }
+    static let sharedInstance = CallRouter()
     
     // MARK: - Superclass methods
     
@@ -105,7 +97,7 @@ extension CallRouter {
                 
                 // If we do, respond to the call as busy
                 
-                SIPManager.sharedInstance.respondToCall(call, busy: true)
+                call.answerCall(.BusyHere)
                 
             } else {
                 

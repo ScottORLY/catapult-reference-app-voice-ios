@@ -12,6 +12,8 @@ private let kEmbedDialpadSegue = "embedDialpad"
 
 private let kClearTimeInvertal: NSTimeInterval = 1.0
 
+private let kToneVolume: Float = 0.006
+
 /**
     View controller class for the dialer screen
 */
@@ -28,6 +30,8 @@ class DialerViewController: UIViewController {
     // MARK: - Private properties
     
     private var deleteTimer: NSTimer?
+    
+    private let tone = BWTone()
     
     // MARK: - Superclass methods
     
@@ -93,16 +97,24 @@ extension DialerViewController {
 
 extension DialerViewController: DialpadViewControllerDelegate {
     
-    func dialpad(dialpad: DialpadViewController, didDialDigit digit: String) {
+    func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String) {
         
-        if let newNumber = NumberFormatter.inputDigit(digit, inFormattedNumber: dialedNumberLabel.text!) {
+        tone.startDigit(digit, withVolume:kToneVolume)
+    }
+    
+    func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool) {
+        
+        tone.stopDigit()
+        
+        if !cancel {
+        
+            if let newNumber = NumberFormatter.inputDigit(digit, inFormattedNumber: dialedNumberLabel.text!) {
+                
+                dialedNumberLabel.text = newNumber
+            }
             
-            dialedNumberLabel.text = newNumber
+            deleteButton.hidden = count(dialedNumberLabel.text!) == 0
+            callButton.enabled = count(dialedNumberLabel.text!) == 14
         }
-        
-        deleteButton.hidden = count(dialedNumberLabel.text!) == 0
-        callButton.enabled = count(dialedNumberLabel.text!) == 14
-        
-        SIPManager.sharedInstance.dialDTMFDigit(nil, digit: digit)
     }
 }

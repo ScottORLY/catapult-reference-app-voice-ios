@@ -7,35 +7,49 @@
 
 #import <Foundation/Foundation.h>
 
-#ifdef __cplusplus
-static ToneGenerator *pjsuaToneGen;
-#endif
-
-static BOOL ringbackPlaying;
-
 @interface BWTone : NSObject
 
 /**
  * Starts the ringback tone.
  */
-+ (void)startRingback;
+- (void)startRingback;
 
 /**
  * Stops the ringback tone.
  */
-+ (void)stopRingback;
+- (void)stopRingback;
 
 /**
  * Return YES if the ringback tone is playing; NO if it's not playing
  */
-+ (BOOL)isRingbackPlaying;
+- (BOOL)isRingbackPlaying;
+
+/**
+ * Starts a tone with an indefinite duration.
+ *
+ * @param digit the DTMF digit to be played.
+ */
+- (void)startDigit:(NSString *)digit;
+
+/**
+ * Starts a tone with an indefinite duration and custom volume.
+ *
+ * @param digit the DTMF digit to be played.
+ * @param volume the tone volume [0 - mute; 1 - full volume].
+ */
+- (void)startDigit:(NSString *)digit withVolume:(float)volume;
+
+/**
+ * Stops any tone currently playing.
+ */
+- (void)stopDigit;
 
 /**
  * Plays a DTMF tone (default duration = 200 ms).
  *
  * @param digit the DTMF digit to be played.
  */
-+ (void)playDigit:(NSString *)digit;
+- (void)playDigit:(NSString *)digit;
 
 /**
 * Plays a DTMF tone (default duration = 200 ms).
@@ -43,7 +57,7 @@ static BOOL ringbackPlaying;
 * @param digit the DTMF digit to be played.
 * @param volume the tone volume [0 - mute; 1 - full volume].
 */
-+ (void)playDigit:(NSString *)digit withVolume:(float)volume;
+- (void)playDigit:(NSString *)digit withVolume:(float)volume;
 
 /**
  * Plays a DTMF tone for X ms.
@@ -51,7 +65,7 @@ static BOOL ringbackPlaying;
  * @param digit the DTMF digit to be played.
  * @param duration the number of milliseconds to play the tone.
  */
-+ (void)playDigit:(NSString *)digit withDuration:(int)duration;
+- (void)playDigit:(NSString *)digit withDuration:(int)duration;
 
 /**
 * Plays a DTMF tone for X ms.
@@ -60,6 +74,6 @@ static BOOL ringbackPlaying;
 * @param duration the number of milliseconds to play the tone.
 * @param volume the tone volume [0 - mute; 1 - full volume].
 */
-+ (void)playDigit:(NSString *)digit withDuration:(int)duration andVolume:(float)volume;
+- (void)playDigit:(NSString *)digit withDuration:(int)duration andVolume:(float)volume;
 
 @end

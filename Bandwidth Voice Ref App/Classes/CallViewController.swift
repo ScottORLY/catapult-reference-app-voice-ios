@@ -10,6 +10,8 @@ import UIKit
 import AudioToolbox
 import AVFoundation
 
+private let kToneVolume: Float = 0.006
+
 private let kRingtoneInterval: NSTimeInterval = 2.5
 
 private let kCallDurationLabelVisibleWidth: CGFloat = 80
@@ -68,6 +70,8 @@ class CallViewController: UIViewController {
     
     private var callNotification: UILocalNotification?
     
+    private let tone = BWTone()
+    
     // MARK: - Superclass methods
     
     override func viewWillAppear(animated: Bool) {
@@ -88,7 +92,7 @@ class CallViewController: UIViewController {
             
             callTypeLabel.text = "Incoming call from"
             
-            SIPManager.sharedInstance.respondToCall(call!, busy: false)
+            call!.answerCall(.Ringing)
             
             startPlayingRingtone()
             
@@ -275,10 +279,7 @@ extension CallViewController {
         
         sender.selected = !sender.selected
         
-        if call != nil {
-            
-            SIPManager.sharedInstance.muteCall(call!, mute: sender.selected)
-        }
+        call?.setMute(sender.selected)
     }
     
     @IBAction func onToggleSpeaker(sender: UIButton) {
@@ -292,20 +293,14 @@ extension CallViewController {
         
         stopPlayingRingtone()
         
-        if call != nil {
-            
-            SIPManager.sharedInstance.hangUpCall(call!)
-        }
+        call?.hangupCall()
     }
 
     @IBAction func onAnswer(sender: AnyObject) {
         
         stopPlayingRingtone()
         
-        if call != nil {
-            
-            SIPManager.sharedInstance.answerCall(call!)
-        }
+        call?.answerCall(.OK)
     }
 }
 
@@ -368,8 +363,18 @@ extension CallViewController: BWCallDelegate {
 
 extension CallViewController: DialpadViewControllerDelegate {
     
-    func dialpad(dialpad: DialpadViewController, didDialDigit digit: String) {
+    func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String) {
         
-        SIPManager.sharedInstance.dialDTMFDigit(call!, digit: digit)
+        tone.startDigit(digit, withVolume: kToneVolume)
+    }
+    
+    func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool) {
+        
+        tone.stopDigit()
+        
+        if !cancel {
+        
+            call?.dialDTMF(digit)
+        }
     }
 }

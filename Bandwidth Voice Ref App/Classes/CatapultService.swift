@@ -54,15 +54,7 @@ class CatapultService {
     /**
         Shared instance through which this class must be accessed
     */
-    class var sharedInstance: CatapultService {
-        
-        struct Singleton {
-            
-            static let instance = CatapultService()
-        }
-        
-        return Singleton.instance
-    }
+    static let sharedInstance = CatapultService()
     
     /**
         The NSURLSession object to be used for requests

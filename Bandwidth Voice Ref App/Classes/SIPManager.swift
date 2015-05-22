@@ -9,8 +9,6 @@
 import UIKit
 import AVFoundation
 
-private let kToneVolume: Float = 0.006
-
 /**
     Manager class responsible for interacting with the BWSip framework
 */
@@ -51,15 +49,7 @@ class SIPManager: NSObject {
     /**
         Shared instance through which this class must be accessed
     */
-    class var sharedInstance: SIPManager {
-        
-        struct Singleton {
-            
-            static let instance = SIPManager()
-        }
-        
-        return Singleton.instance
-    }
+    static let sharedInstance = SIPManager()
     
     /**
         Current SIP registration state
@@ -226,70 +216,6 @@ class SIPManager: NSObject {
         }
         
         return nil
-    }
-    
-    /**
-        Acknowledges an incoming call
-            
-        :param: call the incoming call object
-        :param: busy if true a busy signal will be sent, otherwise the other side will know this extension is ringing
-    */
-    func respondToCall(call: BWCall, busy: Bool) {
-        
-        call.answerCall(busy ? .BusyHere : .Ringing)
-    }
-    
-    /**
-        Answers an incoming call
-    
-        :param: call the incoming call object
-    */
-    func answerCall(call: BWCall) {
-        
-        call.answerCall(.OK)
-    }
-    
-    /**
-        Hangs up an active call
-        
-        :param: call the call object
-    */
-    func hangUpCall(call: BWCall) {
-        
-        call.hangupCall()
-    }
-    
-    /**
-        Mutes the microphone while in an active call
-
-        :param: call the call object
-        :param: mute true to mute the call, false otherwise
-    */
-    func muteCall(call: BWCall, mute: Bool) {
-        
-        call.setMute(mute)
-    }
-    
-    /**
-        Produces an audible DTMF tone, and optionally sends the DTMF signal through a call
-        
-        :param: call call to send the DTMF through, or nil
-        :param: digit the digit to produce the DTMF tone
-    */
-    func dialDTMFDigit(call: BWCall?, digit: String) {
-    
-        if call != nil {
-            
-            call!.dialDTMF(digit)
-            
-        } else {
-            
-            // If not on a call, we need to set our own audio session before playing the tone
-            
-            AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryAmbient, error: nil)
-        }
-
-        BWTone.playDigit(digit, withVolume: kToneVolume)
     }
     
     /**

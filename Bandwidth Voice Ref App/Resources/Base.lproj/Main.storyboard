@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DTH-YI-spa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="DTH-YI-spa">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -319,7 +319,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="zQg-t9-Vkb"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="0go-hb-Wbj"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="7DY-5N-VBA"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="275-na-zX0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHn-TM-iev">
@@ -331,7 +333,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="B60-t5-9fE"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="Sui-V8-gGF"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="msX-WQ-mh7"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="oGU-zu-QeP"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyh-LG-3zl">
@@ -343,7 +347,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="YOT-jJ-CTU"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="1PE-KB-40h"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="JND-Lj-OUs"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="4SO-vT-pM1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JOP-Mr-hK2">
@@ -355,7 +361,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="LMJ-ht-Ufu"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="oxc-oW-3ny"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="JHA-zN-jd5"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="Lsw-kb-XfY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -386,7 +394,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="KEQ-ab-s22"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="zTK-Xk-I0z"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="7Ge-Ee-jIe"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="tCw-10-Ngs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="80C-Wj-N6L">
@@ -398,7 +408,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="1M9-4N-w5a"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="AQb-rv-v2J"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="X2a-tU-8Jt"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="fTw-WZ-YEf"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7A2-o7-ZEf">
@@ -410,7 +422,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="WeL-7Q-37A"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="dgs-z8-9gb"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="hqn-qM-fNf"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="uKc-p9-l3K"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Azx-4t-hZP">
@@ -422,7 +436,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="rl0-WP-hYM"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="DVe-q7-Grz"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="QMC-cY-CYU"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="uI6-r8-oCH"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -452,7 +468,9 @@
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                         <state key="normal" title="3"/>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="8xk-Ol-Jsz"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="2rA-Dm-CfQ"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="YTc-Bh-GI6"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="R56-Gy-xRr"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2V-00-Jhe">
@@ -464,7 +482,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="YZ0-jD-OiV"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="IMr-ip-Ms8"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="szB-ky-zAY"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="ICr-An-3vy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Oh-pW-Tjg">
@@ -476,7 +496,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="qmb-Vw-Bkf"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="aKh-D3-g9f"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="Wqc-8U-RSf"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="IRe-yQ-S5s"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f6y-V6-il1">
@@ -488,7 +510,9 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="onDigit:" destination="RyH-h5-aZv" eventType="touchUpInside" id="ncu-kp-zB2"/>
+                                            <action selector="onDigitDown:" destination="RyH-h5-aZv" eventType="touchDown" id="hul-hd-TUJ"/>
+                                            <action selector="onDigitUpInside:" destination="RyH-h5-aZv" eventType="touchUpInside" id="Eu8-dV-eUS"/>
+                                            <action selector="onDigitUpOutside:" destination="RyH-h5-aZv" eventType="touchUpOutside" id="2bi-UQ-Nzo"/>
                                         </connections>
                                     </button>
                                 </subviews>
