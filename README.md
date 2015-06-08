@@ -72,3 +72,7 @@ its dependencies:
 You can then use the code provided by this sample app as the basis for your own implementation. The 
 framework can be used from Objective-C or Swift (using a [bridging header](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_77)).
 
+More BWSip resources:
+
+* [Dev Guide](https://github.com/bandwidthcom/catapult-reference-app-voice-ios/blob/master/bwsip-dev-guide-ios.pdf)
+* [API Reference](https://github.com/bandwidthcom/catapult-reference-app-voice-ios/blob/master/bwsip-api-ios.pdf)
