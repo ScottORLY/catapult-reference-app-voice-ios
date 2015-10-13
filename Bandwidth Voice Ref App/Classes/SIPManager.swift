@@ -121,7 +121,7 @@ class SIPManager: NSObject {
     /**
         Register with the SIP registrar using the credentials stored in the user
         
-        :param: user the user object containing the credentials
+        - parameter user: the user object containing the credentials
     */
     func registerWithUser(user: User) {
         
@@ -200,8 +200,8 @@ class SIPManager: NSObject {
     /**
         Makes a call to a phone number
         
-        :param: number the US phone number to call, without country code or formatting (i.e. "5552221111")
-        :returns: the created call object, or nil if the call couldn't be created
+        - parameter number: the US phone number to call, without country code or formatting (i.e. "5552221111")
+        - returns: the created call object, or nil if the call couldn't be created
     */
     func makeCallTo(number: String) -> BWCall? {
         
@@ -221,7 +221,7 @@ class SIPManager: NSObject {
     /**
         Enables or disables the loudspeaker (can also be used while in a call)
         
-        :param: enabled true to enable the loudspeaker, false otherwise
+        - parameter enabled: true to enable the loudspeaker, false otherwise
     */
     func setSpeakerEnabled(enabled: Bool) {
         
@@ -237,7 +237,7 @@ private extension SIPManager {
         This method is called by the Reachability watcher whenever the network status changes, and will reconnect to
         the SIP registrar as appropriate.
         
-        :param: status the new network status
+        - parameter status: the new network status
     */
     private func updateConnectionStatus(status: NetworkStatus) {
         
@@ -338,9 +338,9 @@ extension SIPManager: BWAccountDelegate {
     
     func onRegStateChanged(account: BWAccount!) {
         
-        println("***** Registration State Changed *****")
-        println("State code: \(account.lastState.rawValue)")
-        println("Expiration: \(account.registrationRegistrarInterval)")
+        print("***** Registration State Changed *****")
+        print("State code: \(account.lastState.rawValue)")
+        print("Expiration: \(account.registrationRegistrarInterval)")
         
         registrationState = account.isRegistrationActive() ? .Registered : .NotRegistered
         registrationStateCode = account.lastState.rawValue
@@ -348,10 +348,10 @@ extension SIPManager: BWAccountDelegate {
     
     func onIncomingCall(call: BWCall!) {
         
-        println("***** Incoming Call *****")
-        println("State code.........: \(call.lastState.rawValue)")
-        println("Receiving call from: \(call.remoteUri)")
-        println("Parent account.....: \(call.parentAccount)")
+        print("***** Incoming Call *****")
+        print("State code.........: \(call.lastState.rawValue)")
+        print("Receiving call from: \(call.remoteUri)")
+        print("Parent account.....: \(call.parentAccount)")
         
         dispatch_async(dispatch_get_main_queue()) {
         

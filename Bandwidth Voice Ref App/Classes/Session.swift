@@ -42,7 +42,7 @@ struct Session {
                     
                     if let
                         userData = defaults.objectForKey(kUserKey) as? NSData,
-                        userDic = NSJSONSerialization.JSONObjectWithData(userData, options: nil, error: nil) as? [String: AnyObject],
+                        userDic = (try? NSJSONSerialization.JSONObjectWithData(userData, options: [])) as? [String: AnyObject],
                         user = User.fromJSON(userDic) {
                     
                         // Finally, we create a new session with that user
@@ -67,7 +67,7 @@ struct Session {
                 
                 let userDic = _currentSession!.user.toJSON()
                 
-                if let userData = NSJSONSerialization.dataWithJSONObject(userDic, options: nil, error: nil) {
+                if let userData = try? NSJSONSerialization.dataWithJSONObject(userDic, options: []) {
                     
                     defaults.setObject(Config.serverUrl, forKey: kServerKey)
                     

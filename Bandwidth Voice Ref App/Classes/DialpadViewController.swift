@@ -16,17 +16,17 @@ protocol DialpadViewControllerDelegate: class {
     /**
         Called when a button on the dialpad is pressed
 
-        :param: dialpad the source dialpad view controller
-        :param: digit the dialed digit
+        - parameter dialpad: the source dialpad view controller
+        - parameter digit: the dialed digit
     */
     func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String)
     
     /**
         Called when a button on the dialpad is let go
     
-        :param: dialpad the source dialpad view controller
-        :param: digit the dialed digit
-        :param: cancel indicates it the user meant to cancel the press, by lifting the finger while outside the button area
+        - parameter dialpad: the source dialpad view controller
+        - parameter digit: the dialed digit
+        - parameter cancel: indicates it the user meant to cancel the press, by lifting the finger while outside the button area
     */
     func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool)
 }
@@ -76,8 +76,8 @@ class DialpadViewController: UIViewController {
             
             if let newLineRange = title.rangeOfCharacterFromSet(NSCharacterSet.newlineCharacterSet()) {
                 
-                let middle = distance(title.startIndex, newLineRange.startIndex)
-                let end = distance(newLineRange.startIndex, title.endIndex)
+                let middle = title.startIndex.distanceTo(newLineRange.startIndex)
+                let end = newLineRange.startIndex.distanceTo(title.endIndex)
                 
                 let attTitleNormal = NSMutableAttributedString(string: title)
                 attTitleNormal.setAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(20)], range: NSMakeRange(0, middle))
@@ -87,7 +87,7 @@ class DialpadViewController: UIViewController {
                 
             } else {
                 
-                let end = distance(title.startIndex, title.endIndex)
+                let end = title.startIndex.distanceTo(title.endIndex)
                 
                 let attTitleNormal = NSMutableAttributedString(string: title)
                 attTitleNormal.setAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(26)], range: NSMakeRange(0, end))

@@ -216,21 +216,21 @@ private extension CallViewController {
             
             var soundId: SystemSoundID = 0
             
-            AudioServicesCreateSystemSoundID(ringtoneUrl, &soundId)
+            AudioServicesCreateSystemSoundID(ringtoneUrl!, &soundId)
             
             ringtoneSoundId = soundId
             
-            var error: NSError?
-            
-            AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, error: &error)
-            
-            AVAudioSession.sharedInstance().setActive(true, withOptions: .OptionNotifyOthersOnDeactivation, error: &error)
-            
-            if error == nil {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                try AVAudioSession.sharedInstance().setActive(true, withOptions: .NotifyOthersOnDeactivation)
                 
                 playRingtone()
                 
                 ringtoneTimer = NSTimer.scheduledTimerWithTimeInterval(kRingtoneInterval, target: self, selector: "playRingtone", userInfo: nil, repeats: true)
+                
+            } catch let sessionError as NSError {
+                
+                print("Error playing ringtone: \(sessionError)")
             }
             
         } else {
@@ -259,7 +259,10 @@ private extension CallViewController {
             ringtoneTimer!.invalidate()
             ringtoneTimer = nil
             
-            AVAudioSession.sharedInstance().setActive(false, withOptions: .OptionNotifyOthersOnDeactivation, error: nil)
+            do {
+                try AVAudioSession.sharedInstance().setActive(false, withOptions: .NotifyOthersOnDeactivation)
+            } catch _ {
+            }
         }
         
         if callNotification != nil {
@@ -310,10 +313,10 @@ extension CallViewController: BWCallDelegate {
     
     func onCallStateChanged(call: BWCall!) {
         
-        println("***** Call State Changed *****")
-        println("State code: \(call.lastState.rawValue)")
-        println("Local URI.: \(call.localUri)")
-        println("Remote URI: \(call.remoteUri)")
+        print("***** Call State Changed *****")
+        print("State code: \(call.lastState.rawValue)")
+        print("Local URI.: \(call.localUri)")
+        print("Remote URI: \(call.remoteUri)")
         
         if self.call == call {
             
@@ -354,8 +357,8 @@ extension CallViewController: BWCallDelegate {
     
     func onIncomingDTMF(call: BWCall!, andDigits digits: String!) {
         
-        println("***** Incoming DTMF *****")
-        println("DTMF Received: \(digits)")
+        print("***** Incoming DTMF *****")
+        print("DTMF Received: \(digits)")
     }
 }
 

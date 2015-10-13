@@ -45,7 +45,7 @@ class SettingsViewController: UIViewController {
         SIPManager.sharedInstance.removeObserver(self, forKeyPath: kRegistrationStateKey)
     }
     
-    override func observeValueForKeyPath(keyPath: String, ofObject object: AnyObject, change: [NSObject : AnyObject], context: UnsafeMutablePointer<Void>) {
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         
         if keyPath == kRegistrationStateKey {
             
@@ -133,7 +133,7 @@ extension SettingsViewController {
                     
                 case .Failure(let error):
                     
-                    println("ERROR - could not refresh user: \(error)")
+                    print("ERROR - could not refresh user: \(error)")
                     
                     self.showAlert("Error", message: "An unexpected error occurred, please try again later.")
                 }
@@ -167,7 +167,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(kInfoCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(kInfoCellIdentifier, forIndexPath: indexPath) 
         
         let (title, value) = infoEntries[indexPath.row]
         

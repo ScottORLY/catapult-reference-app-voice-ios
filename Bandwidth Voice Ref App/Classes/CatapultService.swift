@@ -72,9 +72,9 @@ class CatapultService {
     /**
         Creates a new user and returns its info
         
-        :param: name the username for the new user
-        :param: password the user's password
-        :param: completion callback closure to be called when the request completes
+        - parameter name: the username for the new user
+        - parameter password: the user's password
+        - parameter completion: callback closure to be called when the request completes
     */
     func createOrFetchUser(name: String, password: String, completion: (CatapultServiceResponse<User>) -> Void) {
         
@@ -148,8 +148,8 @@ private extension CatapultService {
     /**
         Performs an asynchronous request to an endpoint conforming to the APIEndpoint protocol
     
-        :param: endpoint the endpoint where the request will be sent
-        :param: completion callback closure to be called when the request is completed
+        - parameter endpoint: the endpoint where the request will be sent
+        - parameter completion: callback closure to be called when the request is completed
     */
     private func performRequest(endpoint: APIEndpoint, completion: (ResponseData?, NSError?, NSHTTPURLResponse?) -> Void) {
         
@@ -161,7 +161,7 @@ private extension CatapultService {
                 
                 if data != nil {
                     
-                    if let jsonObj: AnyObject = NSJSONSerialization.JSONObjectWithData(data! as NSData, options: nil, error: nil) {
+                    if let jsonObj: AnyObject = try? NSJSONSerialization.JSONObjectWithData(data! as NSData, options: []) {
                         
                         if let jsonDic = jsonObj as? [String: AnyObject] {
                             

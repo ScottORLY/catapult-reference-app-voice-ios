@@ -80,8 +80,8 @@ extension DialerViewController {
             dialedNumberLabel.text = newNumber
         }
         
-        deleteButton.hidden = count(dialedNumberLabel.text!) == 0
-        callButton.enabled = count(dialedNumberLabel.text!) == 14
+        deleteButton.hidden = (dialedNumberLabel.text!).characters.count == 0
+        callButton.enabled = (dialedNumberLabel.text!).characters.count == 14
     }
     
     @IBAction func onCall(sender: AnyObject) {
@@ -113,8 +113,8 @@ extension DialerViewController: DialpadViewControllerDelegate {
                 dialedNumberLabel.text = newNumber
             }
             
-            deleteButton.hidden = count(dialedNumberLabel.text!) == 0
-            callButton.enabled = count(dialedNumberLabel.text!) == 14
+            deleteButton.hidden = (dialedNumberLabel.text!).characters.count == 0
+            callButton.enabled = (dialedNumberLabel.text!).characters.count == 14
         }
     }
 }

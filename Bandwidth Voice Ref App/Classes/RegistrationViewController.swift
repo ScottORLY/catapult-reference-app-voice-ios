@@ -40,7 +40,7 @@ class RegistrationViewController: UIViewController {
     
     func generatePassword() -> String {
         
-        let possibleCount = UInt32(count(kPasswordPossibleCharacters))
+        let possibleCount = UInt32(kPasswordPossibleCharacters.characters.count)
         
         var password = ""
         
@@ -48,7 +48,7 @@ class RegistrationViewController: UIViewController {
             
             let index = Int(arc4random_uniform(possibleCount))
             
-            let position = advance(kPasswordPossibleCharacters.startIndex, index)
+            let position = kPasswordPossibleCharacters.startIndex.advancedBy(index)
             
             password.append(kPasswordPossibleCharacters[position])
         }
@@ -58,9 +58,9 @@ class RegistrationViewController: UIViewController {
     
     func createUser() {
         
-        let username = usernameTextField.text.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        let username = usernameTextField.text!.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        if count(username) > 0 {
+        if username.characters.count > 0 {
             
             usernameTextField.enabled = false
             createUserButton.hidden = true
@@ -88,7 +88,7 @@ class RegistrationViewController: UIViewController {
                     
                 case .Failure(let error):
                     
-                    println("ERROR - could not create user: \(error)")
+                    print("ERROR - could not create user: \(error)")
                     
                     self.showAlert("Error", message: "An unexpected error occurred, please try again later.")
                 }

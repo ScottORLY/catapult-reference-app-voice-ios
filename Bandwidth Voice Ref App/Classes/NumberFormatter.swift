@@ -19,8 +19,8 @@ class NumberFormatter {
     
     /**
         Formats an US phone number in E164 format (i.e. from "+15552221111" to "(555) 222-1111")
-        :param: number the number to format
-        :returns: the formatted number
+        - parameter number: the number to format
+        - returns: the formatted number
     */
     class func formatE164Number(number: String) -> String {
         
@@ -31,7 +31,7 @@ class NumberFormatter {
             numberToFormat.replaceRange(countryCodeRange, with: "")
         }
         
-        if count(numberToFormat) == 10 {
+        if numberToFormat.characters.count == 10 {
             
             if let masked = applyPhoneMaskToNumber(numberToFormat) {
                 
@@ -45,9 +45,9 @@ class NumberFormatter {
     /**
         Given a partial formatted phone number, appends or deletes a single digit while keeping the formatting
         
-        :param: digit the digit to append, or "" to delete the last digit
-        :param: number the partial formatted number
-        :returns: the formatted number, or nil if the digit could not be applied
+        - parameter digit: the digit to append, or "" to delete the last digit
+        - parameter number: the partial formatted number
+        - returns: the formatted number, or nil if the digit could not be applied
     */
     class func inputDigit(digit: String, inFormattedNumber number: String) -> String? {
         
@@ -55,7 +55,7 @@ class NumberFormatter {
             
         case "":
             
-            if count(number) > 0 {
+            if number.characters.count > 0 {
                 
                 let clean = removeFormatting(number)
                 
@@ -79,8 +79,8 @@ class NumberFormatter {
     /**
         Removes all characters other than numbers from a string
         
-        :param: number the number whose formatting will be removed
-        :returns: the clean number string
+        - parameter number: the number whose formatting will be removed
+        - returns: the clean number string
     */
     class func removeFormatting(number: String) -> String {
         
@@ -103,13 +103,13 @@ private extension NumberFormatter {
         
         var output = ""
         
-        var digitCount = count(number)
+        var digitCount = number.characters.count
         
         var maskIndex = kFormattedPhoneMask.startIndex
         
         var numberIndex = number.startIndex
         
-        while (digitCount > 0 && distance(maskIndex, kFormattedPhoneMask.endIndex) > 0) {
+        while (digitCount > 0 && maskIndex.distanceTo(kFormattedPhoneMask.endIndex) > 0) {
             
             let maskChar = kFormattedPhoneMask[maskIndex]
             

@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if application.respondsToSelector("registerUserNotificationSettings:") {
             
-            let settings = UIUserNotificationSettings(forTypes: .Badge | .Sound | .Alert, categories: nil)
+            let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
             
             application.registerUserNotificationSettings(settings)
         }

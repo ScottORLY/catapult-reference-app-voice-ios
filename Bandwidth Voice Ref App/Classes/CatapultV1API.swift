@@ -55,7 +55,7 @@ extension CatapultV1API : APIEndpoint {
                 
         if parameters != nil {
             
-            if let jsonData = NSJSONSerialization.dataWithJSONObject(parameters!, options: nil, error: nil) {
+            if let jsonData = try? NSJSONSerialization.dataWithJSONObject(parameters!, options: []) {
                 
                 mutableURLRequest.HTTPBody = jsonData;
                 mutableURLRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
