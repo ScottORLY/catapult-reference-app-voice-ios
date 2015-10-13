@@ -44,7 +44,7 @@ class RegistrationViewController: UIViewController {
         
         var password = ""
         
-        for i in 0 ..< kPasswordLength {
+        for _ in 0 ..< kPasswordLength {
             
             let index = Int(arc4random_uniform(possibleCount))
             

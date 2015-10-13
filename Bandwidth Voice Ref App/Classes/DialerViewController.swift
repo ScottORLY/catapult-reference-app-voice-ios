@@ -86,7 +86,7 @@ extension DialerViewController {
     
     @IBAction func onCall(sender: AnyObject) {
         
-        if let mainTabBarController = tabBarController as? MainTabBarController {
+        if let _ = tabBarController as? MainTabBarController {
             
             CallRouter.sharedInstance.makeCallTo(NumberFormatter.removeFormatting(dialedNumberLabel.text!))
         }
