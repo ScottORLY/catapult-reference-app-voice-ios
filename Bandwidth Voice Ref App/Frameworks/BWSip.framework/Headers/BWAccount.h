@@ -9,6 +9,7 @@
 #import "BWPhone.h"
 #import "BWCall.h"
 #import "BWConsts.h"
+#import "BWCredentials.h"
 #import "pjsua2.hpp"
 
 @class BWPhone;
@@ -54,11 +55,10 @@ public:
 @property (nonatomic, readonly) int registrationRetryInterval;
 @property (nonatomic) int registrationRegistrarInterval;
 @property (nonatomic) BWSipResponse lastState;
+@property (nonatomic, strong, readonly) BWCredentials *credentials;
 @property (nonatomic, strong, readonly) NSString *idUri;
 @property (nonatomic, strong, readonly) NSString *displayName;
 @property (nonatomic, strong, readonly) NSString *registrar;
-@property (nonatomic, strong, readonly) NSString *username;
-@property (nonatomic, strong, readonly) NSString *password;
 @property (nonatomic, strong, readonly) NSMutableArray *calls;
 @property (nonatomic) int serverPort;
 
@@ -89,6 +89,41 @@ public:
  * Closes all connections for that account.
  */
 - (void)close;
+
+/**
+ * Add a header to the SIP INVITE.
+ *
+ * @param name The SIP header field name.
+ * @param value The SIP header value.
+ */
+- (void)addSipHeader:(NSString *)name andValue:(NSString *)value;
+
+/**
+ * Get the SIP headers
+ */
+- (NSDictionary *)getSipHeaders;
+
+/**
+ * Clear the SIP headers.
+ */
+- (void)clearSipHeaders;
+
+/**
+ * Add a proxy.
+ *
+ * @param proxy String proxy URL.
+ */
+- (void)addProxy:(NSString *)proxy;
+
+/**
+ * Get the proxies.
+ */
+- (NSArray *)getProxies;
+
+/**
+ * Clear the proxies.
+ */
+- (void)clearProxies;
 
 /**
  * Force the non-usage of dot notation for the iceEnabled field.
@@ -150,12 +185,9 @@ public:
 - (void)setRegistrar:(NSString *)registrar;
 
 /**
- * Set the credentials (username & password) to connect to the account.
- *
- * @param username The username.
- * @param password The password.
+ * Set the user credentials.
  */
-- (void)setUsername:(NSString *)username andPassword:(NSString *)password;
+- (void)setCredentials:(BWCredentials *)credentials;
 
 /**
  * Add a call to the call list.

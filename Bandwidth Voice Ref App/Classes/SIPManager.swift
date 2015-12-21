@@ -149,6 +149,8 @@ class SIPManager: NSObject {
                 
                 registrationState = .Registering
                 
+                let credentials = BWCredentials(username: user.endpoint.credentials.username, andPassword: user.password)
+                
                 account = BWAccount(phone: phone!)
                 account.delegate = self
                 
@@ -157,7 +159,7 @@ class SIPManager: NSObject {
                 account.setRegistrationRetryInterval(60)
                 
                 account.setRegistrar(user.endpoint.credentials.realm)
-                account.setUsername(user.endpoint.credentials.username, andPassword: user.password)
+                account.setCredentials(credentials)
                 
                 account.connect()
                 

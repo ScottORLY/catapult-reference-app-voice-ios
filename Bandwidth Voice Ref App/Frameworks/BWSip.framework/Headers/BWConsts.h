@@ -29,9 +29,7 @@ typedef NS_ENUM(NSInteger, BWCallState) {
 	BWCallStateDisconnected
 };
 
-/*
- * SIP Responses
- */
+// SIP Responses
 typedef NS_ENUM(NSInteger, BWSipResponse) {
 	BWSipResponseTrying             = 100,
 	BWSipResponseRinging            = 180,

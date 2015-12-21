@@ -10,6 +10,7 @@
 #import "BWGps.h"
 #import "BWConsts.h"
 #import "pjsua2.hpp"
+#import "BWCallStats.h"
 
 @class BWAccount;
 @class BWCall;
@@ -54,6 +55,7 @@ public:
 @property (nonatomic, strong, readonly) NSString *stateText;
 @property (nonatomic, strong, readonly) NSMutableDictionary *sipHeaders;
 @property (nonatomic) BWCallState lastState;
+@property (nonatomic) BWSipResponse lastStatusCode;
 @property (nonatomic, readonly) BOOL isIncoming;
 @property (nonatomic, readonly) BOOL isOnHold;
 @property (nonatomic, readonly) BOOL isMuted;
@@ -113,6 +115,11 @@ public:
 - (void)addSipHeader:(NSString *)name andValue:(NSString *)value;
 
 /**
+ * Clear the SIP headers.
+ */
+- (void)clearSipHeaders;
+
+/**
  * Add Geolocation information in the SIP Header.
  *
  * @param gps The BWGps object.
@@ -150,9 +157,9 @@ public:
 /**
  * Get the call stats.
  *
- * @return NSDictionary - the call stats.
+ * @return CallStats - the call stats.
  */
-- (NSDictionary *)stats;
+- (BWCallStats *)stats;
 
 /**
  * Get the call duration.

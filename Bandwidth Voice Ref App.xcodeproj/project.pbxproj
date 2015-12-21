@@ -267,7 +267,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0620;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = Bandwidth;
 				TargetAttributes = {
 					15B2E66F1ACD573B003BDD65 = {
@@ -393,6 +393,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -462,6 +463,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bandwidth.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Bandwidth Voice Ref App";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";
 			};
@@ -479,6 +481,7 @@
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.bandwidth.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Bandwidth Voice Ref App";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";
 			};

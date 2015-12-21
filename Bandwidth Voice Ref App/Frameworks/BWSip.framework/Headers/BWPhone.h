@@ -9,6 +9,7 @@
 #import "BWCall.h"
 #import "BWConsts.h"
 #import "pjsua2.hpp"
+#import "BWEndpointInfo.h"
 
 @class BWPhone;
 @class BWAccount;
@@ -54,6 +55,7 @@ public:
 
 /// User Agent
 @property (nonatomic, strong) NSString *userAgent;
+@property (nonatomic, strong) NSString *remoteIpAddress;
 
 /**
  * BWPhone shared instance - This is a Singleton class
@@ -68,7 +70,7 @@ public:
 /**
  * Check if PJSUA2 native library is loaded and the endpoint is initialized.
  */
-- (BOOL)isInitalized;
+- (BOOL)isInitialized;
 
 /**
  * Configure the transport for the current endpoint.
@@ -84,6 +86,11 @@ public:
  * Selects the device's audio output (Earpiece, Loudspeaker or Bluetooth).
  */
 - (void)setAudioOutputRoute:(BWOutputRoute)outputRoute;
+
+/**
+ * Get the local/remote IPs, name servers and the Wifi SSID (if used).
+ */
+- (BWEndpointInfo *)endpointInfo;
 
 /**
  * Add an account to the account list.
@@ -108,5 +115,13 @@ public:
  * @param volume The volume level (0 - mute, 1 - normal, > 1 - louder than normal)
  */
 - (void)setOutputVolume:(float)volume;
+
+/**
+ * Plays a given WAV file
+ * WAV file MUST be formatted as 16bit PCM mono/single channel
+ *
+ * @param file The file to be played
+ */
+- (void)playWavFile:(NSString *)filepath;
 
 @end
