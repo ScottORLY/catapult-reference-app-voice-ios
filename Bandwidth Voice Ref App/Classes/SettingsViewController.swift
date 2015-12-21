@@ -123,11 +123,11 @@ extension SettingsViewController {
                 
                 switch response {
                     
-                case .Success(let boxedValue):
+                case .Success(let user):
                     
                     // Updates the session object
                     
-                    Session.currentSession = Session(user: boxedValue.unbox)
+                    Session.currentSession = Session(user: user)
                     
                     self.updateEntries()
                     

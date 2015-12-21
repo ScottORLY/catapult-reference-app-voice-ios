@@ -76,11 +76,11 @@ class RegistrationViewController: UIViewController {
                 
                 switch response {
                     
-                case .Success(let boxedValue):
+                case .Success(let user):
                     
                     // Create a new session and move to the main screen
                     
-                    Session.currentSession = Session(user: boxedValue.unbox)
+                    Session.currentSession = Session(user: user)
                     
                     SIPManager.sharedInstance.registerWithUser(Session.currentSession!.user)
                     

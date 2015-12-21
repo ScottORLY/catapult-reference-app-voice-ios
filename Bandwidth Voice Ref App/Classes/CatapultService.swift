@@ -9,22 +9,11 @@
 import Foundation
 
 /**
-    Boxing class, necessary for now due to a limitation in the Swift compiler with regard
-    to generic enums
-*/
-final class Box<T> {
-    
-    let unbox: T
-    
-    init(_ value: T) { self.unbox = value }
-}
-
-/**
     Enumeration describing possible results for Catapult API calls
 */
 enum CatapultServiceResponse<T> {
     
-    case Success(Box<T>)
+    case Success(T)
     
     case Failure(NSError)
 }
@@ -100,7 +89,7 @@ class CatapultService {
                             
                             user.password = password
                             
-                            response = CatapultServiceResponse.Success(Box(user))
+                            response = CatapultServiceResponse.Success(user)
                             
                         } else {
                             
