@@ -28,7 +28,7 @@ public:
 	virtual void onCallState(OnCallStateParam &prm);
 	virtual void onCallMediaState(OnCallMediaStateParam &prm);
 	virtual void onDtmfDigit(OnDtmfDigitParam &prm);
-	void muteCall(int enabled);
+	void updateMutingStatus();
 };
 #endif
 
@@ -54,6 +54,10 @@ public:
 @property (nonatomic, strong, readonly) NSString *remoteUri;
 @property (nonatomic, strong, readonly) NSString *stateText;
 @property (nonatomic, strong, readonly) NSMutableDictionary *sipHeaders;
+/**
+ * The headers received on the INVITE request. This is only populated for inbound calls.
+ */
+@property (nonatomic, strong) NSDictionary<NSString*, NSArray<NSString*>*> *inviteHeaders;
 @property (nonatomic) BWCallState lastState;
 @property (nonatomic) BWSipResponse lastStatusCode;
 @property (nonatomic, readonly) BOOL isIncoming;

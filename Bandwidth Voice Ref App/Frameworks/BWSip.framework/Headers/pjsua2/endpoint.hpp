@@ -1,4 +1,4 @@
-/* $Id: endpoint.hpp 4887 2014-08-13 09:14:53Z nanang $ */
+/* $Id: endpoint.hpp 5131 2015-07-13 07:56:19Z ming $ */
 /* 
  * Copyright (C) 2013 Teluu Inc. (http://www.teluu.com)
  *
@@ -694,7 +694,7 @@ public:
      * Instantiate pjsua application. Application must call this function before
      * calling any other functions, to make sure that the underlying libraries
      * are properly initialized. Once this function has returned success,
-     * application must call destroy() before quitting.
+     * application must call libDestroy() before quitting.
      */
     void libCreate() throw(Error);
 
@@ -1071,6 +1071,13 @@ public:
      */
     AudDevManager &audDevManager();
 
+    /**
+     * Get the instance of Video Device Manager.
+     *
+     * @return		The Video Device Manager.
+     */
+    VidDevManager &vidDevManager();
+
     /*************************************************************************
      * Codec management operations
      */
@@ -1097,10 +1104,10 @@ public:
     /**
      * Get codec parameters.
      *
-     * @param codec_id		Codec ID.
+     * @param codec_id	Codec ID.
      *
-     * @return			Codec parameters. If codec is not found, Error
-     * 				will be thrown.
+     * @return		Codec parameters. If codec is not found, Error
+     * 			will be thrown.
      *
      */
     CodecParam codecGetParam(const string &codec_id) const throw(Error);
@@ -1116,6 +1123,47 @@ public:
     void codecSetParam(const string &codec_id,
 		       const CodecParam param) throw(Error);
 
+    /**
+     * Enum all supported video codecs in the system.
+     *  
+     * @return		Array of video codec info.
+     */
+    const CodecInfoVector &videoCodecEnum() throw(Error);
+
+    /**
+     * Change video codec priority.
+     *
+     * @param codec_id	Codec ID, which is a string that uniquely identify
+     *			the codec (such as "H263/90000"). Please see pjsua
+     *			manual or pjmedia codec reference for details.
+     * @param priority	Codec priority, 0-255, where zero means to disable
+     *			the codec.
+     *
+     */
+    void videoCodecSetPriority(const string &codec_id,
+			       pj_uint8_t priority) throw(Error);
+
+    /**
+     * Get video codec parameters.
+     *
+     * @param codec_id	Codec ID.
+     *
+     * @return		Codec parameters. If codec is not found, Error 
+     *			will be thrown.
+     *
+     */
+    CodecParam videoCodecGetParam(const string &codec_id) const throw(Error);
+
+    /**
+     * Set video codec parameters.
+     *
+     * @param codec_id	Codec ID.
+     * @param param	Codec parameter to set. Set to NULL to reset
+     *			codec parameter to library default settings.
+     *
+     */
+    void videoCodecSetParam(const string &codec_id,
+			    const CodecParam param) throw(Error);
 
 public:
     /*
@@ -1135,7 +1183,8 @@ public:
 
     /**
      * Callback when the Endpoint has finished performing STUN server
-     * checking that is initiated with natCheckStunServers().
+     * checking that is initiated when calling libInit(), or by
+     * calling natCheckStunServers().
      *
      * @param prm	Callback parameters.
      */
@@ -1184,7 +1233,9 @@ private:
     LogWriter			*writer;	// Custom writer, if any
     AudioMediaVector 	 	 mediaList;
     AudDevManager		 audioDevMgr;
+    VidDevManager		 videoDevMgr;
     CodecInfoVector		 codecInfoList;
+    CodecInfoVector		 videoCodecInfoList;
     std::map<pj_thread_t*, pj_thread_desc*> threadDescMap;
 
     /* Pending logging */
@@ -1318,7 +1369,9 @@ private:
                               unsigned flags);
 
 private:
-    void clearCodecInfoList();
+    void clearCodecInfoList(CodecInfoVector &codec_list);
+    void updateCodecInfoList(pjsua_codec_info pj_codec[], unsigned count,
+			     CodecInfoVector &codec_list);
 
 };
 

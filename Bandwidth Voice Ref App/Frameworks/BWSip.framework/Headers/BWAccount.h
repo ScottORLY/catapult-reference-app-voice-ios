@@ -24,6 +24,7 @@ class MyAccount : public Account
 {
 private:
 	BWAccount *bwAccount;
+	NSDictionary<NSString*, NSArray<NSString*>*> *parseSipHeaders(NSString *wholeMsg);
 	
 public:
 	MyAccount(BWAccount *bwAccount);

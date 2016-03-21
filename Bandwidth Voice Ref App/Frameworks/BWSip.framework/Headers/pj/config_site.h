@@ -19,53 +19,49 @@
  *   Windows Mobile, useful for testing purposes only.
  */
 
-#define PJ_CONFIG_ANDROID   1
+#define PJ_CONFIG_IPHONE    1
+#define PJ_AUTOCONF         1
 #define PJ_HAS_TCP          1
 
 /*
- * Android sample settings.
+ * iPhone sample settings.
  */
-#if PJ_CONFIG_ANDROID
-
-    #define PJ_ANDROID                          1
-
- 	// Reduce the SIP header to bypass Android bug
-    #define PJSIP_INCLUDE_ALLOW_HDR_IN_DLG      0
-    #define PJMEDIA_ADD_RTPMAP_FOR_STATIC_PT    0
-    #define PJMEDIA_ADVERTISE_RTCP              0
-
+#if PJ_CONFIG_IPHONE
     /*
      * PJLIB settings.
      */
 
-    /* Disable floating point support */
-    #undef PJ_HAS_FLOATING_POINT
-    #define PJ_HAS_FLOATING_POINT       0
+    /* Both armv6 and armv7 has FP hardware support.
+     * See https://trac.pjsip.org/repos/ticket/1589 for more info
+     */
+    #define PJ_HAS_FLOATING_POINT    1
 
     /*
      * PJMEDIA settings
      */
 
-    /* We have our own OpenSL ES backend */
-    #define PJMEDIA_AUDIO_DEV_HAS_PORTAUDIO     0
-    #define PJMEDIA_AUDIO_DEV_HAS_WMME          0
-    #define PJMEDIA_AUDIO_DEV_HAS_OPENSL        1
-    #define PJMEDIA_AUDIO_DEV_HAS_ANDROID_JNI   0
+    /* We have our own native CoreAudio backend */
+    #define PJMEDIA_AUDIO_DEV_HAS_PORTAUDIO    0
+    #define PJMEDIA_AUDIO_DEV_HAS_WMME         0
+    #define PJMEDIA_AUDIO_DEV_HAS_COREAUDIO    1
+
+    /* The CoreAudio backend has built-in echo canceller! */
+    #define PJMEDIA_HAS_SPEEX_AEC    0
 
     /* Disable some codecs */
     // #define PJMEDIA_HAS_L16_CODEC     0
     // #define PJMEDIA_HAS_G722_CODEC    0
 
+    /* Use the built-in CoreAudio's iLBC codec (yay!) */
+    #define PJMEDIA_HAS_ILBC_CODEC              1
+    #define PJMEDIA_ILBC_CODEC_USE_COREAUDIO    1
+
     /* Fine tune Speex's default settings for best performance/quality */
     #define PJMEDIA_CODEC_SPEEX_DEFAULT_QUALITY    5
 
-    /* DTMF */
-    #define PJMEDIA_RTP_PT_TELEPHONE_EVENTS        101
-    #define PJMEDIA_RTP_PT_TELEPHONE_EVENTS_STR    "101"
-
-    /* Fixing the deadlock */
-//    #define PJMEDIA_AUDIO_DEV_HAS_ANDROID_JNI    1
-//    #define PJMEDIA_AUDIO_DEV_HAS_OPENSL         0
+     /* DTMF */
+     #define PJMEDIA_RTP_PT_TELEPHONE_EVENTS		101
+     #define PJMEDIA_RTP_PT_TELEPHONE_EVENTS_STR	"101"
 
     /*
      * PJSIP settings.
@@ -90,8 +86,10 @@
 
     /* Other pjsua settings */
     #define PJSUA_MAX_ACC           4
-    #define PJSUA_MAX_PLAYERS       4
+    #define PJSUA_MAX_PLAYERS       8
     #define PJSUA_MAX_RECORDERS     4
     #define PJSUA_MAX_CONF_PORTS    (PJSUA_MAX_CALLS+2*PJSUA_MAX_PLAYERS)
     #define PJSUA_MAX_BUDDIES       32
+
 #endif
+

@@ -1,4 +1,4 @@
-/* $Id: config.h 4913 2014-09-03 08:39:58Z nanang $ */
+/* $Id: config.h 5160 2015-08-12 02:39:26Z riza $ */
 /* 
  * Copyright (C) 2008-2011 Teluu Inc. (http://www.teluu.com)
  * Copyright (C) 2003-2008 Benny Prijono <benny@prijono.org>
@@ -20,6 +20,7 @@
 #ifndef __PJ_CONFIG_H__
 #define __PJ_CONFIG_H__
 
+#define PJ_AUTOCONF         1
 
 /**
  * @file config.h
@@ -53,8 +54,6 @@
 /********************************************************************
  * Include target OS specific configuration.
  */
-#define PJ_AUTOCONF     1
-
 #if defined(PJ_AUTOCONF)
     /*
      * Autoconf
@@ -163,7 +162,8 @@
 
 
 #elif defined (PJ_M_X86_64) || defined(__amd64__) || defined(__amd64) || \
-	defined(__x86_64__) || defined(__x86_64)
+	defined(__x86_64__) || defined(__x86_64) || \
+	defined(_M_X64) || defined(_M_AMD64)
     /*
      * AMD 64bit processor, little endian
      */
@@ -676,12 +676,18 @@
 #else
     /* When FD_SETSIZE is not changeable, check if PJ_IOQUEUE_MAX_HANDLES
      * is lower than FD_SETSIZE value.
+     *
+     * Update: Not all ioqueue backends require this (such as epoll), so
+     * this check will be done on the ioqueue implementation itself, such as
+     * ioqueue select.
      */
+/*
 #   ifdef FD_SETSIZE
 #	if PJ_IOQUEUE_MAX_HANDLES > FD_SETSIZE
 #	    error "PJ_IOQUEUE_MAX_HANDLES is greater than FD_SETSIZE"
 #	endif
 #   endif
+*/
 #endif
 
 
@@ -857,6 +863,28 @@
  */
 #ifndef PJ_HAS_SSL_SOCK
 #  define PJ_HAS_SSL_SOCK	    0
+#endif
+
+
+/**
+ * Define the maximum number of ciphers supported by the secure socket.
+ *
+ * Default: 256
+ */
+#ifndef PJ_SSL_SOCK_MAX_CIPHERS
+#  define PJ_SSL_SOCK_MAX_CIPHERS   256
+#endif
+
+
+/**
+ * Specify what should be set as the available list of SSL_CIPHERs. For
+ * example, set this as "DEFAULT" to use the default cipher list (Note:
+ * PJSIP release 2.4 and before used this "DEFAULT" setting).
+ *
+ * Default: "HIGH:-COMPLEMENTOFDEFAULT"
+ */
+#ifndef PJ_SSL_SOCK_OSSL_CIPHERS
+#  define PJ_SSL_SOCK_OSSL_CIPHERS   "HIGH:-COMPLEMENTOFDEFAULT"
 #endif
 
 
@@ -1190,10 +1218,10 @@ PJ_BEGIN_DECL
 #define PJ_VERSION_NUM_MAJOR	2
 
 /** PJLIB version minor number. */
-#define PJ_VERSION_NUM_MINOR	3
+#define PJ_VERSION_NUM_MINOR	4
 
 /** PJLIB version revision number. */
-#define PJ_VERSION_NUM_REV	0
+#define PJ_VERSION_NUM_REV	5
 
 /**
  * Extra suffix for the version (e.g. "-trunk"), or empty for
