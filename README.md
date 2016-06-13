@@ -16,6 +16,12 @@ Before you get started, there are a few things that you will need to have set up
 - A device running iOS 8.0 or newer (this is optional, you can test using the iOS Simulator only)
 - An account set up on the Bandwidth Application Dashboard
 
+## IMPORTANT NOTE ABOUT IPv6    
+
+The core components of PJSIP, such as pjlib, pjmedia, pjsip, actually already support IPv6 since some years ago (the wiki for IPv6 is available here: https://trac.pjsip.org/repos/wiki/IPv6). We have also tested PJSIP in IPv6-only DNS64/NAT64 network environment (as described in Apple's official doc: https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/UnderstandingandPreparingfortheIPv6Transition/UnderstandingandPreparingfortheIPv6Transition.html#//apple_ref/doc/uid/TP40010220-CH213-SW16) and find that it works well.
+
+The only limitation is PJNATH and DNS resolution for IPv6. Note that both are optional since PJNATH is theoretically not required in pure IPv6 network and DNS resolution is only used if you set DNS server setting in pjsua config (by default DNS server is empty, and OS hostname resolution is used). Nevertheless, to ensure better compatibility, we are currently working to add IPv6 support for PJNATH as documented in ticket #422 (https://trac.pjsip.org/repos/ticket/422) and it's currently our topmost priority. While for DNS, if you use it (again, by default it's disabled in PJSIP) and require IPv6 support, you can set an external resolver instead.
+
 ### Setting up your Bandwidth account
 - [Need to get detailed instructions for this part]
 
