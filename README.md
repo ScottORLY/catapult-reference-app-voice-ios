@@ -1,7 +1,9 @@
 # Bandwidth Voice Reference iOS App
 
 This project is provided as an example on how to add voice support to an iOS application
-using the Catapult platform and the BWSip framework. The following features are demonstrated:
+using the Catapult platform and the BWSip framework. This project is a fully functioning Android app that leverages the BWsip framework to register users, and make and receive calls. Bandwidth’s provides the Mobile SDK and Reference Apps as “Beta”, free of charge to try and use.  If you are looking for a fully supported commercial Mobile SDK for iOS and Android compatible with Bandwidth platform and services, please contact us. 
+
+The following features are demonstrated:
 
 * Provisioning a new user
 * Making and receiving phone calls
