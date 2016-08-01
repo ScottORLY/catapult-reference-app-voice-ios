@@ -31,8 +31,6 @@ class DialerViewController: UIViewController {
     
     private var deleteTimer: NSTimer?
     
-    private let tone = BWTone()
-    
     // MARK: - Superclass methods
     
     override func viewDidLoad() {
@@ -67,7 +65,7 @@ extension DialerViewController {
     
     @IBAction func onDeleteTouchDown(sender: AnyObject) {
         
-        deleteTimer = NSTimer.scheduledTimerWithTimeInterval(kClearTimeInvertal, target: self, selector: "clearDialedNumber", userInfo: nil, repeats: false)
+        deleteTimer = NSTimer.scheduledTimerWithTimeInterval(kClearTimeInvertal, target: self, selector: #selector(DialerViewController.clearDialedNumber), userInfo: nil, repeats: false)
     }
     
     @IBAction func onDeleteTouchUp(sender: AnyObject) {
@@ -99,12 +97,12 @@ extension DialerViewController: DialpadViewControllerDelegate {
     
     func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String) {
         
-        tone.startDigit(digit, withVolume:kToneVolume)
+        // FIXME: tone.startDigit(digit, withVolume:kToneVolume)
     }
     
     func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool) {
         
-        tone.stopDigit()
+        // FIXME: tone.stopDigit()
         
         if !cancel {
         

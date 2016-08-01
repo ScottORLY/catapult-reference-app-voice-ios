@@ -82,7 +82,7 @@ class RegistrationViewController: UIViewController {
                     
                     Session.currentSession = Session(user: user)
                     
-                    SIPManager.sharedInstance.registerWithUser(Session.currentSession!.user)
+                    ASIPManager.sharedManager().registerWithUser(Session.currentSession!.user)
                     
                     self.performSegueWithIdentifier(kShowMainScreenSegue, sender: nil)
                     

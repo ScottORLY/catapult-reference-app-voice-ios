@@ -11,11 +11,16 @@ import Foundation
 /**
     Structure describing a set of SIP credentials
 */
-struct Credentials {
+@objc class Credentials: NSObject {
     
     let username: String
         
     let realm: String
+    
+    private init(username: String, realm: String) {
+        self.username = username;
+        self.realm = realm;
+    }
     
     static func fromJSON(json: [String: AnyObject]) -> Credentials? {
         

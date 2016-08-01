@@ -5,7 +5,7 @@
 //  Created by Fabio Rodella on 4/6/15.
 //  Copyright (c) 2015 Bandwidth. All rights reserved.
 //
-
+/*
 import UIKit
 import AVFoundation
 
@@ -50,6 +50,13 @@ class SIPManager: NSObject {
         Shared instance through which this class must be accessed
     */
     static let sharedInstance = SIPManager()
+    
+    //   TODO: fill in the correct account credentials below. For details about all
+    //   SIP account settings, please refer to the doc folder.
+    
+    static let licence = "<root><saas><identifier>" +
+    "libsoftphone.saas.bandwith.android" +
+    "</identifier></saas></root>";
     
     /**
         Current SIP registration state
@@ -149,6 +156,20 @@ class SIPManager: NSObject {
                 
                 registrationState = .Registering
                 
+//                let sipAccount = "<account id=\"sip\">" +
+//                    "<username>1225</username>" +
+//                    "<password>XXXXXXX</password>" +
+//                    "<host>pbx.acrobits.cz</host>" +
+//                "</account>";
+//                
+//                ali::xml::tree licenceXml;
+//                
+//                success = ali::xml::parse(_sipAccount,sip_account,&errorIndex);
+//                ali_assert(success);
+//                
+//                success = ali::xml::parse(licenceXml, licence,&errorIndex);
+//                ali_assert(success);
+                
                 let credentials = BWCredentials(username: user.endpoint.credentials.username, andPassword: user.password)
                 
                 account = BWAccount(phone: phone!)
@@ -162,13 +183,6 @@ class SIPManager: NSObject {
                 account.setCredentials(credentials)
                 
                 account.connect()
-                
-                // Initiates the iOS-managed keep-alive handler (minimum allowed interval is 600 seconds)
-                
-                UIApplication.sharedApplication().setKeepAliveTimeout(600) {
-                 
-                    self.keepAlive()
-                }
                 
             } else {
                 
@@ -362,4 +376,4 @@ extension SIPManager: BWAccountDelegate {
             NSNotificationCenter.defaultCenter().postNotificationName(CallReceivedNotification.name, object: nil, userInfo: [CallReceivedNotification.callKey: call])
         }
     }
-}
+}*/

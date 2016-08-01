@@ -46,13 +46,12 @@ class CallViewController: UIViewController {
     @IBOutlet private weak var answerButton: UIButton!
     
     // MARK: - Public properties
-    
-    var call: BWCall? {
+    var call: NSNumber? {
         
         didSet {
-
+/*FIXME
             oldValue?.delegate = nil
-            call?.delegate = self
+            call?.delegate = self*/
         }
     }
     
@@ -70,8 +69,6 @@ class CallViewController: UIViewController {
     
     private var callNotification: UILocalNotification?
     
-    private let tone = BWTone()
-    
     // MARK: - Superclass methods
     
     override func viewWillAppear(animated: Bool) {
@@ -79,7 +76,7 @@ class CallViewController: UIViewController {
         super.viewWillAppear(animated)
 
         var number: NSString?
-        
+        /* FIXME:
         let scanner = NSScanner(string: call!.remoteUri)
         
         scanner.scanString("<", intoString: nil)
@@ -100,7 +97,7 @@ class CallViewController: UIViewController {
             
             callTypeLabel.text = "Calling"
         }
-        
+        */
         updateScreenState(false)
     }
     
@@ -160,9 +157,9 @@ private extension CallViewController {
                 self.callDurationLabelWidth.constant = 0.0
                 self.callControlsView.alpha = 0.0
                 
-                SIPManager.sharedInstance.setSpeakerEnabled(false)
+                // FIXME: SIPManager.sharedInstance.setSpeakerEnabled(false)
             }
-            
+            /* FIXME:
             if !self.call!.isIncoming || self.callDuration != nil {
                 
                 self.answerButton.enabled = false
@@ -172,7 +169,7 @@ private extension CallViewController {
                 
                 self.answerButton.enabled = true
                 self.hangUpButtonWidth.constant = 0
-            }
+            }*/
         }
         
         if animated {
@@ -282,33 +279,33 @@ extension CallViewController {
         
         sender.selected = !sender.selected
         
-        call?.setMute(sender.selected)
+        // FIXME: call?.setMute(sender.selected)
     }
     
     @IBAction func onToggleSpeaker(sender: UIButton) {
         
         sender.selected = !sender.selected
         
-        SIPManager.sharedInstance.setSpeakerEnabled(sender.selected)
+        // FIXME: SIPManager.sharedInstance.setSpeakerEnabled(sender.selected)
     }
     
     @IBAction func onHangUp(sender: AnyObject) {
         
         stopPlayingRingtone()
         
-        call?.hangupCall()
+        // FIXME: call?.hangupCall()
     }
 
     @IBAction func onAnswer(sender: AnyObject) {
         
         stopPlayingRingtone()
         
-        call?.answerCall(.OK)
+        // FIXME: call?.answerCall(.OK)
     }
 }
 
 // MARK: - BWCallDelegate methods
-
+/* FIXME:
 extension CallViewController: BWCallDelegate {
     
     func onCallStateChanged(call: BWCall!) {
@@ -360,7 +357,7 @@ extension CallViewController: BWCallDelegate {
         print("***** Incoming DTMF *****")
         print("DTMF Received: \(digits)")
     }
-}
+}*/
 
 // MARK: - DialpadViewControllerDelegate methods
 
@@ -368,16 +365,16 @@ extension CallViewController: DialpadViewControllerDelegate {
     
     func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String) {
         
-        tone.startDigit(digit, withVolume: kToneVolume)
+        // FIXME: tone.startDigit(digit, withVolume: kToneVolume)
     }
     
     func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool) {
         
-        tone.stopDigit()
+        // FIXME: tone.stopDigit()
         
         if !cancel {
         
-            call?.dialDTMF(digit)
+            // FIXME: call?.dialDTMF(digit)
         }
     }
 }

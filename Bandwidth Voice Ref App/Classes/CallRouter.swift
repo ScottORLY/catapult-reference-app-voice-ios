@@ -27,23 +27,22 @@ class CallRouter: NSObject {
     private override init() {
         
         super.init()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "whenCallIsReceived:", name: SIPManager.CallReceivedNotification.name, object: nil)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CallRouter.whenCallIsReceived(_:)), name: "SIPManager.CallReceivedNotification", object: nil)
     }
     
     deinit {
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: SIPManager.CallReceivedNotification.name, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "SIPManager.CallReceivedNotification", object: nil)
     }
     
     // MARK: - Class methods
     
     func makeCallTo(number: String) {
-        
+        /* FIXME:
         if let call = SIPManager.sharedInstance.makeCallTo(number) {
             
             presentCallViewController(call)
-        }
+        }*/
     }
 }
 
@@ -63,8 +62,8 @@ private extension CallRouter {
         
         return false
     }
-    
-    private func presentCallViewController(call: BWCall) {
+
+    private func presentCallViewController(callId: NSNumber) {
         
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
             
@@ -73,7 +72,7 @@ private extension CallRouter {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
                 let callVc = storyboard.instantiateViewControllerWithIdentifier(kCallViewControllerIdentifier) as! CallViewController
-                callVc.call = call
+                callVc.call = callId
                 
                 mainNav.presentViewController(callVc, animated: true, completion: nil)
             }
@@ -87,9 +86,8 @@ extension CallRouter {
     
     func whenCallIsReceived(notification: NSNotification) {
         
-        // Check if the notification includes a BWCall object
-        
-        if let call = notification.userInfo?[SIPManager.CallReceivedNotification.callKey] as? BWCall {
+        // Check if the notification includes a call id
+        if let callId = notification.userInfo?["call"] as? NSNumber {
             
             // Check if we already have a call in progress
             
@@ -97,13 +95,13 @@ extension CallRouter {
                 
                 // If we do, respond to the call as busy
                 
-                call.answerCall(.BusyHere)
+                // FIXME: call.answerCall(.BusyHere)
                 
             } else {
                 
                 // If we don't, present the incoming call interface
                 
-                presentCallViewController(call)
+                presentCallViewController(callId)
             }
         }
     }

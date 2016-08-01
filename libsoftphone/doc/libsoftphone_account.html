@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>libsoftphone</title>
+    <style type="text/css" media="all">
+body
+{
+	margin: 2em;
+	padding: 0;
+	font-family: Cambria, Times New Roman, Serif;
+	font-size: x-large;
+	background-color: #ffe1aa;
+}
+
+img#Logo
+{
+	float: right;
+}
+
+p
+{
+	text-align: justify;
+}
+
+code
+{
+	font-family: Consolas, Courier New, Monospace;
+	color: #900;
+}
+
+pre code
+{
+	font-family: Consolas, Courier New, Monospace;
+    font-size: x-large;
+}
+
+a
+{
+	color: #00f;
+	text-decoration: none;
+}
+
+a:hover
+{
+	text-decoration: underline;
+}
+    </style>
+</head>
+<body>
+
+    <img id="Logo" src="libsoftphone_logo.png" alt="Acrobits Logo" />
+
+    <h1>Acrobits libsoftphone</h1>
+    <p>&copy; 2010 - 2013 Acrobits, s.r.o</p>
+    <p><a href="http://www.acrobits.cz/">http://www.acrobits.cz/</a></p>
+        
+    <h2 id="Account">Account</h2>
+    
+    <h3 id="AccountFormat">Account Format</h3>
+    
+    <p>Accounts are specified in an XML format, where SIP credentials and
+    various other options are specified. Below is a description of the recognized
+    XML nodes and their values.</p>
+
+    <p>The root XML node should be named "account". This node can have attribute "type". If no attribute is given, it defaults to SIP account definition. If you specify type="xmpp", XMPP account will be created.</p>
+    
+    <dl>
+        <dt><code>&lt;username&gt;johndoe&lt;/username&gt;</code></dt>
+        <dd>
+            <p>No default value.</p>
+            <p>SIP user name.</p>
+        </dd>
+        
+        <dt><code>&lt;password&gt;secretPhrase&lt;/password&gt;</code></dt>
+        <dd>
+            <p>No default value.</p>
+            <p>SIP password.</p>
+        </dd>
+        
+        <dt><code>&lt;userDisplayName&gt;John Doe&lt;/userDisplayName&gt;</code></dt>
+        <dd>
+            <p>Default Value: empty string</p>
+            <p>SIP display user name, comes quoted in front of SIP uri.</p>
+        </dd>
+        
+        <dt><code>&lt;authUsername&gt;johndoe&lt;/authUsername&gt;</code></dt>
+        <dd>
+            <p>Default Value: empty string</p>
+            <p>Username used in SIP authorization headers. If left empty, the username is used.</p>
+        </dd>
+        
+        <dt><code>&lt;userCallerId&gt;John Doe&lt;/userCallerId&gt;</code></dt>
+        <dd>
+            <p>Default Value: empty string</p>
+            <p>If set, this value will be sent in the From: field in outgoing INVITE requests. In case it's left empty, username will be used</p>
+        </dd>
+        
+        <dt><code>&lt;host&gt;sip.example.com[:port]&lt;/host&gt;</code></dt>
+        <dd>
+            <p>No default value.</p>
+            <p>SIP domain, used in SIP URIs as <code>username@host</code>.
+            The SIP domain is also used as a SIP server to connect to, in case
+            <code>&lt;proxy&gt;</code> is not specified. If no port is specified, 5060 is the default.</p>
+        </dd>
+        
+        <dt><code>&lt;listeningPort&gt;5060&lt;/listeningPort&gt;</code></dt>
+        <dd>
+            <p>Default value: <code>(empty)</code></p>
+            
+            <p>The local port which the SIP stack will bind to:</p>
+            
+            <ul>
+                <li>
+                    If left empty, the SIP stack will choose a random port number and will bind to it. This number will remain the same for at least one day. If the client is restarted and re-registers repeatedly, it will remember its rinstance, callId and CSeq numbers, port will remain the same and therefore it should always occupy the same registration slot on the server.
+                </li>
+                <li>
+                    If set to 0, a random port will be chosen every time the client registers.
+                </li>
+                <li>
+                    If set to a specific numeric value, the SIP stack will always bind to that port.
+                </li>
+            </ul>
+        </dd>
+        
+        <dt><code>&lt;proxy&gt;proxy.example.com[:port]&lt;/proxy&gt;</code></dt>
+        <dd>
+            <p>Default Value: empty string</p>
+            <p>Address of SIP proxy server to connect to. If no port is specified, 5060 is used. The final address
+            of the SIP server is determined as follows:</p>
+            
+            <ul>
+                <li>
+                    <p>if <code>&lt;proxy&gt;</code> is empty,
+                    address = <code>&lt;host&gt;</code>,
+                    otherwise address = <code>&lt;proxy&gt;</code></p>
+                </li>
+                <li>
+                    <p>if address is not numeric (a.b.c.d) and port is not specified in address, do a SRV DNS resolution for <code>_sip._udp.address</code>
+                    (or <code>_sip._tcp.address</code>)</p>
+                    
+                    <ul>
+                        <li>
+                            <p>if SRV record exists, address = DNSResultAddress:DNSResultPort</p>
+                        </li>
+                        <li>
+                            <p>else use address</p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p>else use address</p>
+                </li>
+            </ul>
+        </dd>
+        
+        <dt><code>&lt;transport&gt;udp&lt;/transport&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>udp</code>, <code>tcp</code>, <code>tls</code> and <code>tls+sip:</code></p>
+            <p>Default value: <code>udp</code>.</p>
+            <p>The transport protocol to use when communicating with SIP server. Transport "tls" uses sips: URIs in headers and the traffic is protected by TLS, tls+sip is also TLS-protected, but uses sip: URIs</p>
+        </dd>
+        
+        <dt><code>&lt;codecOrder&gt;9,0,8,102,3,18&lt;/codecOrder&gt;</code></dt>
+        <dd>
+            <p>Valid value is a comma separated list of codec numbers.</p>
+            <p>No default value.</p>
+            
+            <p>The order of codecs, as it will be offered in SDP
+            for calls made with Wifi CodecSet.</p>
+            
+            <p>Supported codecs are:</p>
+            
+            <dl>
+                <dt>0</dt>
+                <dd><p>G711 &mu;-law</p></dd>
+                
+                <dt>3</dt>
+                <dd><p>GSM</p></dd>
+                
+                <dt>8</dt>
+                <dd><p>G711 a-law</p></dd>
+                
+                <dt>9</dt>
+                <dd><p>G722 wideband codec</p></dd>
+                
+                <dt>102</dt>
+                <dd><p>iLBC</p></dd>
+                
+                <dt>18</dt>
+                <dd><p>G729</p></dd>
+
+                <dt>105</dt>
+                <dd><p>Opus Narrowband, with FEC (15500 bps)</p></dd>
+
+                <dt>106</dt>
+                <dd><p>Opus Wideband, with FEC (20500 bps)</p></dd>
+            </dl>
+        </dd>
+        
+        <dt><code>&lt;codecOrder3G&gt;18,102,3,9,0,8&lt;/codecOrder3G&gt;</code></dt>
+        <dd>
+            <p>No default value.</p>
+            
+            <p>The order of codecs, as it will be offered in SDP
+            for calls made with ThreeG CodecSet.</p>
+        </dd>
+        
+        <dt><code>&lt;honorFirstCodec&gt;0&lt;/honorFirstCodec&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>0</code> and <code>1</code>.</p>
+            
+            <p>Default value: <code>0</code>.</p>
+            
+            <p>Forces the application to use the first codec offered
+            by the remote side. Example follows.</p>
+            
+            <p>An outgoing call with configured codecs 0,102. The remote
+            side responds with codecs 102,0 in SDP packet.</p>
+            
+            <p>With <code>&lt;honorFirstCodec&gt;</code> set to off,
+            <code>libsoftphone</code> will start sending audio using "0" codec
+            (&mu;-law), the remote side will probably send audio using "102"
+            codec (iLBC), so inbound and outbound audio will be coded differently.</p>
+            
+            <p>In case <code>&lt;honorFirstCodec&gt;</code> is on,
+            <code>libsoftphone</code> ignores the user preferred codecs
+            of "0,102" and sends the audio using the first codec proposed
+            by remote side &mdash; iLBC.</p>
+        </dd>
+        
+        <dt><code>&lt;ptime&gt;20&lt;/ptime&gt;</code></dt>
+        <dd>
+            <p>Default value: 20</p>
+            <p>packet time in milliseconds, to be used with WiFi codecset.</p>
+        </dd>
+        
+        <dt><code>&lt;ptime3G&gt;30&lt;/ptime3G&gt;</code></dt>
+        <dd>
+            <p>Default value: 30</p>
+            <p>packet time in milliseconds, to be used with 3G codecset.</p>
+        </dd>
+        
+        <dt><code>&lt;forcePtime&gt;0&lt;/forcePtime&gt;</code></dt>
+        <dd>
+            <p>0</p>
+            <p>If set to 1, the ptime parameter will be used even if the remote side requests a different value.</p>
+        </dd>
+        
+        <dt><code>&lt;forcePtime3G&gt;0&lt;/forcePtime3G&gt;</code></dt>
+        <dd>
+            <p>0</p>
+            <p>If set to 1, the ptime3G parameter will be used even if the remote side requests a different value.</p>
+        </dd>
+        
+        <dt><code>&lt;dtmfOrder&gt;rfc2833,info,audio&lt;/dtmfOrder&gt;</code></dt>
+        <dd>
+            <p>Valid value is a comma separated list of:
+            <code>rfc2833</code>, <code>info</code> and <code>audio</code>.</p>
+            <p>Default value: <code>rfc2833,info,audio</code></p>
+            <p>The methods to use when generating DTMF events.
+            The methods are tried in the order specified here.</p>
+            <p><code>rfc2833</code> method is only used when the remote
+            side supports telephone-event RTP payload.</p>
+        </dd>
+        
+        <dt><code>&lt;dtmfAll&gt;0&lt;/dtmfAll&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>0</code> and <code>1</code>.</p>
+            <p>Default value: <code>0</code>.</p>
+            <p>When set, all supported DTMF modes will be sent together.
+            By default, the first possible method from &lt;dtmfOrder&gt; is used.</p>
+        </dd>
+        
+        <dt><code>&lt;STUN&gt;stun.example.com:[port]&lt;/STUN&gt;</code></dt>
+        <dd>
+            <p>No default value.</p>
+            <p>STUN server to use. When empty, <code>libsoftphone</code>
+            will make a DNS SRV query for <code>_stun._udp.sipserver</code>
+            and uses the returned address. If no port is specified, 3478 is used.</p>
+            <p>To force-disable STUN server, set it to an invalid value,
+            like <code>0.0.0.0</code>.</p>
+        </dd>
+        
+        <dt><code>&lt;STUNUsername&gt;user&lt;/STUNUsername&gt;</code></dt>
+        <dd>
+            <p>default: empty</p>
+            <p>Username for STUN/TURN server. If filled in, we'll consider the STUN server TURN-capable.</p>
+        </dd>
+        <dt><code>&lt;STUNPassword&gt;user&lt;/STUNPassword&gt;</code></dt>
+        <dd>
+            <p>default: empty</p>
+            <p>Password for STUN/TURN server.</p>
+        </dd>
+        
+        <dt><code>&lt;natTraversal&gt;auto&lt;natTraversal&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>off</code>, <code>auto</code>, <code>stun</code>, <code>turnAlways</code>, <code>ice</code>.</p>
+            <p>Default value: <code>off</code>.</p>
+            <p><code>off</code> will always send local/private IP address detected from local netowrk interface. No public address resolution is done.</p>
+            <p><code>auto</code> will do a STUN query for a public address. If symmetric NAT is not detected, the global address is used. In case of symmetric NAT, TURN server is used if STUNUsername is filled in, otherwise private/local address is used.</p>
+            <p><code>stun</code> will do a STUN query and always use the obtained public address.</p>
+            <p><code>turnAlways</code> will always use TURN server</p>
+            <p><code>ice</code> will use the ICE process to choose the best address</p>
+        </dd>
+        <dt><code>&lt;contactIP&gt;internal&lt;/contactIP&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>internal</code>, <code>external</code>, <code>static</code></p>
+            <p>Default: internal</p>
+            <p><code>internal</code> will use the local/private in the Contact and Via SIP header.</p>
+            <p><code>external</code> will try to determine the public address using STUN ping, OPTIONS packet or STUN server and use it in Contact and Via header.</p>
+            <p><code>internal</code> will use a static address in Contact and Via header, the address is specified in forcedContact node</p>
+        </dd>
+        <dt><code>&lt;forcedContact&gt;192.168.100.100:7777&lt;/forcedContact&gt;</code></dt>
+        <dd>
+            <p>Default:empty</p>
+            <p>This IP address will be used in Contact and Via headers in case contactIP is set to "static"</p>
+            
+        </dd>        
+        
+        <dt><code>&lt;sendAudioBack&gt;0&lt;/sendAudioBack&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>0</code>, <code>1</code></p>
+            <p>Defalut: 1</p>
+            <p>If set to 1, we will always send the audio back to the address from which we receive the audio from the other side.</p>
+        </dd>
+        
+        <dt><code>&lt;keepAlive&gt;1&lt;/keepAlive&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>0</code> and <code>1</code>.</p>
+            <p>Default value: <code>0</code>.</p>
+            <p>When set, <code>libsoftphone</code> periodically sends keepalive
+            packet to SIP server, to keep the connection active and NAT port
+            mappings open.</p>
+        </dd>
+        <dt><code>&lt;keepAlivePeriod&gt;30&lt;/keepAlivePeriod&gt;</code></dt>
+        <dd>
+            <p>Valid values: integer numeber, values lower than 5 are set to 5</p>
+            <p>Default value: <code>30</code>.</p>
+        </dd>
+        <dt><code>&lt;expires&gt;600&lt;/expires&gt;</code></dt>
+        <dd>
+            <p>Valid value is an integer in range from 0 to 2<sup>32</sup>&minus;1.</p>
+            <p>Default value: <code>600</code>.</p>
+            <p>The initial value to send in <code>Expires</code> header when
+            registering. The server may negotiate a higher value.</p>
+        </dd>
+        
+        <dt><code>&lt;incomingDisabled&gt;0&lt;/incomingDisabled&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>0</code> and <code>1</code>.</p>
+            <p>Default value: <code>0</code>.</p>
+            <p>When set, the account will not register for incoming calls.</p>
+        </dd>
+        
+        <dt><code>&lt;rtpPortRangeStart&gt;10000&lt;rtpPortRangeStart&gt;</code></dt>
+        <dt><code>&lt;rtpPortRangeEnd&gt;65530&lt;rtpPortRangeEnd&gt;</code></dt>
+        <dd>
+            <p>Valid value is an integer in range from 1 to 2<sup>16</sup>&minus;1.</p>
+            <p>Default values are: <code>1025</code> and <code>65535</code>.</p>
+            <p>The port range to use for RTP sockets.</p>
+        </dd>
+        
+        <dt><code>&lt;videoCodecOrder&gt;34,99&lt;/videoCodecOrder&gt;</code></dt>
+        <dd>
+            <p>Valid value is a comma separated list of codec numbers.</p>
+            
+            <p>The order of video codecs, as it will be offered in SDP
+            for calls made with Wifi CodecSet.</p>
+            
+            <p>Supported codecs are:</p>
+            
+            <dl>
+                <dt>34</dt>
+                <dd><p>H263</p></dd>
+                
+                <dt>99</dt>
+                <dd><p>H264</p></dd>
+            </dl>
+        </dd>
+        
+        <dt><code>&lt;videoCodecOrder3G&gt;34,99&lt;/videoCodecOrder3G&gt;</code></dt>
+        <dd>
+            <p>Valid value is a comma separated list of codec numbers.</p>
+            
+            <p>The order of video codecs, as it will be offered in SDP
+            for calls made with 3G CodecSet.</p>
+        </dd>
+        
+        <dt><code>&lt;videoMinKbpsWifi&gt;64&lt;/videoMinKbpsWifi&gt;</code><br/>
+            <code>&lt;videoMaxKbpsWifi&gt;384&lt;/videoMaxKbpsWifi&gt;</code></dt>
+        <dd>The numbers are in Kilobits per second</dd>
+        <dd>
+            <p>Bandwidth range for video in case it's being sent over wifi. The encoder is initially configured to produce bitrate in the middle of the given range and
+            adjusts the bitrate adaptively towards either end of the range depending on the network conditions.</p>
+        </dd>
+        
+        <dt><code>&lt;videoMinKbps3G&gt;64&lt;/videoMinKbps3G&gt;</code><br/>
+            <code>&lt;videoMaxKbps3G&gt;384&lt;/videoMaxKbps3G&gt;</code></dt>
+        <dd>The numbers are in Kilobits per second</dd>
+        <dd>
+            <p>Bandwidth range for video in case it's being sent over 3G.</p>
+        </dd>
+        
+        <dt><code>&lt;videoDimsWifi&gt;qcif&lt;/videoDimsWifi&gt;</code></dt>
+        <dd>
+            <p>Specifies video resolution to be sent over wifi. Supported values are:</p>
+            <dl>
+                <dt>sqcif</dt>
+                <dt>qcif</dt>
+                <dt>cif</dt>
+                <dt>vga</dt>
+                <dt>cif4</dt>
+                <dt>cif16</dt>
+            </dl>
+            </p>H263 codec only supports qcif and cif resolutions. H264 supports all resolutions and in case the device changes orientation from lanscape to portrait or vice-versa, the resolution is automatically transposed.</p>
+        </dd>
+        
+        <dt><code>&lt;videoDimsWifi&gt;qcif&lt;/videoDimsWifi&gt;</code></dt>
+        <dd>
+            <p>Specifies video resolution to be sent over 3G.</p>
+        </dd>
+        
+        <dt><code>&lt;videoFPSWifi&gt;15&lt;/videoFPSWifi&gt;</code></dt>
+        <dd>
+            <p>Default value: empty</p>
+            <p>Frame rate in frames-per-second which the video encoder should use to encode video streams transfered over Wifi</p>
+            <p>When left empty, the library chooses the pre-defined value for the current device. Choosing high framerate means more CPU power is needed to encode the video and less bits can be allocated to a single frame within the bandwidth constraints. When a bitrate is too high, some frames may be dropped if the CPU can't keep up with encoding.</p>
+            <p>iOS camera has maximum framrate of 30 fps. The pre-defined fps ranges from 10 for 3GS device to 20 for iPhone 4S.</p>
+        </dd>
+        <dt><code>&lt;videoFPSWifi&gt;15&lt;/videoFPSWifi&gt;</code></dt>
+        <dd>
+            <p>Default value: empty</p>
+            <p>Frame rate in frames-per-second which the video encoder should use to encode video streams transfered over 3G/cellular network</p>
+        </dd>
+        
+        <dt><code>&lt;allowMessage&gt;1&lt;/allowMessage&gt;</code></dt>
+        <dd>
+            <p>Valid values: <code>0</code> and <code>1</code>.</p>
+            <p>Default value: <code>0</code>.</p>
+            <p>When set, MESSAGE will be added to the Allow: list in SIP REGISTER packets. Messaging typically won't work without this set.</p>
+        </dd>
+        
+        <dt>
+            <code>
+                &lt;headers&gt;<br/>
+                &nbsp;&lt;header method="method" name="name" value="value"/&gt;<br/>
+                &nbsp;&lt;header method="method" name="name" value="value"/&gt;<br/>
+                &nbsp;... </br>
+                &lt;/headers&gt;<br/>
+            </code>
+            <dd>
+                <p>Specify custom headers to be added into SIP packets. Use method="*" to add the header to all SIP packets.
+            </dd>
+        </dt>
+        
+        <dt><code>Number Rewriting<pre>
+    &lt;rewriting&gt;
+        &lt;rule&gt;
+            &lt;conditions&gt;
+                &lt;condition type="2" param="+"/&gt;
+                &lt;condition type="6" param="8"/&gt;
+            &lt;/conditions&gt;        
+            &lt;actions&gt;
+                &lt;action type="2" param="+420"/&gt;            
+            &lt;/actions&gt;
+        &lt;/rule&gt;
+        &lt;rule&gt;
+            ... another rule ...
+        &lt;/rule&gt;
+        ...
+    &lt;/rewriting&gt;</pre></code></dt>
+
+        <dd>
+            <p>Default value: <code>none</code>.</p>
+            <p>Rules are examined in sequence until all conditions of a rule match the dialed number. Then all the actions are applied to the number. If neither of the actions is <code>continue</code> the transformation ends. However, if one of the actions of the rule is <code>continue</code>, another rule is examined and the conditions are now matched against the transformed number (not the originally dialed number).</p>
+            <p>The example above means: Add +420 to numbers not starting with + that are longer than 8 digits.
+            </p>
+            <p><code>condition</code> nodes have two attributes: 
+            <code>type</code> encoded as integer (see below) and <code>param</code> - the parameter of the condition
+            <dl>
+                <dt>1: starts with</dt>
+                <dd><p>matches numbers that start with the parameter</p></dd>
+                <dt>2: doesn&apos;t start with</dt>
+                <dd><p>matches numbers that doesn't start with the parameter</p></dd>
+                <dt>3: equals</dt>
+                <dd><p>dialed number is exactly the same as the parameter</p></dd>
+                <dt>4: length equals</dt>
+                <dd><p>the length of the dialed number equals the parameter</p></dd>
+                <dt>5: shorter than</dt>
+                <dd><p>the length of the dialed number is shorter then the parameter</p></dd>
+                <dt>6: longer than</dt>
+                <dd><p>the length of the dialed number is longer then the parameter</p></dd>
+            </dl>
+            </p>
+            <p><code>action</code> nodes have two attributes: 
+            <code>type</code> encoded as integer (see below) and optional <code>param</code> - the parameter of the action
+            <dl>
+                <dt>1: replace with</dt>
+                <dd><p>applicable only to conditions 1 and 3, replaces the matched part with parameter</p></dd>
+                <dt>2: prepend</dt>
+                <dd><p>prepends the parameter to the dialed number</p></dd>
+                <dt>3: append</dt>
+                <dd><p>appends the parameter to the dialed number</p></dd>
+                <dt>4: continue</dt>
+                <dd><p>no parameter, try following rules as well</p></dd>
+            </dl>     
+        </dd>
+        
+    </dl>
+    
+    <h3 id="AccountExample">Account Example</h3>
+    <pre>
+    &lt;account&gt;
+        &lt;username&gt;xxx&lt;/username&gt;
+        &lt;password&gt;secret&lt;/password&gt;
+        &lt;host&gt;1.2.3.4&lt;/host&gt;
+        &lt;codecOrder&gt;9,0,8,102,3&lt;/codecOrder&gt;
+        &lt;codecOrder3G&gt;102,3,9,0,8&lt;/codecOrder3G&gt;
+    &lt;/account></pre>
+    
+                
+</body>
+</html>

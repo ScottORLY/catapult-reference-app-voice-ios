@@ -9,18 +9,24 @@
 import Foundation
 
 /**
-    Structure describing an user
+    Class describing an user
 */
-struct User {
-    
+@objc class User: NSObject {
     let username: String
     
     var password: String?
-        
+    
     let number: String
-        
+    
     let endpoint: Endpoint
     
+    private init(username: String, password: String?, number: String, endpoint: Endpoint) {
+        self.username = username;
+        self.password = password;
+        self.number = number;
+        self.endpoint = endpoint;
+    }
+   
     static func fromJSON(json: [String: AnyObject]) -> User? {
         
         let username        = json["userName"] as? String

@@ -11,7 +11,7 @@ import Foundation
 /**
     Structure describing an endpoint
 */
-struct Endpoint {
+@objc class Endpoint: NSObject {
     
     let endpointId: String
     
@@ -26,6 +26,16 @@ struct Endpoint {
     let sipUri: String
         
     let credentials: Credentials
+    
+    private init(endpointId: String, domainId: String, applicationId: String, enabled: Bool, name: String, sipUri: String, credentials: Credentials) {
+        self.endpointId = endpointId;
+        self.domainId = domainId;
+        self.applicationId = applicationId;
+        self.enabled = enabled;
+        self.name = name;
+        self.sipUri = sipUri;
+        self.credentials = credentials;
+    }
     
     static func fromJSON(json: [String: AnyObject]) -> Endpoint? {
         

@@ -6,6 +6,5 @@
 //  Copyright (c) 2015 Bandwidth. All rights reserved.
 //
 
-#import <BWSip/BWSip.h>
-
+#import "ASIPManager.h"
 #import "Reachability.h"

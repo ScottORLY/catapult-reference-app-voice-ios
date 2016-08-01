@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        SIPManager.sharedInstance.addObserver(self, forKeyPath: kRegistrationStateKey, options: .New, context: nil)
+        // FIXME: SIPManager.sharedInstance.addObserver(self, forKeyPath: kRegistrationStateKey, options: .New, context: nil)
         
         updateEntries()
     }
@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
         
         super.viewWillDisappear(animated)
         
-        SIPManager.sharedInstance.removeObserver(self, forKeyPath: kRegistrationStateKey)
+        // FIXME: SIPManager.sharedInstance.removeObserver(self, forKeyPath: kRegistrationStateKey)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -64,23 +64,11 @@ class SettingsViewController: UIViewController {
         
         if let session = Session.currentSession {
             
-            let regState = SIPManager.sharedInstance.registrationState
-            let regStateCode = SIPManager.sharedInstance.registrationStateCode
+            // FIXME: let regState = SIPManager.sharedInstance.registrationState
+            // FIXME: let regStateCode = SIPManager.sharedInstance.registrationStateCode
             
-            let regStateStr: String
-            
-            switch regState {
-                
-            case .NotRegistered:
-                regStateStr = "Not registered (\(regStateCode))"
-                
-            case .Registering:
-                regStateStr = "Registering"
-                
-            case .Registered:
-                regStateStr = "Registered"
-            }
-            
+            let regStateStr = ASIPManager.regStateToString(ASIPManager.sharedManager().registrationState)
+        
             infoEntries = [
                 ("User name", session.user.username),
                 ("Phone number", session.user.number),
@@ -145,7 +133,7 @@ extension SettingsViewController {
         
         Session.currentSession = nil
         
-        SIPManager.sharedInstance.unregister()
+        // FIXME: SIPManager.sharedInstance.unregister()
                 
         self.navigationController!.popToRootViewControllerAnimated(true)
     }

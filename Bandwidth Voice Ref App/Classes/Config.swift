@@ -17,5 +17,5 @@ struct Config {
         The base server URL, without a trailing slash. Must be replaced with your own URL, otherwise the project won't build.
         i.e. "https://yourserver.host.com"
     */
-    static let serverUrl = "<replace me>"
+    static let serverUrl = "http://ec2-54-209-171-249.compute-1.amazonaws.com"
 }
