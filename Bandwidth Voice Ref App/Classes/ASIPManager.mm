@@ -107,6 +107,12 @@
     _softphone->state()->update(_softphone->state()->Active);
 }
 
+- (void) unregister {
+    _softphone->registration()->deleteAccount("sip");
+    _softphone->registration()->updateAll();
+
+}
+
 - (void) answerIncomingCall
 {
     Call::State::Type cs = _softphone->calls()->getState([CurrentCallHolder get]);

@@ -130,7 +130,7 @@ extension SettingsViewController {
         
         Session.currentSession = nil
         
-        // FIXME: SIPManager.sharedInstance.unregister()
+        ASIPManager.sharedManager().unregister()
                 
         self.navigationController!.popToRootViewControllerAnimated(true)
     }

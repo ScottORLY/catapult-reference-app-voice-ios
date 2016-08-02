@@ -35,7 +35,8 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 + (NSString*)regStateToString:(RegistrationState) state;
 
 - (id)init;
-- (void)registerWithUser:(User*)user;
+- (void) registerWithUser:(User*)user;
+- (void) unregister;
 - (void) answerIncomingCall;
 - (void) rejectIncomingCall;
 - (void) hangupCall;
