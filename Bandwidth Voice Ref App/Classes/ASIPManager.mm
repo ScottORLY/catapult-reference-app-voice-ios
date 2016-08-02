@@ -157,6 +157,10 @@
     _softphone->audio()->dtmfOff();
 }
 
+- (void) setSpeakerEnabled:(BOOL)enabled {
+    _softphone->audio()->setCallAudioRoute(enabled ? AudioRoute::Type::Speaker : AudioRoute::Type::Headset);
+}
+
 - (BWCall*) getCurrentCall {
     return [ASIPManager callEventToBWCall:[CurrentCallHolder get]->asCall() withLastState:[CurrentCallHolder getLastState]];
 }

@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 - (BOOL) makeCallTo:(NSString*) number;
 - (void) startDigit:(NSString*)digit;
 - (void) stopDigit;
+- (void) setSpeakerEnabled:(BOOL)enabled;
 - (BWCall*) getCurrentCall;
 
 - (void)onRegistrationStateChanged:(RegistrationState) state

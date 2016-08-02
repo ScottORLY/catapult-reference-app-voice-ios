@@ -157,7 +157,7 @@ private extension CallViewController {
                 self.callDurationLabelWidth.constant = 0.0
                 self.callControlsView.alpha = 0.0
                 
-                // FIXME: SIPManager.sharedInstance.setSpeakerEnabled(false)
+                ASIPManager.sharedManager().setSpeakerEnabled(false)
             }
             
             let bwCall = ASIPManager.sharedManager().getCurrentCall()
@@ -287,7 +287,7 @@ extension CallViewController {
         
         sender.selected = !sender.selected
         
-        // FIXME: SIPManager.sharedInstance.setSpeakerEnabled(sender.selected)
+        ASIPManager.sharedManager().setSpeakerEnabled(sender.selected)
     }
     
     @IBAction func onHangUp(sender: AnyObject) {
