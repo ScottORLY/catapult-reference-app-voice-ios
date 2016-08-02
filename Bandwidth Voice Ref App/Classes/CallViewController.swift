@@ -277,7 +277,7 @@ extension CallViewController {
         
         sender.selected = !sender.selected
         
-        // FIXME: call?.setMute(sender.selected)
+        ASIPManager.sharedManager().setMute(sender.selected)
     }
     
     @IBAction func onToggleSpeaker(sender: UIButton) {

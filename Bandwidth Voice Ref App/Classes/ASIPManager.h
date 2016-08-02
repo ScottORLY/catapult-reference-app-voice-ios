@@ -43,6 +43,7 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 - (void) startDigit:(NSString*)digit;
 - (void) stopDigit;
 - (void) setSpeakerEnabled:(BOOL)enabled;
+- (void) setMute:(BOOL)enabled;
 - (BWCall*) getCurrentCall;
 
 - (void)onRegistrationStateChanged:(RegistrationState) state
