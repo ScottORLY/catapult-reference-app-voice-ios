@@ -45,16 +45,7 @@ class CallViewController: UIViewController {
     
     @IBOutlet private weak var answerButton: UIButton!
     
-    // MARK: - Public properties
-    var call: NSNumber? {
-        
-        didSet {
-/*FIXME
-            oldValue?.delegate = nil
-            call?.delegate = self*/
-        }
-    }
-    
+  
     // MARK: - Private properties
     
     private var callDuration: NSNumber?
@@ -74,6 +65,8 @@ class CallViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
+        
+        ASIPManager.sharedManager().setCallDelegate(self)
 
         var number: NSString?
         
@@ -101,6 +94,10 @@ class CallViewController: UIViewController {
         updateScreenState(false)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        ASIPManager.sharedManager().setCallDelegate(nil)
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == kEmbedDialpadSegue {
@@ -116,9 +113,9 @@ class CallViewController: UIViewController {
         
         if callStartDate != nil {
         
-            callDuration = NSNumber(double: -callStartDate!.timeIntervalSinceNow);
+            callDuration = NSNumber(double: -callStartDate!.timeIntervalSinceNow)
             
-            let seconds = lround(callDuration!.doubleValue);
+            let seconds = lround(callDuration!.doubleValue)
             
             let mins: Int = (seconds % 3600) / 60
             let secs: Int = seconds % 60
@@ -129,7 +126,7 @@ class CallViewController: UIViewController {
     
     func playRingtone() {
         
-        AudioServicesPlayAlertSound(ringtoneSoundId);
+        AudioServicesPlayAlertSound(ringtoneSoundId)
     }
 }
 
@@ -177,7 +174,7 @@ private extension CallViewController {
         
             UIView.animateWithDuration(0.3) {
                 
-                applyChanges();
+                applyChanges()
                 
                 self.view.layoutIfNeeded()
             }
@@ -298,7 +295,7 @@ extension CallViewController {
         if bwCall.isIncoming && (bwCall.lastState == .IncomingRinging || bwCall.lastState == .IncomingTrying) {
             ASIPManager.sharedManager().rejectIncomingCall()
         } else {
-            ASIPManager.sharedManager().hangupCall();
+            ASIPManager.sharedManager().hangupCall()
         }
     }
 
@@ -311,23 +308,20 @@ extension CallViewController {
 }
 
 // MARK: - BWCallDelegate methods
-/* FIXME:
-extension CallViewController: BWCallDelegate {
+
+extension CallViewController: CallDelegate {
     
     func onCallStateChanged(call: BWCall!) {
         
         print("***** Call State Changed *****")
-        print("State code: \(call.lastState.rawValue)")
-        print("Local URI.: \(call.localUri)")
+        print("State: \(BWCall.callStateToString(call.lastState))")
         print("Remote URI: \(call.remoteUri)")
         
-        if self.call == call {
+        dispatch_async(dispatch_get_main_queue()) {
             
-            dispatch_async(dispatch_get_main_queue()) {
-            
-                switch call.lastState {
+            switch call.lastState {
                 
-                case .Confirmed:
+                case .Established:
                     
                     UIDevice.currentDevice().proximityMonitoringEnabled = true
                     
@@ -335,7 +329,7 @@ extension CallViewController: BWCallDelegate {
                     
                     break
                     
-                case .Disconnected:
+                case .Terminated:
                     
                     UIDevice.currentDevice().proximityMonitoringEnabled = false
                     
@@ -347,23 +341,19 @@ extension CallViewController: BWCallDelegate {
                     
                     self.dismissViewControllerAnimated(true, completion: nil)
                     
+                    break
+                
                 default:
                     
                     // Nothing to do for now
                     break
-                }
-                
-                self.updateScreenState(true)
             }
+                
+            self.updateScreenState(true)
         }
     }
-    
-    func onIncomingDTMF(call: BWCall!, andDigits digits: String!) {
-        
-        print("***** Incoming DTMF *****")
-        print("DTMF Received: \(digits)")
-    }
-}*/
+
+}
 
 // MARK: - DialpadViewControllerDelegate methods
 

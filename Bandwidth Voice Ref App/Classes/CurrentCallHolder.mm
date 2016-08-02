@@ -17,11 +17,6 @@ Softphone::EventHistory::CallEvent::Pointer currentCall;
 
 + (void)acquire:(Softphone::EventHistory::CallEvent::Pointer) callEvent {
     currentCall = callEvent;
-    
-    BWCall *currentBWCall = [[BWCall alloc] init];
-    currentBWCall.isIncoming = (currentCall->getDirection() == Softphone::EventHistory::Direction::Type::Incoming);
-    currentBWCall.localUri = ali::mac::str::to_nsstring(currentCall->getSender().get());
-    currentBWCall.remoteUri = ali::mac::str::to_nsstring(currentCall->getRemoteUser().getGenericUri());
 }
 
 + (void)release:(Softphone::EventHistory::CallEvent::Pointer) callEvent {

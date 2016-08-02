@@ -144,6 +144,7 @@
 		E96FF95A1D4FC2D0003B6E5C /* CurrentCallHolder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentCallHolder.h; sourceTree = "<group>"; };
 		E9E28CF51D4FE45800E38D31 /* BWCall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BWCall.h; sourceTree = "<group>"; };
 		E9E28CF61D4FE46B00E38D31 /* BWCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BWCall.m; sourceTree = "<group>"; };
+		E9E28CFB1D510D7700E38D31 /* CallDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +245,7 @@
 				E96FF9581D4FC2BE003B6E5C /* CurrentCallHolder.mm */,
 				E9E28CF51D4FE45800E38D31 /* BWCall.h */,
 				E9E28CF61D4FE46B00E38D31 /* BWCall.m */,
+				E9E28CFB1D510D7700E38D31 /* CallDelegate.h */,
 			);
 			name = SIP;
 			sourceTree = "<group>";

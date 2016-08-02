@@ -32,7 +32,6 @@ typedef NS_ENUM(NSInteger, CallState){
     RedirectedToAlternativeService
 };
 
-@property (nonatomic) NSString *localUri;
 @property (nonatomic) NSString *remoteUri;
 @property (nonatomic) CallState lastState;
 @property (nonatomic) BOOL isIncoming;
@@ -40,6 +39,8 @@ typedef NS_ENUM(NSInteger, CallState){
 @property (nonatomic) BOOL isMuted;
 
 -(id) init;
+
++ (NSString*)callStateToString:(CallState) state;
 
 @end
 

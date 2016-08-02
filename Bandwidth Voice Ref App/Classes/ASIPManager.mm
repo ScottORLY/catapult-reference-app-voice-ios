@@ -27,6 +27,7 @@
     Softphone::Instance *_softphone;
     /// a C++ class which converts the callbacks into ObjectiveC selector invocations
     SoftphoneObserverProxy *_softphoneObserverProxy;
+    id<CallDelegate> callDelegate;
 }
 
 + (instancetype)sharedManager
@@ -123,7 +124,7 @@
 
 - (void) hangupCall
 {
-    _softphone->calls()->close([CurrentCallHolder get]);
+    _softphone->calls()->hangup([CurrentCallHolder get]);
 }
 
 - (BOOL) makeCallTo:(NSString *) number
@@ -188,7 +189,15 @@
 
 - (void)onCallStateChanged:(CallState) state
 {
-    NSLog(@"INFO: onCallStateChanged %@", [ASIPManager callStateToString:state]);
+    NSLog(@"INFO: onCallStateChanged %@", [BWCall callStateToString:state]);
+    
+    if (callDelegate != NULL) {
+        [callDelegate onCallStateChanged:[self getCurrentCall]];
+    }
+    
+    if (Call::State::isTerminal([CurrentCallHolder getLastState])) {
+        _softphone->calls()->close([CurrentCallHolder get]);
+    }
 }
 
 + (NSString*)regStateToString:(RegistrationState) state
@@ -211,50 +220,15 @@
     return regStateStr;
 }
 
-+ (NSString*)callStateToString:(CallState) state
-{
-    NSString *callStateStr;
-    
-    switch (state) {
-            
-        case Terminated:
-            callStateStr = @"Terminated";
-            break;
-        case Busy:
-            callStateStr = @"Busy";
-            break;
-        case Established:
-            callStateStr = @"Established";
-            break;
-        case IncomingRinging:
-            callStateStr = @"IncomingRinging";
-            break;
-        case IncomingMissed:
-            callStateStr = @"IncomingMissed";
-            break;
-        case Ringing:
-            callStateStr = @"Ringing";
-            break;
-        case Trying:
-            callStateStr = @"Trying";
-            break;
-        case Error:
-            callStateStr = @"Error";
-            break;
-        default:
-            callStateStr = @"Unknown";
-            break;
-    }
-    
-    return callStateStr;
+- (void)setCallDelegate:(id<CallDelegate>)delegate {
+    callDelegate = delegate;
 }
 
 +(BWCall*) callEventToBWCall:(Softphone::EventHistory::CallEvent&) callEvent
                withLastState:(Call::State::Type) lastState {
     BWCall *bwCall = [[BWCall alloc] init];
     bwCall.isIncoming = (callEvent.getDirection() == Softphone::EventHistory::Direction::Type::Incoming);
-    bwCall.localUri = ali::mac::str::to_nsstring(callEvent.getSender().get());
-    bwCall.remoteUri = ali::mac::str::to_nsstring(callEvent.getRemoteUser().getGenericUri());
+    bwCall.remoteUri = ali::mac::str::to_nsstring(callEvent.getRemoteUser().getTransportUri().get());
     bwCall.lastState = [BWSoftphoneDelegate acrobbitsCallStateToBWCallState:lastState];
     
     return bwCall;

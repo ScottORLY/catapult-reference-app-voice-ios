@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
 #import "BWCall.h"
+#import "CallDelegate.h"
 
 @class User;
 
@@ -48,6 +49,8 @@ typedef NS_ENUM(NSInteger, RegistrationState){
                                forAccount:(NSString*)accountId;
 - (void)onIncomingCall;
 - (void)onCallStateChanged:(CallState) state;
+
+- (void)setCallDelegate:(id<CallDelegate>)delegate;
 
 @end
 
