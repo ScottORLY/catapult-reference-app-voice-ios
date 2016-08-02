@@ -20,7 +20,6 @@
 		1593E1D51AD2D7D30098C566 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D41AD2D7D30098C566 /* MainTabBarController.swift */; };
 		1593E1D71AD2D8400098C566 /* DialerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D61AD2D8400098C566 /* DialerViewController.swift */; };
 		1593E1D91AD2D84C0098C566 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */; };
-		1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1593E1DE1AD2F3130098C566 /* SIPManager.swift */; };
 		1595ACCD1AD5484B005A323B /* CallViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCC1AD5484B005A323B /* CallViewController.swift */; };
 		1595ACCF1AD56510005A323B /* CallRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1595ACCE1AD56510005A323B /* CallRouter.swift */; };
 		1595ACD11AD59988005A323B /* ringtone.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1595ACD01AD59988005A323B /* ringtone.wav */; };
@@ -40,7 +39,7 @@
 		15D414701ADBE76D00077679 /* ringtoneRepeat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */; };
 		15D43E631AD3EFAF0086CD53 /* DialpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */; };
 		E96FF9171D491945003B6E5C /* libsoftphone in Resources */ = {isa = PBXBuildFile; fileRef = E96FF9161D491945003B6E5C /* libsoftphone */; };
-		E96FF91F1D4A42F2003B6E5C /* ASIPManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = E96FF91E1D4A42F2003B6E5C /* ASIPManager.mm */; };
+		E96FF91F1D4A42F2003B6E5C /* SIPManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = E96FF91E1D4A42F2003B6E5C /* SIPManager.mm */; };
 		E96FF9211D4A92FA003B6E5C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */; };
 		E96FF9231D4A930B003B6E5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9221D4A930B003B6E5C /* CoreTelephony.framework */; };
 		E96FF9261D4AA360003B6E5C /* SoftphoneObserverProxy.mm in Sources */ = {isa = PBXBuildFile; fileRef = E96FF9251D4AA360003B6E5C /* SoftphoneObserverProxy.mm */; };
@@ -84,7 +83,6 @@
 		1593E1D41AD2D7D30098C566 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1593E1D61AD2D8400098C566 /* DialerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialerViewController.swift; sourceTree = "<group>"; };
 		1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		1593E1DE1AD2F3130098C566 /* SIPManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SIPManager.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		1595ACCC1AD5484B005A323B /* CallViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallViewController.swift; sourceTree = "<group>"; };
 		1595ACCE1AD56510005A323B /* CallRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallRouter.swift; sourceTree = "<group>"; };
 		1595ACD01AD59988005A323B /* ringtone.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtone.wav; sourceTree = "<group>"; };
@@ -109,8 +107,8 @@
 		15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtoneRepeat.wav; sourceTree = "<group>"; };
 		15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialpadViewController.swift; sourceTree = "<group>"; };
 		E96FF9161D491945003B6E5C /* libsoftphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libsoftphone; sourceTree = "<group>"; };
-		E96FF91D1D4A42BC003B6E5C /* ASIPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASIPManager.h; sourceTree = "<group>"; };
-		E96FF91E1D4A42F2003B6E5C /* ASIPManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ASIPManager.mm; sourceTree = "<group>"; };
+		E96FF91D1D4A42BC003B6E5C /* SIPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIPManager.h; sourceTree = "<group>"; };
+		E96FF91E1D4A42F2003B6E5C /* SIPManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SIPManager.mm; sourceTree = "<group>"; };
 		E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		E96FF9221D4A930B003B6E5C /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		E96FF9241D4AA360003B6E5C /* SoftphoneObserverProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoftphoneObserverProxy.h; sourceTree = "<group>"; };
@@ -234,10 +232,9 @@
 			children = (
 				E96FF9241D4AA360003B6E5C /* SoftphoneObserverProxy.h */,
 				E96FF9251D4AA360003B6E5C /* SoftphoneObserverProxy.mm */,
-				1593E1DE1AD2F3130098C566 /* SIPManager.swift */,
 				1595ACCE1AD56510005A323B /* CallRouter.swift */,
-				E96FF91D1D4A42BC003B6E5C /* ASIPManager.h */,
-				E96FF91E1D4A42F2003B6E5C /* ASIPManager.mm */,
+				E96FF91D1D4A42BC003B6E5C /* SIPManager.h */,
+				E96FF91E1D4A42F2003B6E5C /* SIPManager.mm */,
 				E96FF9271D4AA3AE003B6E5C /* SoftphoneDelegate.h */,
 				E96FF9571D4BDBEC003B6E5C /* BWSoftphoneDelegate.h */,
 				E96FF9551D4BDBD0003B6E5C /* BWSoftphoneDelegate.mm */,
@@ -465,10 +462,9 @@
 				1595ACD31AD5A1D7005A323B /* NumberFormatter.swift in Sources */,
 				15D43E631AD3EFAF0086CD53 /* DialpadViewController.swift in Sources */,
 				1593E1CC1AD2A85B0098C566 /* Endpoint.swift in Sources */,
-				1593E1DF1AD2F3130098C566 /* SIPManager.swift in Sources */,
 				1593E1CE1AD2A8E60098C566 /* Credentials.swift in Sources */,
 				E96FF9561D4BDBD0003B6E5C /* BWSoftphoneDelegate.mm in Sources */,
-				E96FF91F1D4A42F2003B6E5C /* ASIPManager.mm in Sources */,
+				E96FF91F1D4A42F2003B6E5C /* SIPManager.mm in Sources */,
 				1593E1C41AD29D350098C566 /* CatapultV1API.swift in Sources */,
 				1595ACCF1AD56510005A323B /* CallRouter.swift in Sources */,
 				15B2E6781ACD573B003BDD65 /* SessionCheckViewController.swift in Sources */,

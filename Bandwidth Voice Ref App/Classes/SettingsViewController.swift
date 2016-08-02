@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        ASIPManager.sharedManager().addObserver(self, forKeyPath: kRegistrationStateKey, options: .New, context: nil)
+        SIPManager.sharedManager().addObserver(self, forKeyPath: kRegistrationStateKey, options: .New, context: nil)
         
         updateEntries()
     }
@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
         
         super.viewWillDisappear(animated)
         
-        ASIPManager.sharedManager().removeObserver(self, forKeyPath: kRegistrationStateKey)
+        SIPManager.sharedManager().removeObserver(self, forKeyPath: kRegistrationStateKey)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
@@ -64,7 +64,7 @@ class SettingsViewController: UIViewController {
         
         if let session = Session.currentSession {
                       
-            let regStateStr = ASIPManager.regStateToString(ASIPManager.sharedManager().registrationState)
+            let regStateStr = SIPManager.regStateToString(SIPManager.sharedManager().registrationState)
         
             infoEntries = [
                 ("User name", session.user.username),
@@ -130,7 +130,7 @@ extension SettingsViewController {
         
         Session.currentSession = nil
         
-        ASIPManager.sharedManager().unregister()
+        SIPManager.sharedManager().unregister()
                 
         self.navigationController!.popToRootViewControllerAnimated(true)
     }

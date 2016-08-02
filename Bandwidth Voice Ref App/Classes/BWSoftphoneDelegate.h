@@ -10,13 +10,13 @@
 #define BWSoftphoneDelegate_h
 
 #import "SoftphoneDelegate.h"
-#import "ASIPManager.h"
+#import "SIPManager.h"
 
 @interface BWSoftphoneDelegate: NSObject <SoftphoneDelegate>;
 
-@property(nonatomic,readonly) ASIPManager* sipManager;
+@property(nonatomic,readonly) SIPManager* sipManager;
 
--(id) initWithSipManager:(ASIPManager*) sipManager;
+-(id) initWithSipManager:(SIPManager*) sipManager;
 
 +(CallState) acrobbitsCallStateToBWCallState:(Call::State::Type) state;
 

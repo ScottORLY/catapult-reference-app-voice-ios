@@ -13,7 +13,7 @@
 
 @implementation BWSoftphoneDelegate
 
--(id) initWithSipManager:(ASIPManager*) sipManager
+-(id) initWithSipManager:(SIPManager*) sipManager
 {
     if(self = [super init]) {
         _sipManager = sipManager;

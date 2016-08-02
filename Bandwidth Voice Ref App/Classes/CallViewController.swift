@@ -66,11 +66,11 @@ class CallViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        ASIPManager.sharedManager().setCallDelegate(self)
+        SIPManager.sharedManager().setCallDelegate(self)
 
         var number: NSString?
         
-        let bwCall = ASIPManager.sharedManager().getCurrentCall()
+        let bwCall = SIPManager.sharedManager().getCurrentCall()
         
         let scanner = NSScanner(string: bwCall!.remoteUri)
         
@@ -97,7 +97,7 @@ class CallViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
-        ASIPManager.sharedManager().setCallDelegate(nil)
+        SIPManager.sharedManager().setCallDelegate(nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -156,10 +156,10 @@ private extension CallViewController {
                 self.callDurationLabelWidth.constant = 0.0
                 self.callControlsView.alpha = 0.0
                 
-                ASIPManager.sharedManager().setSpeakerEnabled(false)
+                SIPManager.sharedManager().setSpeakerEnabled(false)
             }
             
-            let bwCall = ASIPManager.sharedManager().getCurrentCall()
+            let bwCall = SIPManager.sharedManager().getCurrentCall()
             if !bwCall!.isIncoming || self.callDuration != nil {
                 
                 self.answerButton.enabled = false
@@ -279,25 +279,25 @@ extension CallViewController {
         
         sender.selected = !sender.selected
         
-        ASIPManager.sharedManager().setMute(sender.selected)
+        SIPManager.sharedManager().setMute(sender.selected)
     }
     
     @IBAction func onToggleSpeaker(sender: UIButton) {
         
         sender.selected = !sender.selected
         
-        ASIPManager.sharedManager().setSpeakerEnabled(sender.selected)
+        SIPManager.sharedManager().setSpeakerEnabled(sender.selected)
     }
     
     @IBAction func onHangUp(sender: AnyObject) {
         
         stopPlayingRingtone()
         
-        let bwCall = ASIPManager.sharedManager().getCurrentCall()
+        let bwCall = SIPManager.sharedManager().getCurrentCall()
         if bwCall.isIncoming && (bwCall.lastState == .IncomingRinging || bwCall.lastState == .IncomingTrying) {
-            ASIPManager.sharedManager().rejectIncomingCall()
+            SIPManager.sharedManager().rejectIncomingCall()
         } else {
-            ASIPManager.sharedManager().hangupCall()
+            SIPManager.sharedManager().hangupCall()
         }
     }
 
@@ -305,7 +305,7 @@ extension CallViewController {
         
         stopPlayingRingtone()
         
-        ASIPManager.sharedManager().answerIncomingCall()
+        SIPManager.sharedManager().answerIncomingCall()
     }
 }
 
@@ -362,10 +362,10 @@ extension CallViewController: CallDelegate {
 extension CallViewController: DialpadViewControllerDelegate {
     
     func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String) {
-       ASIPManager.sharedManager().startDigit(digit)
+       SIPManager.sharedManager().startDigit(digit)
     }
     
     func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool) {
-        ASIPManager.sharedManager().stopDigit()
+        SIPManager.sharedManager().stopDigit()
     }
 }

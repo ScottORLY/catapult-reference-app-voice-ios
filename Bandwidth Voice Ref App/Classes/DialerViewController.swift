@@ -97,12 +97,12 @@ extension DialerViewController: DialpadViewControllerDelegate {
     
     func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String) {
         
-        ASIPManager.sharedManager().startDigit(digit)
+        SIPManager.sharedManager().startDigit(digit)
     }
     
     func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool) {
         
-        ASIPManager.sharedManager().stopDigit()
+        SIPManager.sharedManager().stopDigit()
         
         if !cancel {
         

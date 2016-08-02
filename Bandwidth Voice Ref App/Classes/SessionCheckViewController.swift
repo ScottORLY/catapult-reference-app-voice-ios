@@ -30,7 +30,7 @@ class SessionCheckViewController: UIViewController {
         
         if Session.currentSession != nil {
             
-            ASIPManager.sharedManager().registerWithUser(Session.currentSession!.user)
+            SIPManager.sharedManager().registerWithUser(Session.currentSession!.user)
             
             self.performSegueWithIdentifier(kShowMainScreenSegue, sender: nil)
             

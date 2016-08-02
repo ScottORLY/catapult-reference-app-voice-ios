@@ -1,13 +1,13 @@
 //
-//  ASIPManager.h
+//  SIPManager.h
 //  Bandwidth Voice Ref App
 //
 //  Created by Isac Souza on 28/7/16.
 //  Copyright © 2016 Bandwidth. All rights reserved.
 //
 
-#ifndef ASIPManager_h
-#define ASIPManager_h
+#ifndef SIPManager_h
+#define SIPManager_h
 
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger, RegistrationState){
     Registered
 };
 
-@interface ASIPManager : NSObject
+@interface SIPManager : NSObject
 
 @property(nonatomic,readonly) RegistrationState registrationState;
 
@@ -56,4 +56,4 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 
 @end
 
-#endif /* ASIPManager_h */
+#endif /* SIPManager_h */

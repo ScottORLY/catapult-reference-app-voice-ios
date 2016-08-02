@@ -6,5 +6,5 @@
 //  Copyright (c) 2015 Bandwidth. All rights reserved.
 //
 
-#import "ASIPManager.h"
+#import "SIPManager.h"
 #import "Reachability.h"

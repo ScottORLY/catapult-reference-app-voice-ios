@@ -38,7 +38,7 @@ class CallRouter: NSObject {
     // MARK: - Class methods
     
     func makeCallTo(number: String) {
-        if ASIPManager.sharedManager().makeCallTo(number) {
+        if SIPManager.sharedManager().makeCallTo(number) {
             presentCallViewController()
         }
     }
@@ -91,7 +91,7 @@ extension CallRouter {
                 
                 // If we do, respond to the call as busy
                 
-                ASIPManager.sharedManager().rejectIncomingCall();
+                SIPManager.sharedManager().rejectIncomingCall();
             } else {
                 // If we don't, present the incoming call interface
                 

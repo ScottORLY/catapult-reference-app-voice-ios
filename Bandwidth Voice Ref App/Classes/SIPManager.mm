@@ -1,11 +1,11 @@
 //
-//  ASIPManager.mm
+//  SIPManager.mm
 //  Bandwidth Voice Ref App
 //
 //  Copyright © 2016 Bandwidth. All rights reserved.
 //
 
-#import "ASIPManager.h"
+#import "SIPManager.h"
 #import "BWSoftphoneDelegate.h"
 #import "CurrentCallHolder.h"
 
@@ -20,13 +20,13 @@
 
 // MARK: - Class methods
 
-@interface ASIPManager ()
+@interface SIPManager ()
 
 @property(nonatomic) RegistrationState registrationState;
 
 @end
 
-@implementation ASIPManager {
+@implementation SIPManager {
     NSString *sipAccountXmlFormat;
     ali::string license;
     ali::xml::tree _sipAccount;
@@ -179,13 +179,13 @@
 }
 
 - (BWCall*) getCurrentCall {
-    return [ASIPManager callEventToBWCall:[CurrentCallHolder get]->asCall() withLastState:[CurrentCallHolder getLastState]];
+    return [SIPManager callEventToBWCall:[CurrentCallHolder get]->asCall() withLastState:[CurrentCallHolder getLastState]];
 }
 
 - (void)onRegistrationStateChanged:(RegistrationState) state
                         forAccount:(NSString*)accountId;
 {
-    NSLog(@"INFO: onRegistrationStateChanged: %@", [ASIPManager regStateToString:state]);
+    NSLog(@"INFO: onRegistrationStateChanged: %@", [SIPManager regStateToString:state]);
     
     self.registrationState = state;
 }
