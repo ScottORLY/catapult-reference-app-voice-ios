@@ -370,17 +370,10 @@ extension CallViewController: BWCallDelegate {
 extension CallViewController: DialpadViewControllerDelegate {
     
     func dialpad(dialpad: DialpadViewController, didStartDialingDigit digit: String) {
-        
-        // FIXME: tone.startDigit(digit, withVolume: kToneVolume)
+       ASIPManager.sharedManager().startDigit(digit)
     }
     
     func dialpad(dialpad: DialpadViewController, didEndDialingDigit digit: String, cancelled cancel: Bool) {
-        
-        // FIXME: tone.stopDigit()
-        
-        if !cancel {
-        
-            // FIXME: call?.dialDTMF(digit)
-        }
+        ASIPManager.sharedManager().stopDigit()
     }
 }

@@ -149,6 +149,14 @@
     return result == Softphone::Instance::Events::PostResult::Success;
 }
 
+- (void) startDigit:(NSString*)digit {
+    _softphone->audio()->dtmfOn([digit characterAtIndex:0]);
+}
+
+- (void) stopDigit {
+    _softphone->audio()->dtmfOff();
+}
+
 - (BWCall*) getCurrentCall {
     return [ASIPManager callEventToBWCall:[CurrentCallHolder get]->asCall() withLastState:[CurrentCallHolder getLastState]];
 }

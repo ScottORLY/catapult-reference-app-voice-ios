@@ -38,7 +38,9 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 - (void) answerIncomingCall;
 - (void) rejectIncomingCall;
 - (void) hangupCall;
-- (BOOL) makeCallTo:(NSString *) number;
+- (BOOL) makeCallTo:(NSString*) number;
+- (void) startDigit:(NSString*)digit;
+- (void) stopDigit;
 - (BWCall*) getCurrentCall;
 
 - (void)onRegistrationStateChanged:(RegistrationState) state
