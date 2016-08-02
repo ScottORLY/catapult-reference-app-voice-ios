@@ -33,7 +33,7 @@ class SettingsViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        // FIXME: SIPManager.sharedInstance.addObserver(self, forKeyPath: kRegistrationStateKey, options: .New, context: nil)
+        ASIPManager.sharedManager().addObserver(self, forKeyPath: kRegistrationStateKey, options: .New, context: nil)
         
         updateEntries()
     }
@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
         
         super.viewWillDisappear(animated)
         
-        // FIXME: SIPManager.sharedInstance.removeObserver(self, forKeyPath: kRegistrationStateKey)
+        ASIPManager.sharedManager().removeObserver(self, forKeyPath: kRegistrationStateKey)
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {

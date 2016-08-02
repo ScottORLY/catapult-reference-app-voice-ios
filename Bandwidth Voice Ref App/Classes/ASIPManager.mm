@@ -20,6 +20,12 @@
 
 // MARK: - Class methods
 
+@interface ASIPManager ()
+
+@property(nonatomic) RegistrationState registrationState;
+
+@end
+
 @implementation ASIPManager {
     NSString *sipAccountXmlFormat;
     ali::string license;
@@ -175,7 +181,7 @@
 {
     NSLog(@"INFO: onRegistrationStateChanged: %@", [ASIPManager regStateToString:state]);
     
-    _registrationState = state;
+    self.registrationState = state;
 }
 
 - (void)onIncomingCall

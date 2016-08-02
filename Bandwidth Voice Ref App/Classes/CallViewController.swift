@@ -95,6 +95,8 @@ class CallViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         ASIPManager.sharedManager().setCallDelegate(nil)
     }
     
