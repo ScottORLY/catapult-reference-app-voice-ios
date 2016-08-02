@@ -76,20 +76,20 @@ class CallViewController: UIViewController {
         super.viewWillAppear(animated)
 
         var number: NSString?
-        /* FIXME:
-        let scanner = NSScanner(string: call!.remoteUri)
+        
+        let bwCall = ASIPManager.sharedManager().getCurrentCall()
+        
+        let scanner = NSScanner(string: bwCall!.remoteUri)
         
         scanner.scanString("<", intoString: nil)
         scanner.scanString("sip:", intoString: nil)
-        scanner.scanUpToString("@", intoString: &number)
+        scanner.scanUpToString("@nx:", intoString: &number)
         
         callerLabel.text = number != nil ? NumberFormatter.formatE164Number(number! as String) : "BLOCKED"
         
-        if call!.isIncoming {
+        if bwCall!.isIncoming {
             
             callTypeLabel.text = "Incoming call from"
-            
-            call!.answerCall(.Ringing)
             
             startPlayingRingtone()
             
@@ -97,7 +97,7 @@ class CallViewController: UIViewController {
             
             callTypeLabel.text = "Calling"
         }
-        */
+
         updateScreenState(false)
     }
     
@@ -159,8 +159,9 @@ private extension CallViewController {
                 
                 // FIXME: SIPManager.sharedInstance.setSpeakerEnabled(false)
             }
-            /* FIXME:
-            if !self.call!.isIncoming || self.callDuration != nil {
+            
+            let bwCall = ASIPManager.sharedManager().getCurrentCall()
+            if !bwCall!.isIncoming || self.callDuration != nil {
                 
                 self.answerButton.enabled = false
                 self.hangUpButtonWidth.constant = self.view.frame.size.width / 2
@@ -169,7 +170,7 @@ private extension CallViewController {
                 
                 self.answerButton.enabled = true
                 self.hangUpButtonWidth.constant = 0
-            }*/
+            }
         }
         
         if animated {
@@ -191,7 +192,7 @@ private extension CallViewController {
         
         callStartDate = NSDate()
         
-        callDurationTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "updateCallDuration", userInfo: nil, repeats: true)
+        callDurationTimer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: #selector(CallViewController.updateCallDuration), userInfo: nil, repeats: true)
         
         callDuration = NSNumber(double: 0.0)
     }
@@ -223,7 +224,7 @@ private extension CallViewController {
                 
                 playRingtone()
                 
-                ringtoneTimer = NSTimer.scheduledTimerWithTimeInterval(kRingtoneInterval, target: self, selector: "playRingtone", userInfo: nil, repeats: true)
+                ringtoneTimer = NSTimer.scheduledTimerWithTimeInterval(kRingtoneInterval, target: self, selector: #selector(CallViewController.playRingtone), userInfo: nil, repeats: true)
                 
             } catch let sessionError as NSError {
                 
@@ -293,14 +294,19 @@ extension CallViewController {
         
         stopPlayingRingtone()
         
-        // FIXME: call?.hangupCall()
+        let bwCall = ASIPManager.sharedManager().getCurrentCall()
+        if bwCall.isIncoming && (bwCall.lastState == .IncomingRinging || bwCall.lastState == .IncomingTrying) {
+            ASIPManager.sharedManager().rejectIncomingCall()
+        } else {
+            ASIPManager.sharedManager().hangupCall();
+        }
     }
 
     @IBAction func onAnswer(sender: AnyObject) {
         
         stopPlayingRingtone()
         
-        // FIXME: call?.answerCall(.OK)
+        ASIPManager.sharedManager().answerIncomingCall()
     }
 }
 

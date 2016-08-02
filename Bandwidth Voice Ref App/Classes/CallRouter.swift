@@ -38,11 +38,9 @@ class CallRouter: NSObject {
     // MARK: - Class methods
     
     func makeCallTo(number: String) {
-        /* FIXME:
-        if let call = SIPManager.sharedInstance.makeCallTo(number) {
-            
-            presentCallViewController(call)
-        }*/
+        if ASIPManager.sharedManager().makeCallTo(number) {
+            presentCallViewController()
+        }
     }
 }
 
@@ -63,7 +61,7 @@ private extension CallRouter {
         return false
     }
 
-    private func presentCallViewController(callId: NSNumber) {
+    private func presentCallViewController() {
         
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
             
@@ -72,7 +70,6 @@ private extension CallRouter {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 
                 let callVc = storyboard.instantiateViewControllerWithIdentifier(kCallViewControllerIdentifier) as! CallViewController
-                callVc.call = callId
                 
                 mainNav.presentViewController(callVc, animated: true, completion: nil)
             }
@@ -87,21 +84,18 @@ extension CallRouter {
     func whenCallIsReceived(notification: NSNotification) {
         
         // Check if the notification includes a call id
-        if let callId = notification.userInfo?["call"] as? NSNumber {
+        if notification.name == "SIPManager.CallReceivedNotification" {
             
             // Check if we already have a call in progress
-            
             if isPresentingCallViewController() {
                 
                 // If we do, respond to the call as busy
                 
-                // FIXME: call.answerCall(.BusyHere)
-                
+                ASIPManager.sharedManager().rejectIncomingCall();
             } else {
-                
                 // If we don't, present the incoming call interface
                 
-                presentCallViewController(callId)
+                presentCallViewController()
             }
         }
     }

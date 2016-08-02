@@ -7,6 +7,7 @@
 //
 
 #import "BWSoftphoneDelegate.h"
+#import "CurrentCallHolder.h"
 #import <Foundation/Foundation.h>
 #include "ali_mac_str_utils.h"
 
@@ -29,22 +30,16 @@
 }
 
 -(void) softphoneHasIncomingEvent:(Softphone::EventHistory::Event::Pointer) event {
-    switch (event->eventType)
-    {
-        case Softphone::EventHistory::EventType::Call:
-            [_sipManager onIncomingCall:event->getEventId()];
-            break;
-            
-        default:
-            // unhandled event type
-            break;
+    if (event->isCall()) {
+        [CurrentCallHolder acquire:event];
+        [_sipManager onIncomingCall];
     }
 }
 
 -(void) softphoneCall:(Softphone::EventHistory::CallEvent::Pointer) call changedState:(Call::State::Type) state
 {
-    [_sipManager onCallStateChanged:call->getEventId()
-                       changedState:[BWSoftphoneDelegate acrobbitsCallStateToBWCallState:state]];
+    [CurrentCallHolder setLastState:state];
+    [_sipManager onCallStateChanged:[BWSoftphoneDelegate acrobbitsCallStateToBWCallState:state]];
 }
 
 +(RegistrationState) acrobbitsRegStateToBWRegState:(Registrator::State::Type) state

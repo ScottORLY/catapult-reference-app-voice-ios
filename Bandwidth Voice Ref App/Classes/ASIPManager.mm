@@ -7,6 +7,7 @@
 
 #import "ASIPManager.h"
 #import "BWSoftphoneDelegate.h"
+#import "CurrentCallHolder.h"
 
 #include "ali_mac_str_utils.h"
 #import "ali_xml_parser2_interface.h"
@@ -19,22 +20,14 @@
 
 // MARK: - Class methods
 
-@implementation ASIPManager
-
-NSString *sipAccountXmlFormat = @"<account id=\"sip\">"
-                        "<username>%@</username>"
-                        "<password>%@</password>"
-                        "<host>%@</host>"
-                        "</account>";
-
-ali::string license("<root><saas><identifier>"
-                    "libsoftphone.saas.bandwith.android"
-                    "</identifier></saas></root>");
-
-ali::xml::tree              _sipAccount;
-Softphone::Instance *       _softphone;
-/// a C++ class which converts the callbacks into ObjectiveC selector invocations
-SoftphoneObserverProxy *    _softphoneObserverProxy;
+@implementation ASIPManager {
+    NSString *sipAccountXmlFormat;
+    ali::string license;
+    ali::xml::tree _sipAccount;
+    Softphone::Instance *_softphone;
+    /// a C++ class which converts the callbacks into ObjectiveC selector invocations
+    SoftphoneObserverProxy *_softphoneObserverProxy;
+}
 
 + (instancetype)sharedManager
 {
@@ -50,7 +43,15 @@ SoftphoneObserverProxy *    _softphoneObserverProxy;
     self = [super init];
     
     if (self) {
+        sipAccountXmlFormat = @"<account id=\"sip\">"
+            "<username>%@</username>"
+            "<password>%@</password>"
+            "<host>%@</host>"
+            "</account>";
 
+        license = "<root><saas><identifier>"
+                "libsoftphone.saas.bandwith.android"
+                "</identifier></saas></root>";
     }
     
     return self;
@@ -89,18 +90,67 @@ SoftphoneObserverProxy *    _softphoneObserverProxy;
     _softphoneObserverProxy = new SoftphoneObserverProxy([[BWSoftphoneDelegate alloc] initWithSipManager:self]);
     _softphone->setObserver(_softphoneObserverProxy);
     
-    // accounts are saved persistently, in this demo we always create them
-    // again. The account ID's are in the XML above
-    _softphone->registration()->deleteAccount("sip");
+    if (_softphone->registration()->getAccount("sip") == NULL) {
     
-    _softphone->registration()->saveAccount(_sipAccount);
+        _softphone->registration()->saveAccount(_sipAccount);
     
-    // we use a single-account configuration in this example, make sure account
-    // with our id "sip" is set as default
-    
-    _softphone->registration()->updateAll();
+        _softphone->registration()->updateAll();
+    }
     
     _softphone->state()->update(_softphone->state()->Active);
+}
+
+- (void) answerIncomingCall
+{
+    Call::State::Type cs = _softphone->calls()->getState([CurrentCallHolder get]);
+
+    if(cs != Call::State::IncomingRinging && cs != Call::State::IncomingIgnored)
+        return;
+    
+    _softphone->calls()->answerIncoming([CurrentCallHolder get], Call::DesiredMedia::voiceOnly());
+}
+
+- (void) rejectIncomingCall
+{
+    Call::State::Type cs = _softphone->calls()->getState([CurrentCallHolder get]);
+    
+    if(cs != Call::State::IncomingRinging && cs != Call::State::IncomingIgnored)
+        return;
+    
+    _softphone->calls()->rejectIncoming([CurrentCallHolder get]);
+    _softphone->calls()->close([CurrentCallHolder get]);
+}
+
+- (void) hangupCall
+{
+    _softphone->calls()->close([CurrentCallHolder get]);
+}
+
+- (BOOL) makeCallTo:(NSString *) number
+{
+    Softphone::EventHistory::CallEvent::Pointer newCall = Softphone::EventHistory::CallEvent::create("sip",ali::generic_peer_address(ali::mac::str::from_nsstring(number)));
+    
+    
+    Softphone::EventHistory::EventStream::Pointer stream = Softphone::EventHistory::EventStream::load(Softphone::EventHistory::StreamQuery::legacyCallHistoryStreamKey);
+    
+    newCall->setStream(stream);
+    
+    newCall->transients["dialAction"] = "voiceCall";
+    
+    Softphone::Instance::Events::PostResult::Type const result = _softphone->events()->post(newCall);
+    
+    if(result != Softphone::Instance::Events::PostResult::Success)
+    {
+        // report failure
+    } else {
+        [CurrentCallHolder acquire:newCall];
+    }
+    
+    return result == Softphone::Instance::Events::PostResult::Success;
+}
+
+- (BWCall*) getCurrentCall {
+    return [ASIPManager callEventToBWCall:[CurrentCallHolder get]->asCall() withLastState:[CurrentCallHolder getLastState]];
 }
 
 - (void)onRegistrationStateChanged:(RegistrationState) state
@@ -111,23 +161,22 @@ SoftphoneObserverProxy *    _softphoneObserverProxy;
     _registrationState = state;
 }
 
-- (void)onIncomingCall:(unsigned long) callId
+- (void)onIncomingCall
 {
-    NSLog(@"INFO: onIncomingCall %lul", callId);
+    NSLog(@"INFO: onIncomingCall from:%s", [CurrentCallHolder get]->getRemoteUser().getGenericUri().c_str());
     
     dispatch_async(dispatch_get_main_queue(),  ^{
         
         // Make sure we are sending the notification in the main thread
         
         [[NSNotificationCenter defaultCenter] postNotificationName:@"SIPManager.CallReceivedNotification"
-                                                            object:nil
-                                                          userInfo:@{@"call": [NSNumber numberWithUnsignedLong:callId]}];
+                                                            object:nil];
     });
 }
 
-- (void)onCallStateChanged:(unsigned long) callId changedState:(CallState) state
+- (void)onCallStateChanged:(CallState) state
 {
-    NSLog(@"INFO: onCallStateChanged %lu - %@", callId, [ASIPManager callStateToString:state]);
+    NSLog(@"INFO: onCallStateChanged %@", [ASIPManager callStateToString:state]);
 }
 
 + (NSString*)regStateToString:(RegistrationState) state
@@ -186,6 +235,17 @@ SoftphoneObserverProxy *    _softphoneObserverProxy;
     }
     
     return callStateStr;
+}
+
++(BWCall*) callEventToBWCall:(Softphone::EventHistory::CallEvent&) callEvent
+               withLastState:(Call::State::Type) lastState {
+    BWCall *bwCall = [[BWCall alloc] init];
+    bwCall.isIncoming = (callEvent.getDirection() == Softphone::EventHistory::Direction::Type::Incoming);
+    bwCall.localUri = ali::mac::str::to_nsstring(callEvent.getSender().get());
+    bwCall.remoteUri = ali::mac::str::to_nsstring(callEvent.getRemoteUser().getGenericUri());
+    bwCall.lastState = [BWSoftphoneDelegate acrobbitsCallStateToBWCallState:lastState];
+    
+    return bwCall;
 }
 
 @end

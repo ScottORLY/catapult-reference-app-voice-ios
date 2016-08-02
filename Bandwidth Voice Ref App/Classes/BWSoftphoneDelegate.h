@@ -18,6 +18,8 @@
 
 -(id) initWithSipManager:(ASIPManager*) sipManager;
 
++(CallState) acrobbitsCallStateToBWCallState:(Call::State::Type) state;
+
 @end
 
 

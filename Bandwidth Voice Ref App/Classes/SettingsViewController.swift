@@ -63,10 +63,7 @@ class SettingsViewController: UIViewController {
         // Loads the values from the current session
         
         if let session = Session.currentSession {
-            
-            // FIXME: let regState = SIPManager.sharedInstance.registrationState
-            // FIXME: let regStateCode = SIPManager.sharedInstance.registrationStateCode
-            
+                      
             let regStateStr = ASIPManager.regStateToString(ASIPManager.sharedManager().registrationState)
         
             infoEntries = [

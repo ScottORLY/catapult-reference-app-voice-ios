@@ -11,6 +11,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Reachability.h"
+#import "BWCall.h"
 
 @class User;
 
@@ -18,25 +19,6 @@ typedef NS_ENUM(NSInteger, RegistrationState){
     NotRegistered,
     Registering,
     Registered
-};
-
-typedef NS_ENUM(NSInteger, CallState){
-    Unknown,
-    Trying,
-    Ringing,
-    Busy,
-    IncomingTrying,
-    IncomingRinging,
-    IncomingIgnored,
-    IncomingRejected,
-    IncomingMissed,
-    Established,
-    Error,
-    Unauthorized,
-    Terminated,
-    IncomingForwarded,
-    IncomingAnsweredElsewhere,
-    RedirectedToAlternativeService
 };
 
 @interface ASIPManager : NSObject
@@ -53,10 +35,16 @@ typedef NS_ENUM(NSInteger, CallState){
 
 - (id)init;
 - (void)registerWithUser:(User*)user;
+- (void) answerIncomingCall;
+- (void) rejectIncomingCall;
+- (void) hangupCall;
+- (BOOL) makeCallTo:(NSString *) number;
+- (BWCall*) getCurrentCall;
+
 - (void)onRegistrationStateChanged:(RegistrationState) state
                                forAccount:(NSString*)accountId;
-- (void)onIncomingCall:(unsigned long) callId;
-- (void)onCallStateChanged:(unsigned long) callId changedState:(CallState) state;
+- (void)onIncomingCall;
+- (void)onCallStateChanged:(CallState) state;
 
 @end
 
