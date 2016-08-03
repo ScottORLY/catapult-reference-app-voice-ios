@@ -1,118 +1,62 @@
-/*
- *  SoftphoneObserverProxy.cpp
- *  demophone
- *
- *  Created by jiri on 4/1/10.
- *  Copyright 2010 __MyCompanyName__. All rights reserved.
- *
- */
+ //
+ //  SoftphoneObserverProxy.cpp
+ //  Bandwidth Voice Ref App
+ //
+ //  Copyright © 2016 Bandwidth. All rights reserved.
+ //
 
 #include "SoftphoneObserverProxy.h"
+#import "CurrentCallHolder.h"
+#include "ali_mac_str_utils.h"
 
-// ******************************************************************
-SoftphoneObserverProxy::SoftphoneObserverProxy(NSObject<SoftphoneDelegate> * delegate)
-:_delegate(delegate)
-// ******************************************************************
-{
-	_delegate = delegate;
+SoftphoneObserverProxy::SoftphoneObserverProxy(SIPManager * aSipManager) {
+	sipManager = aSipManager;
 }
 
-// ******************************************************************
-SoftphoneObserverProxy::~SoftphoneObserverProxy()
-// ******************************************************************
-{
-	_delegate = nil;
+SoftphoneObserverProxy::~SoftphoneObserverProxy() {
+	sipManager = nil;
 }
 
-#if defined(SOFTPHONE_MULTIPLE_ACCOUNTS)
-// ******************************************************************
-void SoftphoneObserverProxy::onRegistrationStateChanged(ali::string const& accountId, Registrator::State::Type state)
-// ******************************************************************
-{
-    [_delegate softphoneRegistrationStateChanged:state forAccount:accountId];
+void SoftphoneObserverProxy::onRegistrationStateChanged(ali::string const& accountId, Registrator::State::Type state) {
+    [sipManager onRegistrationStateChanged:SoftphoneObserverProxy::acrobbitsRegStateToBWRegState(state)
+                                forAccount:ali::mac::str::to_nsstring(accountId)];
 }
-#else
-// ******************************************************************
-void SoftphoneObserverProxy::onRegistrationStateChanged(Registrator::State::Type state)
-// ******************************************************************
-{
-    [_delegate softphoneRegistrationStateChanged:state];
-}
-#endif
 
-// ******************************************************************
-void SoftphoneObserverProxy::onNetworkChangeDetected(Softphone::Network::Type network)
-// ******************************************************************
-{
+void SoftphoneObserverProxy::onNetworkChangeDetected(Softphone::Network::Type network) {
     // this may be used to reflect the change in GUI, but all reinvites and
     // re-registrations are handled internally by libsoftphone
 }
 
-// ******************************************************************
-void SoftphoneObserverProxy::onIncomingEvent(Softphone::EventHistory::Event::Pointer event)
-// ******************************************************************
-{
-    [_delegate softphoneHasIncomingEvent : event];
+void SoftphoneObserverProxy::onIncomingEvent(Softphone::EventHistory::Event::Pointer event) {
+    if (event->isCall()) {
+        [CurrentCallHolder acquire:event];
+        [sipManager onIncomingCall];
+    }
 }
 
-// ******************************************************************
 void SoftphoneObserverProxy::onCallStateChanged(Softphone::EventHistory::CallEvent::Pointer call,
-                                                Call::State::Type state)
-// ******************************************************************
-{
-    [_delegate softphoneCall:call changedState:state];
+                                                Call::State::Type state) {
+    [CurrentCallHolder setLastState:state];
+    [sipManager onCallStateChanged:SoftphoneObserverProxy::acrobbitsCallStateToBWCallState(state)];
 }
 
-// ******************************************************************
 void SoftphoneObserverProxy::onCallHoldStateChanged(Softphone::EventHistory::CallEvent::Pointer call,
-                                                    Call::HoldStates const& states)
-// ******************************************************************
-{
-    [_delegate softphoneCall:call changedHoldStates:states];
-}
+                                                    Call::HoldStates const& states) {}
 
-// ******************************************************************
 void SoftphoneObserverProxy::onMediaStatusChanged(Softphone::EventHistory::CallEvent::Pointer call,
-                                                  Call::MediaStatus const& media)
-// ******************************************************************
-{
-    [_delegate softphoneCall:call mediaStatusChanged:media];
-}
+                                                  Call::MediaStatus const& media) {}
 
-// ******************************************************************
-void SoftphoneObserverProxy::onAudioRouteChanged(AudioRoute::Type route)
-// ******************************************************************
-{
-    [_delegate softphoneAudioRouteChanged:route];
-}
+void SoftphoneObserverProxy::onAudioRouteChanged(AudioRoute::Type route) {}
 
-// ******************************************************************
-void SoftphoneObserverProxy::onTransferOffered(Softphone::EventHistory::CallEvent::Pointer call)
-// ******************************************************************
-{
-	[_delegate softphoneTransferOffered:call];
-}
+void SoftphoneObserverProxy::onTransferOffered(Softphone::EventHistory::CallEvent::Pointer call) {}
 
-// ******************************************************************
 void SoftphoneObserverProxy::onTransferResult(Softphone::EventHistory::CallEvent::Pointer call,
-                                              bool success)
-// ******************************************************************
-{
-	[_delegate softphoneTransferResultForCall:call success:success];
-}
+                                              bool success) {}
 
-// ******************************************************************
 void SoftphoneObserverProxy::onEventsChanged(Softphone::EventHistory::ChangedEvents const& events,
-                                             Softphone::EventHistory::ChangedStreams const& streams)
-// ******************************************************************
-{
-    [_delegate softphoneHasChangedEvents:events streams:streams];
-}
+                                             Softphone::EventHistory::ChangedStreams const& streams) {}
 
-// ******************************************************************
-ali::string SoftphoneObserverProxy::getRingtone(Softphone::EventHistory::Event::Pointer event)
-// ******************************************************************
-{
+ali::string SoftphoneObserverProxy::getRingtone(Softphone::EventHistory::Event::Pointer event) {
     if(event->eventType == Softphone::EventHistory::EventType::Message)
     {
         return "drum";
@@ -137,27 +81,58 @@ ali::string SoftphoneObserverProxy::getRingtone(Softphone::EventHistory::Event::
     }
 }
 
-#if defined(SOFTPHONE_MULTIPLE_ACCOUNTS)
+void SoftphoneObserverProxy::onVoicemail(ali::string const& accountId, Voicemail::Record const& voicemail) {}
 
-// ******************************************************************
-void SoftphoneObserverProxy::onVoicemail(ali::string const& accountId, Voicemail::Record const& voicemail)
-// ******************************************************************
+void SoftphoneObserverProxy::onSimulatedMicrophoneStopped() {}
+
+RegistrationState SoftphoneObserverProxy::acrobbitsRegStateToBWRegState(Registrator::State::Type state)
 {
-    [_delegate voicemailAvailable:voicemail forAccount:accountId];
-}
-#else
-// ******************************************************************
-void SoftphoneObserverProxy::onVoicemail(Voicemail::Record const& voicemail)
-// ******************************************************************
-{
-    [_delegate voicemailAvailable:voicemail];
+    switch (state) {
+        case Registrator::State::Type::Registered:
+            return Registered;
+        case Registrator::State::Type::Registering:
+            return Registering;
+        default:
+            return NotRegistered;
+            
+    }
 }
 
-#endif
-
-// ******************************************************************
-void SoftphoneObserverProxy::onSimulatedMicrophoneStopped()
-// ******************************************************************
+CallState SoftphoneObserverProxy::acrobbitsCallStateToBWCallState(Call::State::Type state)
 {
-    [_delegate onSimulatedMicrophoneStopped];
+    switch (state) {
+        case Call::State::Type::Busy:
+            return Busy;
+        case Call::State::Type::Error:
+            return Error;
+        case Call::State::Type::Established:
+            return Established;
+        case Call::State::Type::IncomingAnsweredElsewhere:
+            return IncomingAnsweredElsewhere;
+        case Call::State::Type::IncomingForwarded:
+            return IncomingForwarded;
+        case Call::State::Type::IncomingIgnored:
+            return IncomingIgnored;
+        case Call::State::Type::IncomingMissed:
+            return IncomingMissed;
+        case Call::State::Type::IncomingRejected:
+            return IncomingRejected;
+        case Call::State::Type::IncomingRinging:
+            return IncomingRinging;
+        case Call::State::Type::IncomingTrying:
+            return IncomingTrying;
+        case Call::State::Type::RedirectedToAlternativeService:
+            return RedirectedToAlternativeService;
+        case Call::State::Type::Ringing:
+            return Ringing;
+        case Call::State::Type::Terminated:
+            return Terminated;
+        case Call::State::Type::Trying:
+            return Trying;
+        case Call::State::Type::Unauthorized:
+            return Unauthorized;
+        case Call::State::Type::Unknown:
+            return Unknown;
+    }
 }
+

@@ -6,11 +6,10 @@
 //
 
 #import "SIPManager.h"
-#import "BWSoftphoneDelegate.h"
 #import "CurrentCallHolder.h"
+#import "ali_xml_parser2_interface.h"
 
 #include "ali_mac_str_utils.h"
-#import "ali_xml_parser2_interface.h"
 #include "Softphone.h"
 #include "SoftphoneObserverProxy.h"
 
@@ -94,7 +93,7 @@
     Softphone::Preferences & preferences = _softphone->settings()->getPreferences();
     preferences.trafficLogging.set(true);
     
-    _softphoneObserverProxy = new SoftphoneObserverProxy([[BWSoftphoneDelegate alloc] initWithSipManager:self]);
+    _softphoneObserverProxy = new SoftphoneObserverProxy(self);
     _softphone->setObserver(_softphoneObserverProxy);
     
     if (_softphone->registration()->getAccount("sip") == NULL) {
@@ -245,7 +244,7 @@
     BWCall *bwCall = [[BWCall alloc] init];
     bwCall.isIncoming = (callEvent.getDirection() == Softphone::EventHistory::Direction::Type::Incoming);
     bwCall.remoteUri = ali::mac::str::to_nsstring(callEvent.getRemoteUser().getTransportUri().get());
-    bwCall.lastState = [BWSoftphoneDelegate acrobbitsCallStateToBWCallState:lastState];
+    bwCall.lastState = SoftphoneObserverProxy::acrobbitsCallStateToBWCallState(lastState);
     
     return bwCall;
 }

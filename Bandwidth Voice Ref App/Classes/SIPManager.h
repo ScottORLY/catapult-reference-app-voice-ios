@@ -2,7 +2,6 @@
 //  SIPManager.h
 //  Bandwidth Voice Ref App
 //
-//  Created by Isac Souza on 28/7/16.
 //  Copyright © 2016 Bandwidth. All rights reserved.
 //
 
