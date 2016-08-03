@@ -606,16 +606,17 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/libsoftphone/lib",
+					"libsoftphone/lib/Release-iphoneos",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
 					libsoftphone/lib,
-					"libsoftphone/lib/Debug-iphoneos",
 					"$(inherited)",
+					"libsoftphone/lib/Release-iphoneos",
 				);
 				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
 					"$(inherited)",
 					libsoftphone/lib,
-					"libsoftphone/lib/Debug-iphonesimulator",
+					"libsoftphone/lib/Release-iphoneos",
 				);
 				OTHER_LDFLAGS = (
 					"-lali-iphone",
@@ -657,7 +658,6 @@
 					"libsoftphone/lib/Release-iphoneos",
 					"$(inherited)",
 					libsoftphone/lib,
-					"$(PROJECT_DIR)/libsoftphone/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-lali-iphone",

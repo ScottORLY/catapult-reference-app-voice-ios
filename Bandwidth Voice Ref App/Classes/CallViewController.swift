@@ -330,8 +330,8 @@ extension CallViewController: CallDelegate {
                     self.startCallDurationTimer()
                     
                     break
-                    
-                case .Terminated:
+                
+                case .Terminated, .Unauthorized, .Busy, .Error, .Unknown:
                     
                     UIDevice.currentDevice().proximityMonitoringEnabled = false
                     
