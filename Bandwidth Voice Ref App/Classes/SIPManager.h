@@ -32,6 +32,7 @@ typedef NS_ENUM(NSInteger, RegistrationState){
  */
 + (instancetype)sharedManager;
 + (NSString*)regStateToString:(RegistrationState) state;
++ (NSString*)getCallReceivedNotificationName;
 
 - (id)init;
 - (void) registerWithUser:(User*)user;

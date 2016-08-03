@@ -197,7 +197,7 @@
         
         // Make sure we are sending the notification in the main thread
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"SIPManager.CallReceivedNotification"
+        [[NSNotificationCenter defaultCenter] postNotificationName:[SIPManager getCallReceivedNotificationName]
                                                             object:nil];
     });
 }
@@ -247,6 +247,10 @@
     bwCall.lastState = SoftphoneObserverProxy::acrobbitsCallStateToBWCallState(lastState);
     
     return bwCall;
+}
+
++ (NSString*)getCallReceivedNotificationName {
+    return @"SIPManager.CallReceivedNotification";
 }
 
 @end

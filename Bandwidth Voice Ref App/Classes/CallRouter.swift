@@ -28,11 +28,11 @@ class CallRouter: NSObject {
         
         super.init()
 
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CallRouter.whenCallIsReceived(_:)), name: "SIPManager.CallReceivedNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CallRouter.whenCallIsReceived(_:)), name: SIPManager.getCallReceivedNotificationName(), object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: "SIPManager.CallReceivedNotification", object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: SIPManager.getCallReceivedNotificationName(), object: nil)
     }
     
     // MARK: - Class methods
@@ -84,7 +84,7 @@ extension CallRouter {
     func whenCallIsReceived(notification: NSNotification) {
         
         // Check if the notification includes a call id
-        if notification.name == "SIPManager.CallReceivedNotification" {
+        if notification.name == SIPManager.getCallReceivedNotificationName() {
             
             // Check if we already have a call in progress
             if isPresentingCallViewController() {
