@@ -30,11 +30,11 @@ typedef NS_ENUM(NSInteger, RegistrationState){
  *
  *  @return default manager instance
  */
-+ (instancetype)sharedManager;
-+ (NSString*)regStateToString:(RegistrationState) state;
-+ (NSString*)getCallReceivedNotificationName;
++ (instancetype) sharedManager;
++ (NSString*) regStateToString:(RegistrationState) state;
++ (NSString*) getCallReceivedNotificationName;
 
-- (id)init;
+- (id) init;
 - (void) registerWithUser:(User*)user;
 - (void) unregister;
 - (void) answerIncomingCall;
@@ -47,12 +47,12 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 - (void) setMute:(BOOL)enabled;
 - (BWCall*) getCurrentCall;
 
-- (void)onRegistrationStateChanged:(RegistrationState) state
+- (void) onRegistrationStateChanged:(RegistrationState) state
                                forAccount:(NSString*)accountId;
-- (void)onIncomingCall;
-- (void)onCallStateChanged:(CallState) state;
+- (void) onIncomingCall;
+- (void) onCallStateChanged:(CallState) state;
 
-- (void)setCallDelegate:(id<CallDelegate>)delegate;
+- (void) setCallDelegate:(id<CallDelegate>)delegate;
 
 @end
 

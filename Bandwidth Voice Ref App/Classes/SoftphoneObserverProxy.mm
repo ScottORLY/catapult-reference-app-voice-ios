@@ -85,8 +85,7 @@ void SoftphoneObserverProxy::onVoicemail(ali::string const& accountId, Voicemail
 
 void SoftphoneObserverProxy::onSimulatedMicrophoneStopped() {}
 
-RegistrationState SoftphoneObserverProxy::acrobbitsRegStateToBWRegState(Registrator::State::Type state)
-{
+RegistrationState SoftphoneObserverProxy::acrobbitsRegStateToBWRegState(Registrator::State::Type state) {
     switch (state) {
         case Registrator::State::Type::Registered:
             return Registered;
@@ -98,8 +97,7 @@ RegistrationState SoftphoneObserverProxy::acrobbitsRegStateToBWRegState(Registra
     }
 }
 
-CallState SoftphoneObserverProxy::acrobbitsCallStateToBWCallState(Call::State::Type state)
-{
+CallState SoftphoneObserverProxy::acrobbitsCallStateToBWCallState(Call::State::Type state) {
     switch (state) {
         case Call::State::Type::Busy:
             return Busy;

@@ -10,6 +10,6 @@
 
 @protocol CallDelegate <NSObject>
 
-- (void) onCallStateChanged:(BWCall*)call;
+- (void) onCallStateChanged:(BWCall*) call;
 
 @end

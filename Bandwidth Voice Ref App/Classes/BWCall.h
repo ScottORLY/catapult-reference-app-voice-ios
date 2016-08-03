@@ -37,9 +37,9 @@ typedef NS_ENUM(NSInteger, CallState){
 @property (nonatomic) BOOL isOnHold;
 @property (nonatomic) BOOL isMuted;
 
--(id) init;
+- (id) init;
 
-+ (NSString*)callStateToString:(CallState) state;
++ (NSString*) callStateToString:(CallState) state;
 
 @end
 

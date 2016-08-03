@@ -9,14 +9,13 @@
 
 @implementation BWCall
 
--(id) init {
+- (id) init {
     self = [super init];
     
     return self;
 }
 
-+ (NSString*)callStateToString:(CallState) state
-{
++ (NSString*)callStateToString:(CallState) state {
     NSString *callStateStr;
     
     switch (state) {

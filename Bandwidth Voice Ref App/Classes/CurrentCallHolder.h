@@ -13,11 +13,11 @@
 
 @interface CurrentCallHolder : NSObject
 
-+ (Softphone::EventHistory::CallEvent::Pointer)get;
-+ (void)release:(Softphone::EventHistory::CallEvent::Pointer) callEvent;
-+ (void)acquire:(Softphone::EventHistory::CallEvent::Pointer) callEvent;
-+ (Call::State::Type)getLastState;
-+ (void)setLastState:(Call::State::Type)state;
++ (Softphone::EventHistory::CallEvent::Pointer) get;
++ (void) release:(Softphone::EventHistory::CallEvent::Pointer) callEvent;
++ (void) acquire:(Softphone::EventHistory::CallEvent::Pointer) callEvent;
++ (Call::State::Type) getLastState;
++ (void) setLastState:(Call::State::Type)state;
 
 @end
 

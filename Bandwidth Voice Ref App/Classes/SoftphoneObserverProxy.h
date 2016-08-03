@@ -17,8 +17,8 @@
  */
 class SoftphoneObserverProxy : public Softphone::Observer {
 public:
-	SoftphoneObserverProxy(SIPManager* delegate);
-	virtual ~SoftphoneObserverProxy();
+    SoftphoneObserverProxy(SIPManager* delegate);
+    virtual ~SoftphoneObserverProxy();
 
     virtual void onNetworkChangeDetected(Softphone::Network::Type network) ALI_ATTRIBUTE_OVERRIDE;
 
