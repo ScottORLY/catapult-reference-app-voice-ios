@@ -1,14 +1,14 @@
 # Bandwidth Voice Reference iOS App
 
 This project is provided as an example on how to add voice support to an iOS application
-using the Catapult platform and the BWSip framework. This project is a fully functioning Android app that leverages the BWsip framework to register users, and make and receive calls. Bandwidth’s provides the Mobile SDK and Reference Apps as “Beta”, free of charge to try and use.  If you are looking for a fully supported commercial Mobile SDK for iOS and Android compatible with Bandwidth platform and services, please contact us. 
+using the Catapult platform and the Acrobits SDK. This project is a fully functioning iOS app that leverages the Acrobits SDK to register users, and make and receive calls. Acrobits provides a fully featured commercial SDK for mobile applications that wish to integrate voice capabilities and is fully compatible with Bandwidth's endpoint. 
 
 The following features are demonstrated:
 
 * Provisioning a new user
 * Making and receiving phone calls
 
-![App screenshot](https://github.com/bandwidthcom/catapult-reference-app-voice-ios/blob/master/screenshot.png)
+![App screenshot](https://github.com/bandwidthcom/catapult-reference-app-voice-ios/raw/master/screenshot.png)
 
 ## Before you start
 Before you get started, there are a few things that you will need to have set up first.
@@ -17,12 +17,6 @@ Before you get started, there are a few things that you will need to have set up
 - [Xcode 7.0 or newer](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 - A device running iOS 8.0 or newer (this is optional, you can test using the iOS Simulator only)
 - An account set up on the Bandwidth Application Dashboard
-
-## IMPORTANT NOTE ABOUT IPv6    
-
-The core components of PJSIP, such as pjlib, pjmedia, pjsip, actually already support IPv6 since some years ago (the wiki for IPv6 is available here: https://trac.pjsip.org/repos/wiki/IPv6). We have also tested PJSIP in IPv6-only DNS64/NAT64 network environment (as described in Apple's official doc: https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/NetworkingOverview/UnderstandingandPreparingfortheIPv6Transition/UnderstandingandPreparingfortheIPv6Transition.html#//apple_ref/doc/uid/TP40010220-CH213-SW16) and find that it works well.
-
-The only limitation is PJNATH and DNS resolution for IPv6. Note that both are optional since PJNATH is theoretically not required in pure IPv6 network and DNS resolution is only used if you set DNS server setting in pjsua config (by default DNS server is empty, and OS hostname resolution is used). Nevertheless, to ensure better compatibility, we are currently working to add IPv6 support for PJNATH as documented in ticket #422 (https://trac.pjsip.org/repos/ticket/422) and it's currently our topmost priority. While for DNS, if you use it (again, by default it's disabled in PJSIP) and require IPv6 support, you can set an external resolver instead.
 
 ### Setting up your Bandwidth account
 - [Need to get detailed instructions for this part]
@@ -38,7 +32,7 @@ Just grab this repository by running:
 ## Open the project
 - Launch Xcode
 - Click File -> Open...
-- Navigate to the folder where the project was cloned and open the ```.xcodeproj``` file
+- Navigate to the folder where the project was cloned and open the `.xcodeproj` file
 
 ## Replace server URL
 If you try to Build and Run the app at this point you will get the following build error:
@@ -47,8 +41,8 @@ If you try to Build and Run the app at this point you will get the following bui
 Error: you must set the server URL in the Config.swift file
 ```
 
-To fix that, you need to open the ```Config.swift``` file (or click the error to be taken there
-directly) and replace the ```<replace me>``` placeholder with the URL of the server you set up 
+To fix that, you need to open the `Config.swift` file (or click the error to be taken there
+directly) and replace the `<replace me>` placeholder with the URL of the server you set up 
 in the steps above.
 
 > Make sure you do not have a trailing slash in the URL
@@ -67,20 +61,59 @@ certificates and provisioned your device(s) as per [Apple's instructions](https:
 as the simulator.
 
 ## Adding voice support to your own app
-The only file you will need to add to your app is the ```BWSip.framework``` and also link with 
-its dependencies:
 
-* libstdc++.dylib
-* libresolv.dylib
-* CoreLocation.framework
-* SystemConfiguration.framework
-* AVFoundation.framework
-* AudioToolbox.framework
+In order to include the Acrobits SDK into your project, copy the ```libsoftphone``` folder to your application and also link with its dependencies:
 
-You can then use the code provided by this sample app as the basis for your own implementation. The 
+*  PushKit.framework
+*  MediaPlayer.framework
+*  AddressBook.framework
+*  AddressBookUI.framework
+*  UIKit.framework
+*  Foundation.framework
+*  QuartzCore.framework
+*  CoreText.framework
+*  CoreVideo.framework
+*  CoreGraphics.framework
+*  libz.tbd
+*  liblucene-core-static.a
+*  liblucene-shared-static.a
+*  libopus.a
+*  libvpx.a
+*  libavcodec.a
+*  libavutil.a
+*  Security.framework
+*  Accelerate.framework
+*  AVFoundation.framework
+*  VideoToolbox.framework
+*  CoreTelephony.framework
+*  CoreMedia.framework
+*  libstdc++.dylib
+*  libresolv.dylib
+*  CoreLocation.framework
+*  SystemConfiguration.framework
+*  AudioToolbox.framework
+
+You also need to change the following properties on the Build Settings:
+
+ - Add `$(PROJECT_DIR)/libsoftphone` to `FRAMEWORK_SEARCH_PATHS`
+ - Add `libsoftphone/include/ali` and `libsoftphone/include/ali/MacOS` to `HEADER_SEARCH_PATHS`
+ - Add `libsoftphone/lib` and `libsoftphone/lib/Release-iphoneos` to `LIBRARY_SEARCH_PATHS`
+ - Add `-lali-iphone`, `-lsoftphone` and `-lsqlite3` to `OTHER_LDFLAGS`
+ - Add `libsoftphone/include/ali/**` and `libsoftphone/shared/**` to `USER_HEADER_SEARCH_PATHS`
+
+One additional requirement is a global variable with a build number that will be used by the SDK for logs and tracking:
+
+```
+unsigned long appBuildNumber = (42);
+```
+
+You can use a `buildNumber.cpp` file to hold this variable and ideally the number should be auto-generated for each build.
+
+After this you ca use the code provided by this sample app as the basis for your own implementation. The 
 framework can be used from Objective-C or Swift (using a [bridging header](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/BuildingCocoaApps/MixandMatch.html#//apple_ref/doc/uid/TP40014216-CH10-XID_77)).
 
-More BWSip resources:
+If you are writing a Swift application, you cannot interact with the SDK directly (or include any headers from it) from Swift code. You will have to create an Objective-C class for the interaction and then use it from Swift code. The `SIPManager` and `SoftphoneObserverProxy` are the responsibles for this abstraction in this reference application.
 
-* [Dev Guide](https://github.com/bandwidthcom/catapult-reference-app-voice-ios/blob/master/bwsip-dev-guide-ios.pdf)
-* [API Reference](https://github.com/bandwidthcom/catapult-reference-app-voice-ios/blob/master/bwsip-api-ios.pdf)
+More Acrobits resources:
+
+[Documentation](https://doc.acrobits.net/cloudsoftphone/index.html)
