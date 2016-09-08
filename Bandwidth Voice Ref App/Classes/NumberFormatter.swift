@@ -23,23 +23,13 @@ class NumberFormatter {
         - returns: the formatted number
     */
     class func formatE164Number(number: String) -> String {
-        
         var numberToFormat = number
         
         if let countryCodeRange = numberToFormat.rangeOfString("+1") {
-            
             numberToFormat.replaceRange(countryCodeRange, with: "")
         }
         
-        if numberToFormat.characters.count == 10 {
-            
-            if let masked = applyPhoneMaskToNumber(numberToFormat) {
-                
-                return masked
-            }
-        }
-        
-        return number;
+        return applyPhoneMaskToNumber(numberToFormat)
     }
     
     /**
@@ -50,26 +40,18 @@ class NumberFormatter {
         - returns: the formatted number, or nil if the digit could not be applied
     */
     class func inputDigit(digit: String, inFormattedNumber number: String) -> String? {
-        
         switch digit {
-            
         case "":
-            
             if number.characters.count > 0 {
-                
                 let clean = removeFormatting(number)
-                
                 return applyPhoneMaskToNumber(clean.substringToIndex(clean.endIndex.predecessor()))
             }
             
         case "0", "1", "2", "3", "4", "5", "6", "7", "8", "9":
-            
             let clean = removeFormatting(number) + digit
-            
             return applyPhoneMaskToNumber(clean)
             
         default:
-            
             break
         }
         
@@ -83,11 +65,9 @@ class NumberFormatter {
         - returns: the clean number string
     */
     class func removeFormatting(number: String) -> String {
-        
         var cleanNumber = number
         
         while let nonDigitRange = cleanNumber.rangeOfCharacterFromSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet) {
-            
             cleanNumber.replaceRange(nonDigitRange, with: "")
         }
         
@@ -99,43 +79,37 @@ class NumberFormatter {
 
 private extension NumberFormatter {
     
-    private class func applyPhoneMaskToNumber(number: String) -> String? {
-        
-        var output = ""
-        
-        var digitCount = number.characters.count
-        
-        var maskIndex = kFormattedPhoneMask.startIndex
-        
-        var numberIndex = number.startIndex
-        
-        while (digitCount > 0 && maskIndex.distanceTo(kFormattedPhoneMask.endIndex) > 0) {
-            
-            let maskChar = kFormattedPhoneMask[maskIndex]
-            
-            switch maskChar {
-                
-            case "#":
-                
-                output.append(number[numberIndex])
-                
-                numberIndex = numberIndex.successor()
-                
-                digitCount--
-                
-            default:
-                
-                output.append(maskChar)
+    private class func applyPhoneMaskToNumber(number: String) -> String {
+        let digits = number.stringByTrimmingCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+        var digitCount = digits.characters.count
+
+        if (digitCount > 0) {
+            var output = ""
+
+            var maskIndex = kFormattedPhoneMask.startIndex
+            var numberIndex = digits.startIndex
+
+            while (digitCount > 0 && maskIndex.distanceTo(kFormattedPhoneMask.endIndex) > 0) {
+                let maskChar = kFormattedPhoneMask[maskIndex]
+
+                switch maskChar {
+                case "#":
+                    output.append(digits[numberIndex])
+                    numberIndex = numberIndex.successor()
+                    digitCount -= 1
+
+                default:
+                    output.append(maskChar)
+                }
+
+                maskIndex = maskIndex.successor()
             }
             
-            maskIndex = maskIndex.successor()
+            if digitCount == 0 {
+                return output
+            }
         }
         
-        if digitCount == 0 {
-            
-            return output
-        }
-        
-        return nil
+        return number
     }
 }
