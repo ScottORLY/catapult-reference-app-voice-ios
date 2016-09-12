@@ -299,6 +299,8 @@ extension CallViewController {
         } else {
             SIPManager.sharedManager().hangupCall()
         }
+
+        dismissViewControllerAnimated(true, completion: nil)
     }
 
     @IBAction func onAnswer(sender: AnyObject) {

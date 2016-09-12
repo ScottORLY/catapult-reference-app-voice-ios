@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Only asks the user for notification permissions on iOS 8 (local notifications do not require permissions on earlier versions)
         
-        if application.respondsToSelector("registerUserNotificationSettings:") {
+        if application.respondsToSelector(#selector(UIApplication.registerUserNotificationSettings(_:))) {
             
             let settings = UIUserNotificationSettings(forTypes: [.Badge, .Sound, .Alert], categories: nil)
             

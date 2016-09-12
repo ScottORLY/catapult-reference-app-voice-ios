@@ -85,7 +85,7 @@ class CatapultService {
                         
                     case .Dictionary(let dictionary):
                         
-                        if var user = User.fromJSON(dictionary) {
+                        if let user = User.fromJSON(dictionary) {
                             
                             user.password = password
                             
