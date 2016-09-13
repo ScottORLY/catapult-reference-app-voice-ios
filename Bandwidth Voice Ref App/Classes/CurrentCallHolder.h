@@ -9,7 +9,7 @@
 #define CurrentCallHolder_h
 
 #import <Foundation/Foundation.h>
-#include "Softphone.h"
+#include <Softphone/Softphone.h>
 
 @interface CurrentCallHolder : NSObject
 

@@ -32,13 +32,12 @@
 		15B2E6A51ACD5AF5003BDD65 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */; };
 		15B2E6A71ACD5B03003BDD65 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */; };
 		15B2E6A91ACD5B1C003BDD65 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */; };
-		15B2E6AB1ACD5B24003BDD65 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */; };
-		15B2E6AD1ACD5B40003BDD65 /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */; };
-		15B2E6AF1ACD5B8C003BDD65 /* libstdc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */; };
 		15C824281AD8003F00D3E596 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 15C824261AD7F59700D3E596 /* Reachability.m */; };
 		15D414701ADBE76D00077679 /* ringtoneRepeat.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */; };
 		15D43E631AD3EFAF0086CD53 /* DialpadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */; };
-		E96FF9171D491945003B6E5C /* libsoftphone in Resources */ = {isa = PBXBuildFile; fileRef = E96FF9161D491945003B6E5C /* libsoftphone */; };
+		C139E2BB1D88912800589FA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C139E2BA1D88912800589FA5 /* CFNetwork.framework */; };
+		C139E2BE1D8891FB00589FA5 /* Softphone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C139E2BD1D8891FB00589FA5 /* Softphone.framework */; };
+		C139E2C21D889AD700589FA5 /* Softphone.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C139E2BD1D8891FB00589FA5 /* Softphone.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E96FF91F1D4A42F2003B6E5C /* SIPManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = E96FF91E1D4A42F2003B6E5C /* SIPManager.mm */; };
 		E96FF9211D4A92FA003B6E5C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */; };
 		E96FF9231D4A930B003B6E5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9221D4A930B003B6E5C /* CoreTelephony.framework */; };
@@ -48,12 +47,6 @@
 		E96FF92F1D4B935A003B6E5C /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF92E1D4B935A003B6E5C /* VideoToolbox.framework */; };
 		E96FF9311D4B9454003B6E5C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9301D4B9454003B6E5C /* Accelerate.framework */; };
 		E96FF9331D4B9478003B6E5C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9321D4B9478003B6E5C /* Security.framework */; };
-		E96FF93A1D4B94CB003B6E5C /* liblucene-core-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9341D4B94CB003B6E5C /* liblucene-core-static.a */; };
-		E96FF93B1D4B94CB003B6E5C /* liblucene-shared-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9351D4B94CB003B6E5C /* liblucene-shared-static.a */; };
-		E96FF93C1D4B94CB003B6E5C /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9361D4B94CB003B6E5C /* libopus.a */; };
-		E96FF93D1D4B94CB003B6E5C /* libvpx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9371D4B94CB003B6E5C /* libvpx.a */; };
-		E96FF93E1D4B94CB003B6E5C /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9381D4B94CB003B6E5C /* libavcodec.a */; };
-		E96FF93F1D4B94CB003B6E5C /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9391D4B94CB003B6E5C /* libavutil.a */; };
 		E96FF9411D4B9520003B6E5C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9401D4B9520003B6E5C /* libz.tbd */; };
 		E96FF9431D4B95F3003B6E5C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9421D4B95F3003B6E5C /* CoreGraphics.framework */; };
 		E96FF9461D4B963C003B6E5C /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9441D4B963C003B6E5C /* CoreText.framework */; };
@@ -68,8 +61,22 @@
 		E9E28CF71D4FE46B00E38D31 /* BWCall.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E28CF61D4FE46B00E38D31 /* BWCall.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C139E2C11D889ABC00589FA5 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C139E2C21D889AD700589FA5 /* Softphone.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1593E1BA1AD298D70098C566 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		1593E1BA1AD298D70098C566 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Config.swift; path = Classes/Config.swift; sourceTree = "<group>"; };
 		1593E1BF1AD29CA10098C566 /* HTTPMethod.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
 		1593E1C11AD29CDA0098C566 /* APIEndpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		1593E1C31AD29D350098C566 /* CatapultV1API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CatapultV1API.swift; sourceTree = "<group>"; };
@@ -89,23 +96,21 @@
 		1597C3251C28443D00BCED27 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		15B2E6701ACD573B003BDD65 /* Bandwidth Voice Ref App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bandwidth Voice Ref App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15B2E6741ACD573B003BDD65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		15B2E6751ACD573B003BDD65 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Classes/AppDelegate.swift; sourceTree = "<group>"; };
 		15B2E6771ACD573B003BDD65 /* SessionCheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCheckViewController.swift; sourceTree = "<group>"; };
 		15B2E67A1ACD573B003BDD65 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		15B2E67C1ACD573B003BDD65 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
-		15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.dylib"; path = "usr/lib/libstdc++.dylib"; sourceTree = SDKROOT; };
 		15B2E6B01ACD5D04003BDD65 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		15B2E6B21ACD6550003BDD65 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		15C824251AD7F59700D3E596 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Reachability.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		15C824261AD7F59700D3E596 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Reachability.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtoneRepeat.wav; sourceTree = "<group>"; };
 		15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialpadViewController.swift; sourceTree = "<group>"; };
-		E96FF9161D491945003B6E5C /* libsoftphone */ = {isa = PBXFileReference; lastKnownFileType = folder; path = libsoftphone; sourceTree = "<group>"; };
+		C139E2BA1D88912800589FA5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C139E2BD1D8891FB00589FA5 /* Softphone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Softphone.framework; path = libsoftphone/Softphone.framework; sourceTree = "<group>"; };
 		E96FF91D1D4A42BC003B6E5C /* SIPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIPManager.h; sourceTree = "<group>"; };
 		E96FF91E1D4A42F2003B6E5C /* SIPManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SIPManager.mm; sourceTree = "<group>"; };
 		E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -114,16 +119,9 @@
 		E96FF9251D4AA360003B6E5C /* SoftphoneObserverProxy.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SoftphoneObserverProxy.mm; sourceTree = "<group>"; };
 		E96FF9281D4B92F0003B6E5C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		E96FF92A1D4B9310003B6E5C /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		E96FF92C1D4B932F003B6E5C /* MediaToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaToolbox.framework; path = System/Library/Frameworks/MediaToolbox.framework; sourceTree = SDKROOT; };
 		E96FF92E1D4B935A003B6E5C /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
 		E96FF9301D4B9454003B6E5C /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		E96FF9321D4B9478003B6E5C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		E96FF9341D4B94CB003B6E5C /* liblucene-core-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "liblucene-core-static.a"; path = "libsoftphone/lib/liblucene-core-static.a"; sourceTree = "<group>"; };
-		E96FF9351D4B94CB003B6E5C /* liblucene-shared-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "liblucene-shared-static.a"; path = "libsoftphone/lib/liblucene-shared-static.a"; sourceTree = "<group>"; };
-		E96FF9361D4B94CB003B6E5C /* libopus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopus.a; path = libsoftphone/lib/libopus.a; sourceTree = "<group>"; };
-		E96FF9371D4B94CB003B6E5C /* libvpx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvpx.a; path = libsoftphone/lib/libvpx.a; sourceTree = "<group>"; };
-		E96FF9381D4B94CB003B6E5C /* libavcodec.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavcodec.a; path = libsoftphone/lib/libavcodec.a; sourceTree = "<group>"; };
-		E96FF9391D4B94CB003B6E5C /* libavutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libavutil.a; path = libsoftphone/lib/libavutil.a; sourceTree = "<group>"; };
 		E96FF9401D4B9520003B6E5C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E96FF9421D4B95F3003B6E5C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E96FF9441D4B963C003B6E5C /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
@@ -146,34 +144,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E96FF9511D4B977A003B6E5C /* PushKit.framework in Frameworks */,
-				E96FF94F1D4B96F9003B6E5C /* MediaPlayer.framework in Frameworks */,
+				E96FF9311D4B9454003B6E5C /* Accelerate.framework in Frameworks */,
 				E96FF9291D4B92F0003B6E5C /* AddressBook.framework in Frameworks */,
 				E96FF92B1D4B9310003B6E5C /* AddressBookUI.framework in Frameworks */,
-				E96FF94D1D4B96B9003B6E5C /* UIKit.framework in Frameworks */,
-				E96FF94B1D4B96AB003B6E5C /* Foundation.framework in Frameworks */,
-				E96FF9491D4B9677003B6E5C /* QuartzCore.framework in Frameworks */,
+				15B2E6A51ACD5AF5003BDD65 /* AudioToolbox.framework in Frameworks */,
+				15B2E6A71ACD5B03003BDD65 /* AVFoundation.framework in Frameworks */,
+				C139E2BB1D88912800589FA5 /* CFNetwork.framework in Frameworks */,
+				E96FF9431D4B95F3003B6E5C /* CoreGraphics.framework in Frameworks */,
+				E96FF9211D4A92FA003B6E5C /* CoreMedia.framework in Frameworks */,
+				E96FF9231D4A930B003B6E5C /* CoreTelephony.framework in Frameworks */,
 				E96FF9461D4B963C003B6E5C /* CoreText.framework in Frameworks */,
 				E96FF9471D4B963C003B6E5C /* CoreVideo.framework in Frameworks */,
-				E96FF9431D4B95F3003B6E5C /* CoreGraphics.framework in Frameworks */,
-				E96FF9411D4B9520003B6E5C /* libz.tbd in Frameworks */,
-				E96FF93A1D4B94CB003B6E5C /* liblucene-core-static.a in Frameworks */,
-				E96FF93B1D4B94CB003B6E5C /* liblucene-shared-static.a in Frameworks */,
-				E96FF93C1D4B94CB003B6E5C /* libopus.a in Frameworks */,
-				E96FF93D1D4B94CB003B6E5C /* libvpx.a in Frameworks */,
-				E96FF93E1D4B94CB003B6E5C /* libavcodec.a in Frameworks */,
-				E96FF93F1D4B94CB003B6E5C /* libavutil.a in Frameworks */,
+				E96FF94B1D4B96AB003B6E5C /* Foundation.framework in Frameworks */,
+				E96FF94F1D4B96F9003B6E5C /* MediaPlayer.framework in Frameworks */,
+				E96FF9511D4B977A003B6E5C /* PushKit.framework in Frameworks */,
+				E96FF9491D4B9677003B6E5C /* QuartzCore.framework in Frameworks */,
 				E96FF9331D4B9478003B6E5C /* Security.framework in Frameworks */,
-				E96FF9311D4B9454003B6E5C /* Accelerate.framework in Frameworks */,
-				15B2E6A71ACD5B03003BDD65 /* AVFoundation.framework in Frameworks */,
-				E96FF92F1D4B935A003B6E5C /* VideoToolbox.framework in Frameworks */,
-				E96FF9231D4A930B003B6E5C /* CoreTelephony.framework in Frameworks */,
-				E96FF9211D4A92FA003B6E5C /* CoreMedia.framework in Frameworks */,
-				15B2E6AF1ACD5B8C003BDD65 /* libstdc++.dylib in Frameworks */,
-				15B2E6AD1ACD5B40003BDD65 /* libresolv.dylib in Frameworks */,
-				15B2E6AB1ACD5B24003BDD65 /* CoreLocation.framework in Frameworks */,
+				C139E2BE1D8891FB00589FA5 /* Softphone.framework in Frameworks */,
 				15B2E6A91ACD5B1C003BDD65 /* SystemConfiguration.framework in Frameworks */,
-				15B2E6A51ACD5AF5003BDD65 /* AudioToolbox.framework in Frameworks */,
+				E96FF94D1D4B96B9003B6E5C /* UIKit.framework in Frameworks */,
+				E96FF92F1D4B935A003B6E5C /* VideoToolbox.framework in Frameworks */,
+				E96FF9411D4B9520003B6E5C /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +183,7 @@
 				1593E1D81AD2D84C0098C566 /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		1593E1BE1AD29BFA0098C566 /* API */ = {
@@ -203,6 +195,7 @@
 				1593E1C51AD29EAD0098C566 /* CatapultService.swift */,
 			);
 			name = API;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		1593E1C81AD2A7F00098C566 /* Model */ = {
@@ -213,6 +206,7 @@
 				1593E1CD1AD2A8E60098C566 /* Credentials.swift */,
 			);
 			name = Model;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		1593E1CF1AD2B7F20098C566 /* Session */ = {
@@ -221,6 +215,7 @@
 				1593E1D01AD2B8640098C566 /* Session.swift */,
 			);
 			name = Session;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		1593E1DD1AD2F3010098C566 /* SIP */ = {
@@ -238,35 +233,15 @@
 				E9E28CFB1D510D7700E38D31 /* CallDelegate.h */,
 			);
 			name = SIP;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		15B2E6671ACD573B003BDD65 = {
 			isa = PBXGroup;
 			children = (
-				E96FF9501D4B977A003B6E5C /* PushKit.framework */,
-				E96FF94E1D4B96F9003B6E5C /* MediaPlayer.framework */,
-				E96FF94C1D4B96B9003B6E5C /* UIKit.framework */,
-				E96FF94A1D4B96AB003B6E5C /* Foundation.framework */,
-				E96FF9481D4B9677003B6E5C /* QuartzCore.framework */,
-				E96FF9441D4B963C003B6E5C /* CoreText.framework */,
-				E96FF9451D4B963C003B6E5C /* CoreVideo.framework */,
-				E96FF9421D4B95F3003B6E5C /* CoreGraphics.framework */,
-				E96FF9401D4B9520003B6E5C /* libz.tbd */,
-				E96FF9341D4B94CB003B6E5C /* liblucene-core-static.a */,
-				E96FF9351D4B94CB003B6E5C /* liblucene-shared-static.a */,
-				E96FF9361D4B94CB003B6E5C /* libopus.a */,
-				E96FF9371D4B94CB003B6E5C /* libvpx.a */,
-				E96FF9381D4B94CB003B6E5C /* libavcodec.a */,
-				E96FF9391D4B94CB003B6E5C /* libavutil.a */,
-				E96FF9321D4B9478003B6E5C /* Security.framework */,
-				E96FF9301D4B9454003B6E5C /* Accelerate.framework */,
-				E96FF92E1D4B935A003B6E5C /* VideoToolbox.framework */,
-				E96FF92C1D4B932F003B6E5C /* MediaToolbox.framework */,
-				E96FF92A1D4B9310003B6E5C /* AddressBookUI.framework */,
-				E96FF9281D4B92F0003B6E5C /* AddressBook.framework */,
-				E96FF9161D491945003B6E5C /* libsoftphone */,
 				15B2E6721ACD573B003BDD65 /* Bandwidth Voice Ref App */,
 				15B2E6711ACD573B003BDD65 /* Products */,
+				C139E2B91D888FBD00589FA5 /* Frameworks */,
 				15B2E6B01ACD5D04003BDD65 /* README.md */,
 			);
 			sourceTree = "<group>";
@@ -282,10 +257,9 @@
 		15B2E6721ACD573B003BDD65 /* Bandwidth Voice Ref App */ = {
 			isa = PBXGroup;
 			children = (
-				15B2E6951ACD578E003BDD65 /* Classes */,
+				C139E2BC1D8891BE00589FA5 /* Classes */,
 				15B2E6961ACD579A003BDD65 /* Resources */,
 				15B2E6731ACD573B003BDD65 /* Supporting Files */,
-				15B2E6971ACD5974003BDD65 /* Frameworks */,
 			);
 			path = "Bandwidth Voice Ref App";
 			sourceTree = "<group>";
@@ -300,21 +274,6 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		15B2E6951ACD578E003BDD65 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				1593E1C81AD2A7F00098C566 /* Model */,
-				1593E1CF1AD2B7F20098C566 /* Session */,
-				1593E1BE1AD29BFA0098C566 /* API */,
-				1593E1DD1AD2F3010098C566 /* SIP */,
-				15F4AF5A1AD7E62E00B07B2A /* Utils */,
-				1593E1BD1AD29B150098C566 /* View Controllers */,
-				15B2E6751ACD573B003BDD65 /* AppDelegate.swift */,
-				1593E1BA1AD298D70098C566 /* Config.swift */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		15B2E6961ACD579A003BDD65 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -327,21 +286,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		15B2E6971ACD5974003BDD65 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				15B2E6AE1ACD5B8C003BDD65 /* libstdc++.dylib */,
-				15B2E6AC1ACD5B40003BDD65 /* libresolv.dylib */,
-				E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */,
-				E96FF9221D4A930B003B6E5C /* CoreTelephony.framework */,
-				15B2E6AA1ACD5B24003BDD65 /* CoreLocation.framework */,
-				15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */,
-				15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */,
-				15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */,
-			);
-			path = Frameworks;
-			sourceTree = "<group>";
-		};
 		15F4AF5A1AD7E62E00B07B2A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +294,50 @@
 				15C824261AD7F59700D3E596 /* Reachability.m */,
 			);
 			name = Utils;
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		C139E2B91D888FBD00589FA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E96FF9301D4B9454003B6E5C /* Accelerate.framework */,
+				E96FF9281D4B92F0003B6E5C /* AddressBook.framework */,
+				E96FF92A1D4B9310003B6E5C /* AddressBookUI.framework */,
+				15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */,
+				15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */,
+				C139E2BA1D88912800589FA5 /* CFNetwork.framework */,
+				E96FF9421D4B95F3003B6E5C /* CoreGraphics.framework */,
+				E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */,
+				E96FF9221D4A930B003B6E5C /* CoreTelephony.framework */,
+				E96FF9441D4B963C003B6E5C /* CoreText.framework */,
+				E96FF9451D4B963C003B6E5C /* CoreVideo.framework */,
+				E96FF94A1D4B96AB003B6E5C /* Foundation.framework */,
+				E96FF94E1D4B96F9003B6E5C /* MediaPlayer.framework */,
+				E96FF9501D4B977A003B6E5C /* PushKit.framework */,
+				E96FF9481D4B9677003B6E5C /* QuartzCore.framework */,
+				E96FF9321D4B9478003B6E5C /* Security.framework */,
+				C139E2BD1D8891FB00589FA5 /* Softphone.framework */,
+				15B2E6A81ACD5B1C003BDD65 /* SystemConfiguration.framework */,
+				E96FF94C1D4B96B9003B6E5C /* UIKit.framework */,
+				E96FF92E1D4B935A003B6E5C /* VideoToolbox.framework */,
+				E96FF9401D4B9520003B6E5C /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C139E2BC1D8891BE00589FA5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1593E1C81AD2A7F00098C566 /* Model */,
+				1593E1CF1AD2B7F20098C566 /* Session */,
+				1593E1BE1AD29BFA0098C566 /* API */,
+				1593E1DD1AD2F3010098C566 /* SIP */,
+				15F4AF5A1AD7E62E00B07B2A /* Utils */,
+				1593E1BD1AD29B150098C566 /* View Controllers */,
+				15B2E6751ACD573B003BDD65 /* AppDelegate.swift */,
+				1593E1BA1AD298D70098C566 /* Config.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,9 +348,11 @@
 			buildConfigurationList = 15B2E68F1ACD573B003BDD65 /* Build configuration list for PBXNativeTarget "Bandwidth Voice Ref App" */;
 			buildPhases = (
 				1593E1BC1AD299DC0098C566 /* Check Config File */,
+				C139E2B81D888ED900589FA5 /* Set up Softphone framework */,
 				15B2E66C1ACD573B003BDD65 /* Sources */,
 				15B2E66D1ACD573B003BDD65 /* Frameworks */,
 				15B2E66E1ACD573B003BDD65 /* Resources */,
+				C139E2C11D889ABC00589FA5 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -381,11 +371,12 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Bandwidth;
 				TargetAttributes = {
 					15B2E66F1ACD573B003BDD65 = {
 						CreatedOnToolsVersion = 6.2;
+						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -420,7 +411,6 @@
 				1597C3261C28443D00BCED27 /* LaunchScreen.xib in Resources */,
 				15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */,
 				15D414701ADBE76D00077679 /* ringtoneRepeat.wav in Resources */,
-				E96FF9171D491945003B6E5C /* libsoftphone in Resources */,
 				15B2E67D1ACD573B003BDD65 /* Images.xcassets in Resources */,
 				1595ACD11AD59988005A323B /* ringtone.wav in Resources */,
 			);
@@ -443,6 +433,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if grep -q \"<replace me>\" \"${SCRIPT_INPUT_FILE_0}\"; then\necho -e \"${SCRIPT_INPUT_FILE_0}:14: error: you must set the server URL in the Config.swift file\"\nexit 1\nfi\n";
+		};
+		C139E2B81D888ED900589FA5 /* Set up Softphone framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"",
+			);
+			name = "Set up Softphone framework";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# this assumes the app will have \"Debug\" and \"Release\" configurations. It creates a symlink\n# ACTIVE which leads to Debug or Release Softphone framework. The framework from ACTIVE directory\n# will then be embedded into the resulting .app\nif [[ ! -e ${PROJECT_DIR}/libsoftphone ]]; then\n    unzip ${PROJECT_DIR}/libsoftphone*.zip -d ${PROJECT_DIR}/libsoftphone;\n    ln -s ${PROJECT_DIR}/libsoftphone/Frameworks/ali.framework ${PROJECT_DIR}/libsoftphone/ali.framework;\nfi\n\nln -sf ${PROJECT_DIR}/libsoftphone/Frameworks/${CONFIGURATION}/Softphone.framework ${PROJECT_DIR}/libsoftphone/Softphone.framework";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -514,8 +519,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -524,6 +531,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -557,15 +565,18 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -575,6 +586,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -583,50 +595,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(PROJECT_DIR)/libsoftphone\"",
+					"$(PROJECT_DIR)/libsoftphone",
 				);
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OBJC_CALL_CXX_CDTORS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					libsoftphone/include/ali,
-					libsoftphone/include/ali/MacOS,
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/libsoftphone/lib",
-					"libsoftphone/lib/Release-iphoneos",
-				);
-				"LIBRARY_SEARCH_PATHS[sdk=iphoneos*]" = (
-					libsoftphone/lib,
-					"$(inherited)",
-					"libsoftphone/lib/Release-iphoneos",
-				);
-				"LIBRARY_SEARCH_PATHS[sdk=iphonesimulator*]" = (
-					"$(inherited)",
-					libsoftphone/lib,
-					"libsoftphone/lib/Release-iphoneos",
-				);
 				OTHER_LDFLAGS = (
-					"-lali-iphone",
-					"-lsoftphone",
 					"-lsqlite3",
+					"-framework",
+					Softphone,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bandwidth.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Bandwidth Voice Ref App";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";
-				USER_HEADER_SEARCH_PATHS = "libsoftphone/include/ali/** libsoftphone/shared/**";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -634,40 +622,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEFINES_MODULE = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(PROJECT_DIR)/libsoftphone\"",
+					"$(PROJECT_DIR)/libsoftphone",
 				);
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OBJC_CALL_CXX_CDTORS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					libsoftphone/include/ali,
-					libsoftphone/include/ali/MacOS,
-				);
 				INFOPLIST_FILE = "$(SRCROOT)/Bandwidth Voice Ref App/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"libsoftphone/lib/Release-iphoneos",
-					"$(inherited)",
-					libsoftphone/lib,
-				);
 				OTHER_LDFLAGS = (
-					"-lali-iphone",
-					"-lsoftphone",
 					"-lsqlite3",
+					"-framework",
+					Softphone,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.bandwidth.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "Bandwidth Voice Ref App";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Bandwidth Voice Ref App/Supporting Files/BridgingHeader.h";
-				USER_HEADER_SEARCH_PATHS = "libsoftphone/include/ali/** libsoftphone/shared/**";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

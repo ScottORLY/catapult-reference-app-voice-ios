@@ -7,7 +7,7 @@
 
 #include "SoftphoneObserverProxy.h"
 #import "CurrentCallHolder.h"
-#include "ali_mac_str_utils.h"
+#include <ali/ali_mac_str_utils.h>
 
 SoftphoneObserverProxy::SoftphoneObserverProxy(SIPManager * aSipManager) {
 	sipManager = aSipManager;
@@ -46,7 +46,7 @@ void SoftphoneObserverProxy::onCallHoldStateChanged(Softphone::EventHistory::Cal
 void SoftphoneObserverProxy::onMediaStatusChanged(Softphone::EventHistory::CallEvent::Pointer call,
                                                   Call::MediaStatus const& media) {}
 
-void SoftphoneObserverProxy::onAudioRouteChanged(AudioRoute::Type route) {}
+void SoftphoneObserverProxy::onAudioRouteChanged(Softphone::AudioRoute::Type route) {}
 
 void SoftphoneObserverProxy::onTransferOffered(Softphone::EventHistory::CallEvent::Pointer call) {}
 

@@ -6,9 +6,9 @@
  //
 #pragma once
 
-#include "Softphone.h"
+#include <Softphone/Softphone.h>
 #include "SIPManager.h"
-#include "ali_attribute.h"
+#include <ali/ali_attribute.h>
 
 /*! @class SoftphoneObserverProxy
  @brief A simple class which implements @ref Softphone::Observer and @ref Softphone::ObserverEx C++ interfaces
@@ -35,7 +35,7 @@ public:
     virtual void onMediaStatusChanged(Softphone::EventHistory::CallEvent::Pointer call,
                                       Call::MediaStatus const& media) ALI_ATTRIBUTE_OVERRIDE;
     
-    virtual void onAudioRouteChanged(AudioRoute::Type route) ALI_ATTRIBUTE_OVERRIDE;
+    virtual void onAudioRouteChanged(Softphone::AudioRoute::Type route) ALI_ATTRIBUTE_OVERRIDE;
 	
     virtual ali::string getRingtone(Softphone::EventHistory::Event::Pointer event) ALI_ATTRIBUTE_OVERRIDE;
 
