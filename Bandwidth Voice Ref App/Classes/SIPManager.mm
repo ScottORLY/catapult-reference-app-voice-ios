@@ -7,17 +7,17 @@
 
 #import "SIPManager.h"
 #import "CurrentCallHolder.h"
-#import "ali_xml_parser2_interface.h"
+#import <ali/ali_xml_parser2_interface.h>
 
-#include "ali_mac_str_utils.h"
-#include "Softphone.h"
+#include <ali/ali_mac_str_utils.h>
+#include <Softphone/Softphone.h>
 #include "SoftphoneObserverProxy.h"
 
 #import <UIKit/UIKit.h>
 #import "Bandwidth_Voice_Ref_App-Swift.h"
 
 #define SIP_ACCOUNT_ID "TEST_ACCOUNT"
-#define ACROBITS_LICENSE "libsoftphone.saas.bandwith.android"
+#define ACROBITS_LICENSE "SAAS_LICENCE_CODE"
 
 // MARK: - Class methods
 
@@ -159,7 +159,7 @@
 }
 
 - (void) setSpeakerEnabled:(BOOL)enabled {
-    softphone->audio()->setCallAudioRoute(enabled ? AudioRoute::Type::Speaker : AudioRoute::Type::Headset);
+    softphone->audio()->setCallAudioRoute(enabled ? Softphone::AudioRoute::Type::Speaker : Softphone::AudioRoute::Type::Headset);
 }
 
 - (void) setMute:(BOOL)enabled {

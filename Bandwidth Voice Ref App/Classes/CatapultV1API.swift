@@ -49,7 +49,7 @@ extension CatapultV1API : APIEndpoint {
         
         let (method, path, parameters) = endpointDefinition
         
-        let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
+        let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path)!)
         mutableURLRequest.HTTPMethod = method.rawValue
         mutableURLRequest.timeoutInterval = kDefaultTimeout
                 

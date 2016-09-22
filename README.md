@@ -13,8 +13,8 @@ The following features are demonstrated:
 ## Before you start
 Before you get started, there are a few things that you will need to have set up first.
 
-- A Mac running OS X Yosemite (10.10.3) or newer
-- [Xcode 7.0 or newer](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
+- A Mac running OS X Yosemite (10.11.4) or newer
+- [Xcode 8.0 or newer](https://itunes.apple.com/us/app/xcode/id497799835?mt=12)
 - A device running iOS 8.0 or newer (this is optional, you can test using the iOS Simulator only)
 - An account set up on the Bandwidth Application Dashboard
 
@@ -64,42 +64,31 @@ as the simulator.
 
 In order to include the Acrobits SDK into your project, copy the ```libsoftphone``` folder to your application and also link with its dependencies:
 
-*  PushKit.framework
-*  MediaPlayer.framework
+*  Accelerate.framework
 *  AddressBook.framework
 *  AddressBookUI.framework
-*  UIKit.framework
-*  Foundation.framework
-*  QuartzCore.framework
+*  AudioToolbox.framework
+*  AVFoundation.framework
+*  CFNetwork.framework
+*  CoreGraphics.framework
+*  CoreMedia.framework
+*  CoreTelephony.framework
 *  CoreText.framework
 *  CoreVideo.framework
-*  CoreGraphics.framework
-*  libz.tbd
-*  liblucene-core-static.a
-*  liblucene-shared-static.a
-*  libopus.a
-*  libvpx.a
-*  libavcodec.a
-*  libavutil.a
+*  Foundation.framework
+*  MediaPlayer.framework
+*  PushKit.framework
+*  QuartzCore.framework
 *  Security.framework
-*  Accelerate.framework
-*  AVFoundation.framework
-*  VideoToolbox.framework
-*  CoreTelephony.framework
-*  CoreMedia.framework
-*  libstdc++.dylib
-*  libresolv.dylib
-*  CoreLocation.framework
 *  SystemConfiguration.framework
-*  AudioToolbox.framework
+*  UIKit.framework
+*  VideoToolbox.framework
+*  libz.tbd
 
 You also need to change the following properties on the Build Settings:
 
  - Add `$(PROJECT_DIR)/libsoftphone` to `FRAMEWORK_SEARCH_PATHS`
- - Add `libsoftphone/include/ali` and `libsoftphone/include/ali/MacOS` to `HEADER_SEARCH_PATHS`
- - Add `libsoftphone/lib` and `libsoftphone/lib/Release-iphoneos` to `LIBRARY_SEARCH_PATHS`
- - Add `-lali-iphone`, `-lsoftphone` and `-lsqlite3` to `OTHER_LDFLAGS`
- - Add `libsoftphone/include/ali/**` and `libsoftphone/shared/**` to `USER_HEADER_SEARCH_PATHS`
+ - Add `-lsqlite3`, `-framework` and `Softphone` to `OTHER_LDFLAGS`
 
 One additional requirement is a global variable with a build number that will be used by the SDK for logs and tracking:
 
