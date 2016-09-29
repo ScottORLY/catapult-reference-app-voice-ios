@@ -17,7 +17,7 @@
 #import "Bandwidth_Voice_Ref_App-Swift.h"
 
 #define SIP_ACCOUNT_ID "TEST_ACCOUNT"
-#define ACROBITS_LICENSE "SAAS_LICENCE_CODE"
+#define ACROBITS_LICENSE "tc769fn5cgsjun78qj7qfdm1h3"
 
 // MARK: - Class methods
 
