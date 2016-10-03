@@ -57,28 +57,7 @@ void SoftphoneObserverProxy::onEventsChanged(Softphone::EventHistory::ChangedEve
                                              Softphone::EventHistory::ChangedStreams const& streams) {}
 
 ali::string SoftphoneObserverProxy::getRingtone(Softphone::EventHistory::Event::Pointer event) {
-    if(event->eventType == Softphone::EventHistory::EventType::Message)
-    {
-        return "drum";
-    }else
-    {
-        static int demoCounter = 0;
-        
-        // cycle between the two ringtones. The real app should probably play
-        // some configured ringtone or choose the ringtone based on callee
-        
-        // if this function returns an empty string, the default ringtone
-        // (or callee-specific ringtone, registered via setCalleeCallHandle
-        // will be used
-        
-        if(demoCounter++ % 2)
-        {
-            return "drum";
-        }else
-        {
-            return "ding-dong";
-        }
-    }
+    return "ringtone";
 }
 
 void SoftphoneObserverProxy::onVoicemail(ali::string const& accountId, Voicemail::Record const& voicemail) {}

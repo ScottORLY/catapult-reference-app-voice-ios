@@ -38,6 +38,7 @@
 		C139E2BB1D88912800589FA5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C139E2BA1D88912800589FA5 /* CFNetwork.framework */; };
 		C139E2BE1D8891FB00589FA5 /* Softphone.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C139E2BD1D8891FB00589FA5 /* Softphone.framework */; };
 		C139E2C21D889AD700589FA5 /* Softphone.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C139E2BD1D8891FB00589FA5 /* Softphone.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C1C56EF61D9D555A00EEB8DB /* CallKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1C56EF51D9D555A00EEB8DB /* CallKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		E96FF91F1D4A42F2003B6E5C /* SIPManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = E96FF91E1D4A42F2003B6E5C /* SIPManager.mm */; };
 		E96FF9211D4A92FA003B6E5C /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */; };
 		E96FF9231D4A930B003B6E5C /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E96FF9221D4A930B003B6E5C /* CoreTelephony.framework */; };
@@ -111,6 +112,7 @@
 		15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialpadViewController.swift; sourceTree = "<group>"; };
 		C139E2BA1D88912800589FA5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C139E2BD1D8891FB00589FA5 /* Softphone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Softphone.framework; path = libsoftphone/Softphone.framework; sourceTree = "<group>"; };
+		C1C56EF51D9D555A00EEB8DB /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
 		E96FF91D1D4A42BC003B6E5C /* SIPManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SIPManager.h; sourceTree = "<group>"; };
 		E96FF91E1D4A42F2003B6E5C /* SIPManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SIPManager.mm; sourceTree = "<group>"; };
 		E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -149,6 +151,7 @@
 				E96FF92B1D4B9310003B6E5C /* AddressBookUI.framework in Frameworks */,
 				15B2E6A51ACD5AF5003BDD65 /* AudioToolbox.framework in Frameworks */,
 				15B2E6A71ACD5B03003BDD65 /* AVFoundation.framework in Frameworks */,
+				C1C56EF61D9D555A00EEB8DB /* CallKit.framework in Frameworks */,
 				C139E2BB1D88912800589FA5 /* CFNetwork.framework in Frameworks */,
 				E96FF9431D4B95F3003B6E5C /* CoreGraphics.framework in Frameworks */,
 				E96FF9211D4A92FA003B6E5C /* CoreMedia.framework in Frameworks */,
@@ -305,6 +308,7 @@
 				E96FF92A1D4B9310003B6E5C /* AddressBookUI.framework */,
 				15B2E6A41ACD5AF5003BDD65 /* AudioToolbox.framework */,
 				15B2E6A61ACD5B03003BDD65 /* AVFoundation.framework */,
+				C1C56EF51D9D555A00EEB8DB /* CallKit.framework */,
 				C139E2BA1D88912800589FA5 /* CFNetwork.framework */,
 				E96FF9421D4B95F3003B6E5C /* CoreGraphics.framework */,
 				E96FF9201D4A92FA003B6E5C /* CoreMedia.framework */,
@@ -411,9 +415,9 @@
 			files = (
 				1597C3261C28443D00BCED27 /* LaunchScreen.xib in Resources */,
 				15B2E67B1ACD573B003BDD65 /* Main.storyboard in Resources */,
-				15D414701ADBE76D00077679 /* ringtoneRepeat.wav in Resources */,
 				15B2E67D1ACD573B003BDD65 /* Images.xcassets in Resources */,
 				1595ACD11AD59988005A323B /* ringtone.wav in Resources */,
+				15D414701ADBE76D00077679 /* ringtoneRepeat.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

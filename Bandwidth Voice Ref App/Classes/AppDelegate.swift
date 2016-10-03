@@ -26,5 +26,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
+
+    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+
+        if #available(iOS 10.0, *) {
+
+            return SIPManager.sharedManager().processIntent(userActivity.interaction!.intent)
+
+        } else {
+
+            return false
+
+        }
+
+    }
+
 }
 

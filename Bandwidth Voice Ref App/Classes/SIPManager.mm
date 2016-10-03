@@ -11,9 +11,14 @@
 
 #include <ali/ali_mac_str_utils.h>
 #include <Softphone/Softphone.h>
+#include <Softphone/Softphone_iOS.h>
 #include "SoftphoneObserverProxy.h"
 
+#import <CallKit/CallKit.h>
+#import <CoreTelephony/CTCall.h>
+#import <CoreTelephony/CTCallCenter.h>
 #import <UIKit/UIKit.h>
+
 #import "Bandwidth_Voice_Ref_App-Swift.h"
 
 #define SIP_ACCOUNT_ID "TEST_ACCOUNT"
@@ -61,8 +66,31 @@
         // obtain the SDK instance
         softphone = Softphone::instance();
         
-        Softphone::Preferences & preferences = softphone->settings()->getPreferences();
+        Softphone::Preferences &preferences = softphone->settings()->getPreferences();
         preferences.trafficLogging.set(true);
+
+        softphone->ringtones()->registerRingtone("ringtone", Softphone::RingtoneRecord("ringtone", "ringtone.wav", 0));
+
+        auto *instance = [Softphone_iOS sharedInstance];
+        if ([instance isCallKitAvailable]) {
+            CXProviderConfiguration *cxConfig = [instance callKitConfiguration];
+            cxConfig.supportsVideo = NO;
+            cxConfig.maximumCallGroups = 1;
+            cxConfig.maximumCallsPerCallGroup = 1;
+            cxConfig.iconTemplateImageData = UIImagePNGRepresentation([UIImage imageNamed:@"AppIcon60x60"]);
+            [instance updateCallKitConfiguration: cxConfig];
+        } else {
+            bool const hasCT = NSClassFromString(@"CTCallCenter") != nil;
+            if (hasCT) {
+                CTCallCenter *cc = [[CTCallCenter alloc] init];
+                cc.callEventHandler = ^(CTCall* call) {
+                    NSLog(@"%@", call.callState);
+                    if (cc.currentCalls.count != 0) {
+                        [self performSelectorOnMainThread:@selector(rejectIncomingCall) withObject:nil waitUntilDone:NO];
+                    }
+                };
+            }
+        }
     }
     
     return self;
@@ -222,6 +250,10 @@
 
 - (void)setCallDelegate:(id<CallDelegate>)delegate {
     callDelegate = delegate;
+}
+
+- (BOOL) processIntent:(INIntent *)intent {
+    return [[Softphone_iOS sharedInstance] processIntent:intent];
 }
 
 +(BWCall*) callEventToBWCall:(Softphone::EventHistory::CallEvent&) callEvent
