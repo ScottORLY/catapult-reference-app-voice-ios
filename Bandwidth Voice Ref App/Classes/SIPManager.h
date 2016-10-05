@@ -56,6 +56,7 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 
 - (void) setCallDelegate:(id<CallDelegate>)delegate;
 
+- (BOOL) isCallKitAvailable;
 - (BOOL) processIntent:(INIntent *)intent;
 
 @end

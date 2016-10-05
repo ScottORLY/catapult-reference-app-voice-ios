@@ -207,7 +207,7 @@ private extension CallViewController {
     
     private func startPlayingRingtone() {
 
-        guard #available(iOS 10, *) else {
+        if !SIPManager.sharedManager().isCallKitAvailable() {
 
             if UIApplication.sharedApplication().applicationState == .Active {
 
@@ -250,7 +250,7 @@ private extension CallViewController {
     
     private func stopPlayingRingtone() {
 
-        guard #available(iOS 10, *) else {
+        if !SIPManager.sharedManager().isCallKitAvailable() {
 
             if ringtoneSoundId != nil {
             

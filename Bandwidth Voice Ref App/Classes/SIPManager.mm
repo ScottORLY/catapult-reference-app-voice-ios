@@ -72,7 +72,7 @@
         softphone->ringtones()->registerRingtone("ringtone", Softphone::RingtoneRecord("ringtone", "ringtone.wav", 0));
 
         auto *instance = [Softphone_iOS sharedInstance];
-        if ([instance isCallKitAvailable]) {
+        if ([self isCallKitAvailable]) {
             CXProviderConfiguration *cxConfig = [instance callKitConfiguration];
             cxConfig.supportsVideo = NO;
             cxConfig.maximumCallGroups = 1;
@@ -250,6 +250,11 @@
 
 - (void)setCallDelegate:(id<CallDelegate>)delegate {
     callDelegate = delegate;
+}
+
+- (BOOL) isCallKitAvailable
+{
+    return [[Softphone_iOS sharedInstance] isCallKitAvailable];
 }
 
 - (BOOL) processIntent:(INIntent *)intent {
