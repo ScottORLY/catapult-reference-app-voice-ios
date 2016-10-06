@@ -71,8 +71,8 @@
 
         softphone->ringtones()->registerRingtone("ringtone", Softphone::RingtoneRecord("ringtone", "ringtone.wav", 0));
 
-        auto *instance = [Softphone_iOS sharedInstance];
         if ([self isCallKitAvailable]) {
+            Softphone_iOS *instance = [Softphone_iOS sharedInstance];
             CXProviderConfiguration *cxConfig = [instance callKitConfiguration];
             cxConfig.supportsVideo = NO;
             cxConfig.maximumCallGroups = 1;
