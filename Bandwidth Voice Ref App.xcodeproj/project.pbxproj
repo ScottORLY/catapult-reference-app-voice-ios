@@ -62,6 +62,16 @@
 		E9E28CF71D4FE46B00E38D31 /* BWCall.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E28CF61D4FE46B00E38D31 /* BWCall.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		C11303201DBF9312000F248C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 15B2E6681ACD573B003BDD65 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C113031C1DBF92B5000F248C;
+			remoteInfo = "Set up Softphone framework";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		C139E2C11D889ABC00589FA5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -110,6 +120,7 @@
 		15C824261AD7F59700D3E596 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = Reachability.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		15D4146F1ADBE76D00077679 /* ringtoneRepeat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringtoneRepeat.wav; sourceTree = "<group>"; };
 		15D43E621AD3EFAF0086CD53 /* DialpadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DialpadViewController.swift; sourceTree = "<group>"; };
+		C11303221DBF9426000F248C /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		C139E2BA1D88912800589FA5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		C139E2BD1D8891FB00589FA5 /* Softphone.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Softphone.framework; path = libsoftphone/Softphone.framework; sourceTree = "<group>"; };
 		C1C56EF51D9D555A00EEB8DB /* CallKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CallKit.framework; path = System/Library/Frameworks/CallKit.framework; sourceTree = SDKROOT; };
@@ -246,6 +257,7 @@
 				15B2E6721ACD573B003BDD65 /* Bandwidth Voice Ref App */,
 				15B2E6711ACD573B003BDD65 /* Products */,
 				C139E2B91D888FBD00589FA5 /* Frameworks */,
+				C11303221DBF9426000F248C /* Makefile */,
 				15B2E6B01ACD5D04003BDD65 /* README.md */,
 			);
 			sourceTree = "<group>";
@@ -348,13 +360,29 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		C113031C1DBF92B5000F248C /* Set up Softphone framework */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = C113031D1DBF92B5000F248C /* Build configuration list for PBXLegacyTarget "Set up Softphone framework" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "";
+			dependencies = (
+			);
+			name = "Set up Softphone framework";
+			passBuildSettingsInEnvironment = 1;
+			productName = libsoftphone;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		15B2E66F1ACD573B003BDD65 /* Bandwidth Voice Ref App */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15B2E68F1ACD573B003BDD65 /* Build configuration list for PBXNativeTarget "Bandwidth Voice Ref App" */;
 			buildPhases = (
 				1593E1BC1AD299DC0098C566 /* Check Config File */,
-				C139E2B81D888ED900589FA5 /* Set up Softphone framework */,
 				15B2E66C1ACD573B003BDD65 /* Sources */,
 				15B2E66D1ACD573B003BDD65 /* Frameworks */,
 				15B2E66E1ACD573B003BDD65 /* Resources */,
@@ -363,6 +391,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C11303211DBF9312000F248C /* PBXTargetDependency */,
 			);
 			name = "Bandwidth Voice Ref App";
 			productName = "Catapult Sample App";
@@ -393,6 +422,11 @@
 							};
 						};
 					};
+					C113031C1DBF92B5000F248C = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = Q2MF3NHN7B;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = 15B2E66B1ACD573B003BDD65 /* Build configuration list for PBXProject "Bandwidth Voice Ref App" */;
@@ -409,6 +443,7 @@
 			projectRoot = "";
 			targets = (
 				15B2E66F1ACD573B003BDD65 /* Bandwidth Voice Ref App */,
+				C113031C1DBF92B5000F248C /* Set up Softphone framework */,
 			);
 		};
 /* End PBXProject section */
@@ -442,22 +477,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if grep -q \"<replace me>\" \"${SCRIPT_INPUT_FILE_0}\"; then\necho -e \"${SCRIPT_INPUT_FILE_0}:14: error: you must set the server URL in the Config.swift file\"\nexit 1\nfi\n";
-		};
-		C139E2B81D888ED900589FA5 /* Set up Softphone framework */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"",
-			);
-			name = "Set up Softphone framework";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# this assumes the app will have \"Debug\" and \"Release\" configurations. It creates a symlink\n# ACTIVE which leads to Debug or Release Softphone framework. The framework from ACTIVE directory\n# will then be embedded into the resulting .app\nif [[ ! -e ${PROJECT_DIR}/libsoftphone ]]; then\n    unzip ${PROJECT_DIR}/libsoftphone*.zip -d ${PROJECT_DIR}/libsoftphone;\n    cp -R ${PROJECT_DIR}/libsoftphone/Frameworks/ali.framework ${PROJECT_DIR}/libsoftphone/ali.framework;\nfi\n\ncp -Rf ${PROJECT_DIR}/libsoftphone/Frameworks/${CONFIGURATION}/Softphone.framework ${PROJECT_DIR}/libsoftphone/Softphone.framework";
+			shellScript = "if grep -q \"<replace me>\" \"${SCRIPT_INPUT_FILE_0}\"; then\necho -e \"${SCRIPT_INPUT_FILE_0}:20: error: you must set the server URL in the Config.swift file\"\nexit 1\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -495,6 +515,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C11303211DBF9312000F248C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C113031C1DBF92B5000F248C /* Set up Softphone framework */;
+			targetProxy = C11303201DBF9312000F248C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		1597C3241C28443D00BCED27 /* LaunchScreen.xib */ = {
@@ -661,6 +689,38 @@
 			};
 			name = Release;
 		};
+		C113031E1DBF92B5000F248C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Q2MF3NHN7B;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C113031F1DBF92B5000F248C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q2MF3NHN7B;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -681,6 +741,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		C113031D1DBF92B5000F248C /* Build configuration list for PBXLegacyTarget "Set up Softphone framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C113031E1DBF92B5000F248C /* Debug */,
+				C113031F1DBF92B5000F248C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
