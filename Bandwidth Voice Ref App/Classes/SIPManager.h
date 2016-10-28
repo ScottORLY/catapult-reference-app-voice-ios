@@ -9,6 +9,8 @@
 #define SIPManager_h
 
 #import <Foundation/Foundation.h>
+#import <Intents/Intents.h>
+
 #import "Reachability.h"
 #import "BWCall.h"
 #import "CallDelegate.h"
@@ -53,6 +55,9 @@ typedef NS_ENUM(NSInteger, RegistrationState){
 - (void) onCallStateChanged:(CallState) state;
 
 - (void) setCallDelegate:(id<CallDelegate>)delegate;
+
+- (BOOL) isCallKitAvailable;
+- (BOOL) processIntent:(INIntent *)intent;
 
 @end
 

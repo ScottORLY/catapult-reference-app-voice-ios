@@ -206,67 +206,77 @@ private extension CallViewController {
     }
     
     private func startPlayingRingtone() {
-        
-        if UIApplication.sharedApplication().applicationState == .Active {
-        
-            let ringtoneUrl = NSBundle.mainBundle().URLForResource("ringtone", withExtension: "wav")
-            
-            var soundId: SystemSoundID = 0
-            
-            AudioServicesCreateSystemSoundID(ringtoneUrl!, &soundId)
-            
-            ringtoneSoundId = soundId
-            
-            do {
-                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-                try AVAudioSession.sharedInstance().setActive(true, withOptions: .NotifyOthersOnDeactivation)
+
+        if !SIPManager.sharedManager().isCallKitAvailable() {
+
+            if UIApplication.sharedApplication().applicationState == .Active {
+
+                let ringtoneUrl = NSBundle.mainBundle().URLForResource("ringtone", withExtension: "wav")
+
+                var soundId: SystemSoundID = 0
+
+                AudioServicesCreateSystemSoundID(ringtoneUrl!, &soundId)
+
+                ringtoneSoundId = soundId
+
+                do {
+                    try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+                    try AVAudioSession.sharedInstance().setActive(true, withOptions: .NotifyOthersOnDeactivation)
+
+                    playRingtone()
+
+                    ringtoneTimer = NSTimer.scheduledTimerWithTimeInterval(kRingtoneInterval, target: self, selector: #selector(CallViewController.playRingtone), userInfo: nil, repeats: true)
+
+                } catch let sessionError as NSError {
+
+                    print("Error playing ringtone: \(sessionError)")
+                }
+
+            } else {
+
+                let caller = callerLabel.text ?? "BLOCKED"
+
+                callNotification = UILocalNotification()
+                callNotification!.soundName = "ringtoneRepeat.wav"
+                callNotification!.alertAction = "Answer"
+                callNotification!.alertBody = "Incoming call from \(caller)"
                 
-                playRingtone()
-                
-                ringtoneTimer = NSTimer.scheduledTimerWithTimeInterval(kRingtoneInterval, target: self, selector: #selector(CallViewController.playRingtone), userInfo: nil, repeats: true)
-                
-            } catch let sessionError as NSError {
-                
-                print("Error playing ringtone: \(sessionError)")
+                UIApplication.sharedApplication().presentLocalNotificationNow(callNotification!)
             }
-            
-        } else {
-            
-            let caller = callerLabel.text ?? "BLOCKED"
-            
-            callNotification = UILocalNotification()
-            callNotification!.soundName = "ringtoneRepeat.wav"
-            callNotification!.alertAction = "Answer"
-            callNotification!.alertBody = "Incoming call from \(caller)"
-            
-            UIApplication.sharedApplication().presentLocalNotificationNow(callNotification!)
+
+            return
         }
     }
     
     private func stopPlayingRingtone() {
-        
-        if ringtoneSoundId != nil {
-        
-            AudioServicesRemoveSystemSoundCompletion(ringtoneSoundId)
+
+        if !SIPManager.sharedManager().isCallKitAvailable() {
+
+            if ringtoneSoundId != nil {
             
-            AudioServicesDisposeSystemSoundID(ringtoneSoundId)
-            
-            ringtoneSoundId = nil
-            
-            ringtoneTimer!.invalidate()
-            ringtoneTimer = nil
-            
-            do {
-                try AVAudioSession.sharedInstance().setActive(false, withOptions: .NotifyOthersOnDeactivation)
-            } catch _ {
+                AudioServicesRemoveSystemSoundCompletion(ringtoneSoundId)
+                
+                AudioServicesDisposeSystemSoundID(ringtoneSoundId)
+                
+                ringtoneSoundId = nil
+                
+                ringtoneTimer!.invalidate()
+                ringtoneTimer = nil
+                
+                do {
+                    try AVAudioSession.sharedInstance().setActive(false, withOptions: .NotifyOthersOnDeactivation)
+                } catch _ {
+                }
             }
-        }
-        
-        if callNotification != nil {
             
-            UIApplication.sharedApplication().cancelLocalNotification(callNotification!)
-            
-            callNotification = nil
+            if callNotification != nil {
+                
+                UIApplication.sharedApplication().cancelLocalNotification(callNotification!)
+                
+                callNotification = nil
+            }
+
+            return
         }
     }
 }
